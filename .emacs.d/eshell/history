@@ -1,0 +1,14 @@
+ls
+g++
+python sample.py 
+python sample.py 
+pysh --version
+source ~/.bashrc 
+pysh
+ls
+cd Dropbox/College/
+ls
+ls
+cd ..
+cd ..
+ls
