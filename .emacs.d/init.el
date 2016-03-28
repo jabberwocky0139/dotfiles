@@ -70,6 +70,10 @@
 ;;リージョン内の置換
 (setq transient-mark-mode t)
 
+;;;; tree-undo
+(when (require 'undo-tree nil t)
+(global-undo-tree-mode))
+
 ;; マウスホイールの設定
 ;; ;; マウスホイールでのスクロール速度の設定
 (setq mouse-wheel-scroll-amount '(3 ((shift) . 10) ((control) . nil)))
@@ -272,3 +276,13 @@
         ("-telnet" . "telnet")
         ("dict" . "OnlineDict")
         ("*WL:Message*" . "Wanderlust")))
+
+;;tumble
+;; (require 'tumble)
+;; (setq tumble-email "waltz.for.lafaro@gmail.com")
+;; (setq tumble-password "manekinn0139")
+;; (setq tumble-url "https://www.tumblr.com/likes")
+
+;;tumblesocks
+;; (require 'tumblesocks)
+;; (setq tumblesocks-blog "ythktri.tumblr.com")
