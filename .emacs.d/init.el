@@ -197,7 +197,14 @@
 (require 'helm-config)
 (helm-mode 1)
 ;; 自動補完を無効
-(custom-set-variables '(helm-ff-auto-update-initial-value nil))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(helm-ff-auto-update-initial-value nil)
+ '(search-web-default-browser (quote eww-browse-url))
+ '(search-web-in-emacs-browser (quote eww-browse-url)))
 ;; ミニバッファでC-hをバックスペースに割り当て
 (define-key helm-read-file-map (kbd "C-h") 'delete-backward-char)
 (define-key helm-map (kbd "C-h") 'delete-backward-char)
@@ -289,12 +296,29 @@
   (org-display-inline-images))
 (define-key org-mode-map (kbd "C-c C-v C-m") 'org-babel-tangle-and-execute)
 
-;;tumble
-;; (require 'tumble)
-;; (setq tumble-email "waltz.for.lafaro@gmail.com")
-;; (setq tumble-password "manekinn0139")
-;; (setq tumble-url "https://www.tumblr.com/likes")
+;; 英辞郎とか
+;; M-x customize-group search-webでデフォルトブラウザをewwに
+(require 'search-web)
+;; google
+(define-key global-map (kbd "C-c g") (lambda () (interactive) (search-web-region "google")))
+;; 英辞郎
+(define-key global-map (kbd "C-c e") (lambda () (interactive) (search-web-region "eijiro")))
 
-;;tumblesocks
-;; (require 'tumblesocks)
-;; (setq tumblesocks-blog "ythktri.tumblr.com")
+(defadvice w3m-browse-url (around w3m-browse-url-popwin activate)
+   (save-window-excursion ad-do-it)
+   (unless (get-buffer-window "*w3m*")
+      (pop-to-buffer "*w3m*")))
+
+(defadvice eww-render (around eww-render-popwin activate)
+  (save-window-excursion ad-do-it)
+  (unless (get-buffer-window "*eww*")
+    (pop-to-buffer "*eww*")))
+(require 'popwin)
+(push "*eww*" popwin:special-display-config)
+(push "*w3m*" popwin:special-display-config)
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

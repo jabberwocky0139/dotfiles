@@ -1,0 +1,757 @@
+HTTP/1.1 200 OK
+Date: Sun, 03 Apr 2016 10:31:15 GMT
+Server: Apache/2.4.6
+Set-Cookie: JSESSIONID=8DECB46FF29827EB07692211296CC605; Path=/eow/; HttpOnly
+Content-Type: text/html;charset=UTF-8
+Vary: Accept-Encoding,User-Agent
+Content-Encoding: gzip
+Content-Length: 7790
+Keep-Alive: timeout=2, max=97
+Connection: Keep-Alive
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+	<meta http-equiv="Content-Language" content="ja" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="cache-control" content="no-cache, must-revalidate" />
+<META NAME="ROBOTS" CONTENT="NOINDEX,NOFOLLOW" />
+	<META NAME="ROBOTS" CONTENT="NOARCHIVE" />
+		<script type="text/javascript">var hostname="eow06";</script>
+	<!-- ▼ Jquery ▼ -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script type="text/javascript" language="JavaScript" src="http://eow.alc.co.jp/content/js/jquery.exflexfixed-0.3.0.js" charset="UTF-8"></script>
+	<!-- ▼ CSS ▼ -->
+	<link href="http://eow.alc.co.jp/content/css/eow_r.css?1457595910000" rel="stylesheet" type="text/css" />
+	<!-- ▼ Footer ▼ -->
+	<script type="text/javascript" language="JavaScript" src="http://eow.alc.co.jp/content/js/eow_footer.js?1433304784000" charset="UTF-8"></script>
+	<!-- ▼ Shop Search ▼ -->
+	<script type="text/javascript" language="JavaScript" src="http://eow.alc.co.jp/content/js/shop_search.js" charset="UTF-8"></script>
+	<!-- ▼ Alert ▼ -->
+	<script type="text/javascript" language="JavaScript" src="http://eow.alc.co.jp/content/js/alert.js" charset="UTF-8"></script>
+	<!-- ▼ Search Logic ▼ -->
+	<script type="text/javascript" language="JavaScript" src="http://eow.alc.co.jp/content/js/eow_search_r.js?1442388202000" charset="UTF-8"></script>
+	<!-- ▼ Sponsor Sites Display ▼ -->
+	<script type="text/javascript" language="JavaScript" src="http://eow.alc.co.jp/content/js/mc.js?1459319838000" charset="UTF-8"></script>
+<!-- ▼ GA : Remarketing ▼ -->
+	<!-- Google Code for 2015_&#33521;&#36766;&#37070;&#12506;&#12540;&#12472;&#29992; -->
+	<!-- Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. For instructions on adding this tag and more information on the above requirements, read the setup guide: google.com/ads/remarketingsetup -->
+	<script type="text/javascript">
+	/* <![CDATA[ */
+	var google_conversion_id = 1001752856;
+	var google_conversion_label = "IFAhCLWS5lgQmJLW3QM";
+	var google_custom_params = window.google_tag_params;
+	var google_remarketing_only = true;
+	/* ]]> */
+	</script>
+	<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+	</script>
+<!-- ▼ Infobar ▼ -->
+	<script type="text/javascript" language="JavaScript" src="http://eow.alc.co.jp/content/js/eow_infobar.js?1429600794000" charset="UTF-8"></script>
+	<!-- ▼ Suggest ▼ -->
+	<script type="text/javascript" language="JavaScript" src="http://eow.alc.co.jp/content/js/eow_suggest.js?1429600794000" charset="UTF-8"></script>
+	<!-- ▼ Sponsor Sites Retrieval ▼ -->
+<script type="text/javascript" language="JavaScript">
+	<!--
+	
+		/*@cc_on
+		if (@_jscript_version < 9) {
+			var _d = document;
+			eval("var document = _d");
+		}
+		@*/
+		CONTEXT_PATH = 'http://eow.alc.co.jp/';
+		IMG_URI = 'http://eow.alc.co.jp/content/img/';
+	
+		_gta = "GTA-2-15";
+	
+	//-->
+	</script>
+
+<style type="text/css">
+	<!--
+		.kana{
+			display: none;
+		}
+	-->
+	</style>
+<script type="text/javascript" language="javascript">
+	<!--
+	var initSetting = function(){
+		form_load('eow.alc.co.jp','eow.alc.co.jp','eowuser','60*60*24*30');
+	};
+	window.addEventListener ?
+		window.addEventListener('load', initSetting, false) :
+		window.attachEvent('onload', initSetting);
+	window.addEventListener ?
+		window.addEventListener('load', moveFocus, false) :
+		window.attachEvent('onload', moveFocus);
+
+	if((navigator.userAgent.match(/firefox\/(\d+)(?:\.(\d+))*(?:(a|b)(\d*))?/i)) &&  RegExp.$1 >= 8) {
+		window.addEventListener('load', function() {
+			var sCmd = document.getElementById('searchCmd');
+			document.getElementById('resultsList')
+			addEventListener('contextmenu', function(ev) {
+				var qry = trim(window.getSelection().toString());
+				if(!qry || qry === '' || qry === '.') {
+					sCmd.setAttribute('disabled', true);
+					sCmd.textContent = '語句を選択して検索';
+				} else {
+					sCmd.removeAttribute('disabled');
+					sCmd.setAttribute('data-qry', qry);
+					sCmd.textContent = '"' + qry + '" を検索';
+				}
+			});
+		});
+	}
+
+	//-->
+	</script>
+<script type="text/javascript">
+document.onkeydown = function(e) {
+	var shift, ctrl, alt;
+
+	// Mozilla(Firefox, NN) and Opera
+	if (e != null) {
+		keycode = e.which;
+		ctrl = typeof e.modifiers == 'undefined' ? e.ctrlKey : e.modifiers & Event.CONTROL_MASK;
+		alt = typeof e.modifiers == 'undefined' ? e.altKey : e.modifiers & Event.ALT_MASK;
+		shift = typeof e.modifiers == 'undefined' ? e.shiftKey : e.modifiers & Event.SHIFT_MASK;
+		if (shift && alt && (keycode == 37 || keycode == 39)) {
+			// イベントの上位伝播を防止
+			e.preventDefault();
+			e.stopPropagation();
+		}
+	// Internet Explorer
+	} else {
+		keycode = event.keyCode;
+		ctrl = event.ctrlKey;
+		alt = event.altKey;
+		shift = event.shiftKey;
+		if (shift && alt && (keycode == 37 || keycode == 39)) {
+			// イベントの上位伝播を防止
+			event.returnValue = false;
+			event.cancelBubble = true;
+		}
+	}
+
+	// キーコードの文字を取得
+	keychar = String.fromCharCode(keycode).toUpperCase();
+
+	if (shift && alt) {
+		if (keycode == 39) {
+			changePage('next');
+		} else if (keycode == 37) {
+			changePage('back');
+		}
+  	}
+};
+PAGE_CNT = 0;
+</script>
+<script type="text/javascript" language="javascript">
+<!--
+cookieDomain = 'eow.alc.co.jp';
+function loadForm() {
+	show_refVocabLink();
+	loadInfoFlg = true;
+	loadInfoFile();
+	initReady();
+}
+  window.addEventListener ?
+    window.addEventListener('load', loadForm, false) :
+    window.attachEvent('onload', loadForm);
+//-->
+</script>
+<title>content/img/bnt_s...の意味・用例｜英辞郎 on the WEB：アルク</title>
+	<meta name="keywords" content="content/img/bnt_shop.jpg,意味,とは,和訳,翻訳,英和,英和辞書,英和辞典,例文,使い方,フレーズ" />
+	<meta name="description" content="アルクがお届けする進化するオンライン英和・和英辞書データベース。一般的な単語や連語から、イディオム、専門用語、スラングまで幅広く収録。" />
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	
+
+	  ga('create', 'UA-1590792-27', 'auto');
+	  ga('send', 'pageview');
+	  
+	  ga('create', 'UA-1590792-9', 'auto', {'name': 'newTracker'});
+	  ga('newTracker.send', 'pageview');
+</script>
+
+</head>
+
+<body>
+
+<a name="top"></a>
+<!-- interest_match_relevant_zone_start -->
+<span style="display: none">
+	語学学習のアルクのサイトがお届けする進化するオンライン英和・和英辞書『英辞郎 on the WEB』。大学生やビジネスパースンから翻訳家、医療・製薬業関係者の方々まで幅広くお使いいただいております。
+</span>
+<!-- interest_match_relevant_zone_end -->
+	<!-- ▼ 本体 ▼ -->
+<!--	<div id="AreaBody">  -->
+	<div id="AreaBody">
+		<noscript>
+			<div class="alertmsg">
+				ご利用のブラウザは JavaScript が無効に設定されています。<br />
+				お手数ですが、ブラウザの JavaScript を有効にして再度アクセスしてください。
+			</div>
+			<div style="display:inline;">
+			<img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/1001752856/?value=1.00&amp;currency_code=JPY&amp;label=IFAhCLWS5lgQmJLW3QM&amp;guid=ON&amp;script=0"/>
+			</div>
+		</noscript>
+		<!-- ▼ 本体ヘッダ ▼ -->
+		<div class="clearfix">
+			<div id="AreaHeaderLeft">
+				<div id="logo">
+<a href="http://www.alc.co.jp/"><img src="http://eow.alc.co.jp/content/img/alc_logo.png" width="174" height="66" border="0" alt="アルクのサイト" onclick="ga('send', 'event', 'logo', 'click', 'www.alc.co.jp/');"></a>
+				</div>
+<div id="HomeButton">
+					<a href="http://www.alc.co.jp/"><img src="http://eow.alc.co.jp/content/img/btn_home.jpg" border="0" alt="HOME" onclick="ga('send', 'event', 'btn', 'click', 'www.alc.co.jp/');"></a>
+				</div>
+				<div id="ShopButton">
+					<a href="http://ec.alc.co.jp/?utm_source=serp_pc&utm_medium=button&utm_campaign=EOWheader_eclink"><img src="http://eow.alc.co.jp/content/img/bnt_shop.jpg " border="0" alt="お買い物はこちら" onclick="ga('send', 'event', 'btn', 'click', 'http://www.alc.co.jp/cnt/os/');"></a>
+				</div>
+			</div>
+			<div id="AreaHeaderRight">
+				<!--north banner表示-->
+				<!-- eijiro_top_728-90 -->
+				<script type='text/javascript'>
+					north_banner();
+				</script>
+				<!-- eijiro_top_728-90 -->
+			</div>
+		</div>
+		<!-- ▲ 本体ヘッダ ▲ -->
+		<br class="cl_l">
+		<div class="bg_i"></div>
+
+<!-- ▼ 本体上部（コンテンツ）：左 ▼ -->
+<!--	<div id="fixedBox">	 -->
+<div id="fixedBox">
+<!-- ▼ 英辞郎ヘッダ ▼ -->
+				<div id="searchHeader" class="clearfix">
+						<dl>
+						<dt><a href="http://eowp.alc.co.jp/info2/?utm_source=serp_pc&utm_medium=button&utm_campaign=paid-for-version" target="_blank"><img src="http://eow.alc.co.jp/content/img/btn_eijiro_pro.gif" alt="英辞郎PRO有料版はこちら" width="202" height="26" /></a></dt>
+						<dd>英和・和英 対訳データオンライン検索サービス</dd>
+						</dl>
+						<ul class="setting clearfix">
+						<li class="teikyo"><a href="http://www.eijiro.jp/" target="_blank" class="sprite-index over"><img src="http://eow.alc.co.jp/content/img/eijiro-edp.gif" alt="データ提供：EDP" width="76" height="10" /></a></li>
+						<li class="ico_help"><a href="http://eow.alc.co.jp/help/"><img src="http://eow.alc.co.jp/content/img/ico_help_off.png" alt="ヘルプ" width="23" height="23" /></a></li>
+						<li class="ico_setting"><a href="http://eow.alc.co.jp/setting.html"><img src="http://eow.alc.co.jp/content/img/ico_setting_off.png" alt="設定" width="23" height="23" /></a></li>
+						</ul>
+				</div>
+				<div class="search_area_left">
+
+					<div id="tabbody">
+						<div class="current search_box clearfix">
+							<div class="inner2">
+								<div class="eijiro_tit"><img src="http://eow.alc.co.jp/content/img/eijiro-title.gif" alt="英辞郎on the WEB" width="210" height="43"/></div>
+									<div class="inner3">
+										<form id="fm1" name="fm1" onsubmit="return goF2('fm1')">
+										<div class="search_window">
+											<input id="q" name="q" autocomplete="off" value="content/img/bnt_shop.jpg" size="35" class="s_txt1" accesskey="e" type="text"/>
+										</div>
+										<div class="serch_button">
+											<input id="search" type="image" src="http://eow.alc.co.jp/content/img/eijiro-search.gif" alt="検索" onclick="return goF1('fm1')" class="s_btn" />
+										</form>
+									</div>
+								</div>
+								<div id="suggest" style='display: none;'></div>
+							</div>
+							<input id="clearBtn" type="image" src="http://eow.alc.co.jp/content/img/eijiro-clear.gif" value="クリア" onclick="javascript:wordClear('fm1')" class="reset btn" />
+						</div>
+					<p class="pr_text"><span id="box"></span></p>
+				</div>
+			</div>
+
+			<!-- ▼ Infospace ▼ -->
+			<div class="mb_0">
+				<script type="text/javascript">
+				<!--
+					infospace();
+				//-->
+				</script>
+			</div>
+			<!-- ▲ Infospace ▲ -->
+
+		<!-- ▲ 英辞郎ヘッダ ▲ -->
+</div>
+<div id="AreaUpperLeft">
+			<div id="rightspace"><!-- --></div>
+			<div id="AreaUpperLeftContainer">
+				<div id="AreaUpperLeftInner">
+					<script type="text/javascript" language="javascript">
+						<!--
+							announcement();
+						//-->
+					</script>
+					<form id="f1" name="f1" method="" action="">
+					<input name="q" type="hidden" value="content/img/bnt_shop.jpg" />
+					<input name="ie" type="hidden" value="UTF-8" />
+				 	<input name="pg" type="hidden" value="1" />
+					<input name="dk" type="hidden" value="EJ" />
+					<input name="fn" type="hidden" value="" />
+					<input name="exdbl" type="hidden" value="" id="exdbl" />
+				</form>
+<!-- ▼ 検索結果 ▼ -->
+					<div id="resultsArea">
+						<!-- ▼ 検索文字列 ▼ -->
+
+<div id="sw">検索文字列<strong id="searchWord">content/img/bnt_shop.jpg</strong></div>
+						<!-- ▲ 検索文字列 ▲ -->
+
+
+<!-- ▼ ローカルナビ（上部） ▼ -->
+<!-- ▼ ページナビ ▼ -->
+<div id="navigation_zero" class="clearfix">
+							<div id="itemsNumber"><div class="itemPostion_zero">該当件数 : <strong>0</strong>件<br />
+<br />
+</div>
+<div id="eijiro_img_zero" width="64"  style="right;">
+<a href="http://www.eijiro.jp/" title="英辞郎データ提供元 EDP のサイトへ" target="_blank"><img src="http://eow.alc.co.jp/content/img/doctor.gif" alt="英辞郎データ提供元 EDP のサイトへ" width="55" height="55" border="0" align="absbottom" /></a>
+							</div>
+</div>
+					</div><!-- /navigation -->
+					<!-- ▲ ページナビ ▲ -->
+<!-- ▲ ローカルナビ（上部） ▲ -->
+						<!-- ▼ 検索補助 ▼ -->
+						<div class="sas">
+<font color="#BF0000"><strong>content/img/bnt_shop.jpg</strong> に該当する項目は見つかりませんでした。</font><br />
+								<br />
+								文章を検索するには、<strong><a href="http://eowp.alc.co.jp/info/">「英辞郎 on the WEB Pro Lite」</a></strong>をご利用ください。<br />
+<p>
+										<font color="#BF0000">この中にお探しの単語はありますか？</font><br />
+&nbsp;<div id="sas_word"><span style="font-weight: bold; font-style: italic;">
+<a href='javascript:goFairWord("iamg")'>iamg</a>
+</span>
+&nbsp;,&nbsp;<span style="font-weight: bold; font-style: italic;">
+<a href='javascript:goFairWord("imig")'>imig</a>
+</span>
+&nbsp;,&nbsp;<span style="font-weight: bold; font-style: italic;">
+<a href='javascript:goFairWord("emg")'>emg</a>
+</span>
+&nbsp;,&nbsp;<span style="font-weight: bold; font-style: italic;">
+<a href='javascript:goFairWord("imc")'>imc</a>
+</span>
+&nbsp;,&nbsp;<span style="font-weight: bold; font-style: italic;">
+<a href='javascript:goFairWord("omg")'>omg</a>
+</span>
+&nbsp;,&nbsp;<span style="font-weight: bold; font-style: italic;">
+<a href='javascript:goFairWord("mig")'>mig</a>
+</span>
+&nbsp;,&nbsp;<span style="font-weight: bold; font-style: italic;">
+<a href='javascript:goFairWord("igm")'>igm</a>
+</span>
+&nbsp;,&nbsp;<span style="font-weight: bold; font-style: italic;">
+<a href='javascript:goFairWord("mg")'>mg</a>
+</span>
+&nbsp;,&nbsp;<span style="font-weight: bold; font-style: italic;">
+<a href='javascript:goFairWord("im")'>im</a>
+</span>
+&nbsp;,&nbsp;<span style="font-weight: bold; font-style: italic;">
+<a href='javascript:goFairWord("ig")'>ig</a>
+</span>
+&nbsp;,&nbsp;<span style="font-weight: bold; font-style: italic;">
+<a href='javascript:goFairWord("nmg")'>nmg</a>
+</span>
+&nbsp;,&nbsp;<span style="font-weight: bold; font-style: italic;">
+<a href='javascript:goFairWord("hmg")'>hmg</a>
+</span>
+&nbsp;,&nbsp;<span style="font-weight: bold; font-style: italic;">
+<a href='javascript:goFairWord("mmg")'>mmg</a>
+</span>
+&nbsp;,&nbsp;<span style="font-weight: bold; font-style: italic;">
+<a href='javascript:goFairWord("wmg")'>wmg</a>
+</span>
+&nbsp;,&nbsp;<span style="font-weight: bold; font-style: italic;">
+<a href='javascript:goFairWord("ing")'>ing</a>
+</span>
+&nbsp;,&nbsp;<span style="font-weight: bold; font-style: italic;">
+<a href='javascript:goFairWord("lmg")'>lmg</a>
+</span>
+&nbsp;,&nbsp;<span style="font-weight: bold; font-style: italic;">
+<a href='javascript:goFairWord("dmg")'>dmg</a>
+</span>
+&nbsp;,&nbsp;<span style="font-weight: bold; font-style: italic;">
+<a href='javascript:goFairWord("tmg")'>tmg</a>
+</span>
+&nbsp;,&nbsp;<span style="font-weight: bold; font-style: italic;">
+<a href='javascript:goFairWord("cmg")'>cmg</a>
+</span>
+&nbsp;,&nbsp;<span style="font-weight: bold; font-style: italic;">
+<a href='javascript:goFairWord("gmg")'>gmg</a>
+</span>
+&nbsp;,&nbsp;<span style="font-weight: bold; font-style: italic;">
+<a href='javascript:goFairWord("qmg")'>qmg</a>
+</span>
+&nbsp;,&nbsp;<span style="font-weight: bold; font-style: italic;">
+<a href='javascript:goFairWord("imd")'>imd</a>
+</span>
+&nbsp;,&nbsp;<span style="font-weight: bold; font-style: italic;">
+<a href='javascript:goFairWord("imt")'>imt</a>
+</span>
+&nbsp;,&nbsp;<span style="font-weight: bold; font-style: italic;">
+<a href='javascript:goFairWord("smg")'>smg</a>
+</span>
+&nbsp;,&nbsp;<span style="font-weight: bold; font-style: italic;">
+<a href='javascript:goFairWord("ims")'>ims</a>
+</span>
+&nbsp;,&nbsp;<span style="font-weight: bold; font-style: italic;">
+<a href='javascript:goFairWord("imr")'>imr</a>
+</span>
+&nbsp;,&nbsp;<span style="font-weight: bold; font-style: italic;">
+<a href='javascript:goFairWord("imb")'>imb</a>
+</span>
+&nbsp;,&nbsp;<span style="font-weight: bold; font-style: italic;">
+<a href='javascript:goFairWord("imp")'>imp</a>
+</span>
+&nbsp;,&nbsp;<span style="font-weight: bold; font-style: italic;">
+<a href='javascript:goFairWord("iml")'>iml</a>
+</span>
+&nbsp;,&nbsp;<span style="font-weight: bold; font-style: italic;">
+<a href='javascript:goFairWord("ibg")'>ibg</a>
+</span>
+&nbsp;,&nbsp;<span style="font-weight: bold; font-style: italic;">
+<a href='javascript:goFairWord("isg")'>isg</a>
+</span>
+&nbsp;,&nbsp;<span style="font-weight: bold; font-style: italic;">
+<a href='javascript:goFairWord("imf")'>imf</a>
+</span>
+&nbsp;,&nbsp;<span style="font-weight: bold; font-style: italic;">
+<a href='javascript:goFairWord("imv")'>imv</a>
+</span>
+&nbsp;,&nbsp;<span style="font-weight: bold; font-style: italic;">
+<a href='javascript:goFairWord("bmg")'>bmg</a>
+</span>
+&nbsp;,&nbsp;<span style="font-weight: bold; font-style: italic;">
+<a href='javascript:goFairWord("ifg")'>ifg</a>
+</span>
+&nbsp;,&nbsp;<span style="font-weight: bold; font-style: italic;">
+<a href='javascript:goFairWord("ilg")'>ilg</a>
+</span>
+&nbsp;,&nbsp;<span style="font-weight: bold; font-style: italic;">
+<a href='javascript:goFairWord("irg")'>irg</a>
+</span>
+&nbsp;,&nbsp;<span style="font-weight: bold; font-style: italic;">
+<a href='javascript:goFairWord("ima")'>ima</a>
+</span>
+&nbsp;,&nbsp;<span style="font-weight: bold; font-style: italic;">
+<a href='javascript:goFairWord("ime")'>ime</a>
+</span>
+&nbsp;,&nbsp;<span style="font-weight: bold; font-style: italic;">
+<a href='javascript:goFairWord("imh")'>imh</a>
+</span>
+&nbsp;,&nbsp;<span style="font-weight: bold; font-style: italic;">
+<a href='javascript:goFairWord("imi")'>imi</a>
+</span>
+&nbsp;,&nbsp;<span style="font-weight: bold; font-style: italic;">
+<a href='javascript:goFairWord("imm")'>imm</a>
+</span>
+&nbsp;,&nbsp;<span style="font-weight: bold; font-style: italic;">
+<a href='javascript:goFairWord("imo")'>imo</a>
+</span>
+&nbsp;,&nbsp;<span style="font-weight: bold; font-style: italic;">
+<a href='javascript:goFairWord("imu")'>imu</a>
+</span>
+&nbsp;,&nbsp;<span style="font-weight: bold; font-style: italic;">
+<a href='javascript:goFairWord("iag")'>iag</a>
+</span>
+&nbsp;,&nbsp;<span style="font-weight: bold; font-style: italic;">
+<a href='javascript:goFairWord("icg")'>icg</a>
+</span>
+&nbsp;,&nbsp;<span style="font-weight: bold; font-style: italic;">
+<a href='javascript:goFairWord("igg")'>igg</a>
+</span>
+&nbsp;,&nbsp;<span style="font-weight: bold; font-style: italic;">
+<a href='javascript:goFairWord("iwg")'>iwg</a>
+</span>
+</div>
+<ul style="list-style-position: inside; font-size: 13px;">
+											<li>検索語をスペルチェックした結果、お探しと思われるキーワードを表示しています。</li>
+											<li>上に提示されたキーワードをクリックすると、そのキーワードで再検索ができます。</li>
+										</ul>
+									</p>
+</div>
+						<!-- ▲ 検索補助 ▲ -->
+						<!-- ▼ 検索結果本体 ▼ -->
+<div id="unmatchMsg" class="mr_10 mb_40">
+<br />
+								<ul class="ml_10">
+									<li>綴りに間違いはありませんか？　スペルチェッカーの選んだキーワード候補が表示されている場合は、そのキーワードでも検索してみてください。</li>
+									<li>和英検索の場合は、通常カタカナで表記されるものはカタカナで、ひらがなで表記されるものはひらがなで検索してみてください。（例：「ヤゴ」と「やご」）</li>
+									<li> 長音記号がない表記が一般的なものは、長音記号を削除して検索してみてください。（例：「コンピュータ」と「コンピューター」）</li>
+									<li>キーワードが複数の場合は、キーワードを減らして検索してみてください。</li>
+								</ul>
+</div>
+						<!-- ▲ 検索結果本体 ▲ -->
+<br />
+					</div>
+					<!-- ▲ 検索結果 ▲ -->
+<div align="center" style="margin-top: 15px; margin-bottom: 20px;">
+					<!-- eijiro_error_rec_300-250 -->
+					<script type='text/javascript'>
+					<!--
+						ad_com();
+					//-->
+					</script>
+					<!-- eijiro_error_rec_300-250 -->
+					</div>
+<!-- eijiro_footer_728-90 -->
+					<script type="text/javascript">
+					<!--
+						hs_f_adn('l');
+					// -->
+					</script>
+					<!-- eijiro_footer_728-90 -->
+
+					<div id="ad_serch_bottom">
+						<div id="ad_serch_bottom_right">
+
+						<!-- eijiro_footer_left-rec_300-250 -->
+							<script type="text/javascript">
+							<!--
+								hs_disp('l');
+							// -->
+							</script>
+						<!-- eijiro_footer_left-rec_300-250 -->
+						</div>
+						<div id="ad_serch_bottom_left">
+							<!-- eijiro_footer_right-rec_300-250 -->
+							<script type="text/javascript">
+							<!--
+								hs_disp_left();
+							// -->
+							</script>
+							<!-- eijiro_footer_right-rec_300-250 -->
+						</div>
+					</div>
+
+</div>
+				</div>
+			</div>
+	<!-- ▲ 本体上部（コンテンツ）：左 ▲ -->
+	<!-- ▼ 本体上部（広告）：右 ▼ -->
+	<div id="AreaUpperRight" class="rectangle_right">
+
+			<!-- ▼ Hitomedia（Rectangle） ▼ -->
+			<div class="mb_3">
+				<script type="text/javascript">
+				<!--
+					rectangle();
+				//-->
+				</script>
+				<noscript>
+					<a target='_blank' href='http://ds.advg.jp/adpds_deliver/p/r?adpds_site=alcad0505&adpds_frame=eow_rectangle'>
+					<img src='http://ds.advg.jp/adpds_deliver/p/img?adpds_site=alcad0505&adpds_frame=eow_rectangle' border=0></a>
+				</noscript>
+
+				<script language='javascript'>adpds_js('http://ds.advg.jp/adpds_deliver', 'adpds_site=alcad0505&adpds_frame=eow_pv');</script>
+				<noscript>
+					<a target='_blank' href='http://ds.advg.jp/adpds_deliver/p/r?adpds_site=alcad0505&adpds_frame=eow_pv'>
+					<img src='http://ds.advg.jp/adpds_deliver/p/img?adpds_site=alcad0505&adpds_frame=eow_pv' border=0></a>
+				</noscript>
+				</div>
+			<!-- ▲ Hitomedia（Rectangle） ▲ -->
+
+			<!-- eijiro_2nd-rec_300-250 -->
+			<script type="text/javascript">
+			<!--
+				ov_adn();
+			// -->
+			</script>
+			<!-- eijiro_2nd-rec_300-250 -->
+			<!-- eijiro_3rd-rec_300-250 -->
+			<script type="text/javascript">
+			<!--
+				ov_cmhs();
+			// -->
+			</script>
+			<!-- eijiro_3rd-rec_300-250 -->
+<!-- eijiro_4th-rec_300-250 -->
+ 			<div class="scroll_fixed">
+				<div class="mb_3">
+					<script type="text/javascript">
+					<!--
+						ace_ar();
+					//-->
+					</script>
+				</div>
+			<!-- eijiro_4th-rec_300-250 -->
+
+			<!-- eijiro_5th-rec_300-250 -->
+			<script type="text/javascript">
+			<!--
+				spd_disp_r();
+			// -->
+			</script>
+			<!-- eijiro_5th-rec_300-250 -->
+			</div>
+		</div>
+
+		<script type="text/javascript" language="JavaScript" src="http://eow.alc.co.jp/content/js/jquery.sticky-kit.js" charset="UTF-8"></script>
+		<script type="text/javascript">
+			$(".scroll_fixed").stick_in_parent({parent:'.rectangle_right'});
+		</script><!-- ▲ 本体上部（広告）：右 ▲ -->
+	<br class="cl_l" />
+	<!-- ▼ 本体下部（UI）：左 ▼ -->
+	<!-- ▲ 本体下部（UI）：左 ▲ -->
+	<!-- ▼ フッタ ▼ -->
+	<ul class="sns">
+			<li><a href="http://eowp.blogspot.jp/" target="_blank"><img src="http://eow.alc.co.jp/content/img/sns_icon1.png" alt="英辞郎 on the WEB Team Blog" /></a></li>
+			<li><a href="https://twitter.com/eow_alc" target="_blank"><img src="http://eow.alc.co.jp/content/img/sns_icon2.png" alt="アルクのサイトTwitter" /></a></li>
+		</ul>
+<br class="cl_l">
+		<div id="AreaFooter">
+			<script type="text/javascript">
+			<!--
+				document.write(footer);
+			// -->
+			</script>
+		</div>
+<!-- ▲ フッタ ▲ -->
+	</div>
+<!--[if lt IE 9]>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="/js/jquery-1.11.3.min.js"><\/script>')</script>
+	<![endif]-->
+	<!--[if gte IE 9]><!-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="/js/jquery-2.1.4.min.js"><\/script>')</script>
+	<!--<![endif]-->
+
+	<script type="text/javascript" language="javascript">
+
+		//paging_btn_hover
+		$(function(){
+
+			//search_word
+			var input_val = "検索語を入力してクリック";	//初期のval値
+			$('#q').focus(function(){
+				var check_val = $(this).val();	//フォーカス時のvalを調べる
+
+				if( check_val == input_val ){
+					$(this).val('').css('color', '#333');
+				}
+			});
+
+			$('#q').blur(function(){
+				if( $(this).val() == '' ){
+					$('#q').val("検索語を入力してクリック").css('color', '#bebebe');
+				}
+			});
+
+			//clear btn
+			$('#clearBtn').focus(function(){
+				$('#q').val('').css('color', '#333');
+			});
+
+			//search btn
+			$('#search').focus(function(){
+				var check_val = $('#q').val();
+				if( check_val == input_val ){
+					 $('#q').val("").css('color', '#333');;
+				}
+			});
+
+			//img_hover
+			$('.ico_help img').on({
+				'mouseover': function(){
+					$(this).attr('src', 'http://eow.alc.co.jp/content/img/ico_help_on.png');
+				},
+				'mouseout': function(){
+					$(this).attr('src', 'http://eow.alc.co.jp/content/img/ico_help_off.png');
+				}
+			});
+			$('.ico_setting img').on({
+				'mouseover': function(){
+					$(this).attr('src', 'http://eow.alc.co.jp/content/img/ico_setting_on.png');
+				},
+				'mouseout': function(){
+					$(this).attr('src', 'http://eow.alc.co.jp/content/img/ico_setting_off.png');
+				}
+			});
+
+
+			//fukidashi
+			var fukidashi = '<div class="fukidashi"><p class="closeBtn"><img src="http://eow.alc.co.jp/content/img/tango_close.png" alt="閉じる" width="24" height="24" /></p><p class="text">単語帳への登録は「英辞郎 on the WEB Pro」でご利用ください。<br />5000件まで登録できます。</p><p class="btn"><a href="http://eowp.alc.co.jp/info2/?utm_source=serp_pc&utm_medium=popup&utm_campaign=wordbook" target="_blank"><img src="http://eow.alc.co.jp/content/img/tango_btn.png" alt="詳しくはこちら" width="120" height="31" /></a></p></div>';
+			$('.tango').append(fukidashi);
+
+			var fukidasi_ex_sentence = '<div class="fukidashi"><p class="closeBtn"><img src="http://eow.alc.co.jp/content/img/tango_close.png" alt="閉じる" width="24" height="24" /></p><p class="text">文例は「英辞郎 on the WEB Pro」（例文総数100万件以上）でご覧ください。</p><p class="btn"><a href="http://eowp.alc.co.jp/info2/?utm_source=eow&utm_medium=popup&utm_campaign=sentence" target="_blank"><img src="http://eow.alc.co.jp/content/img/tango_btn.png" alt="詳しくはこちら" width="120" height="31" /></a></p></div>';
+			$('.ex_sentence').append(fukidasi_ex_sentence);
+
+			var tt_flg = false;
+			$('.tango_btn').on({
+				'click': function(){
+					//一旦非表示
+					$('.fukidashi').hide();
+					$('.tango_btn').attr('src', 'http://eow.alc.co.jp/content/img/tango_off.png');
+					//該当表示
+					$('.myTT').show();
+					$(this).next('.fukidashi').show();
+					$(this).attr('src', 'http://eow.alc.co.jp/content/img/tango_on.png');
+					tt_flg = true;
+				},
+				'mouseover': function(){
+					if( tt_flg == false ){
+						$(this).css('cursor','pointer').attr('src', 'http://eow.alc.co.jp/content/img/tango_on.png');
+					}
+				},
+				'mouseout': function(){
+					if( tt_flg == false ){
+						$(this).css('cursor','default').attr('src', 'http://eow.alc.co.jp/content/img/tango_off.png');
+					}
+				}
+			});
+
+			$('.closeBtn').on({
+				'click': function(){
+					fuki_hide();
+				},
+				'mouseover': function(){
+					$(this).css('cursor','pointer');
+				},
+				'mouseout': function(){
+					$(this).css('cursor','default');
+				}
+			});
+
+			$('.myTT').on({
+				'click': function(){
+					fuki_hide();
+				}
+			});
+
+			function fuki_hide(){
+				$('.fukidashi').hide();
+				$('.myTT').hide();
+				$('.tango > img').attr('src', 'http://eow.alc.co.jp/content/img/tango_off.png');
+				tt_flg = false;
+			}
+
+		});
+	</script>
+	<div class="myTT"></div><!-- //吹き出し全体を覆うdiv -->
+
+	<!-- ▼ degitalice計測タグ ▼ -->
+	<script type="text/javascript">
+	<!--
+		degitalice();
+	// -->
+	</script>
+	<!-- ▼ Yahoo リストリマーケティング ▼ -->
+	<script type="text/javascript">
+	<!--
+		yahoomt();
+	// -->
+	</script>
+	<noscript>
+	<div style="display:inline;">
+	<img height="1" width="1" style="border-style:none;" alt="" src="//b97.yahoo.co.jp/pagead/conversion/1000048702/?guid=ON&script=0&disvt=false"/>
+	</div>
+	</noscript>
+
+</body>
+</html>
