@@ -68,7 +68,7 @@ alias Python='python3'
 alias gh='cd /home/jabberwocky/Dropbox/github'
 
 #キー配置変更
-#xmodmap .xmodmaprc
+xmodmap .xmodmaprc
 
 #パスの設定
 #source /opt/intel/parallel_studio_xe_2016.0.047/compilers_and_libraries_2016/linux/bin/compilervars.sh intel64

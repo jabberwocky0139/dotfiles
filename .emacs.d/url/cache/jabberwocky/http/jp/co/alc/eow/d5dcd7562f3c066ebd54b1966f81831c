@@ -1,7 +1,7 @@
 HTTP/1.1 200 OK
-Date: Sun, 03 Apr 2016 10:31:15 GMT
+Date: Sun, 03 Apr 2016 14:20:07 GMT
 Server: Apache/2.4.6
-Set-Cookie: JSESSIONID=8DECB46FF29827EB07692211296CC605; Path=/eow/; HttpOnly
+Set-Cookie: JSESSIONID=4AE4C2A608B824794D6D6867D09B2EAC; Path=/eow/; HttpOnly
 Content-Type: text/html;charset=UTF-8
 Vary: Accept-Encoding,User-Agent
 Content-Encoding: gzip
