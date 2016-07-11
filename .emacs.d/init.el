@@ -43,7 +43,7 @@
 	       (throw 'end-flag t)))))))
 (global-set-key "\C-c\C-y" 'window-resizer)
 
-;; C-hをバックスペースに
+v;; C-hをバックスペースに
 (keyboard-translate ?\C-h ?\C-?)
 
 ;; C-c tで折り返し
