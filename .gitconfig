@@ -1,0 +1,17 @@
+[user]
+	name = “jabberwocky0139”
+	email = torii0139@asagi.waseda.jp
+
+[alias]
+	ci = commit
+	cia = commit -a
+	cam = commit --amend
+	cama = commit --amend -a
+	 
+	cl = clean
+	cldf = clean -df
+	 
+	res = reset
+	resa = reset HEAD
+	
+	co = checkout

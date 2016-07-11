@@ -66,6 +66,7 @@ alias wd='cd /home/jabberwocky/Dropbox/College'
 alias Python='python3'
 #alias python='/usr/bin/python2.7'
 alias gh='cd /home/jabberwocky/Dropbox/github'
+alias Jupyter='jupyter notebook --browser=/usr/bin/firefox'
 
 #キー配置変更
 xmodmap .xmodmaprc

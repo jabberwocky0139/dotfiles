@@ -29,13 +29,13 @@
 	(message "size[%dx%d]"
 		 (window-width) (window-height))
 	(setq c (read-char))
-	(cond ((= c ?l)
+	(cond ((= c ?\C-f)
 	       (enlarge-window-horizontally dx))
-	      ((= c ?h)
+	      ((= c ?\C-b)
 	       (shrink-window-horizontally dx))
-	      ((= c ?j)
+	      ((= c ?\C-n)
 	       (enlarge-window dy))
-	      ((= c ?k)
+	      ((= c ?\C-p)
 	       (shrink-window dy))
 	      ;; otherwise
 	      (t
@@ -329,6 +329,7 @@
 
 ;; auto-complete
 (require 'auto-complete)
+(require 'auto-complete-latex)
 (require 'auto-complete-config)
 (ac-config-default)
 (global-auto-complete-mode t)
