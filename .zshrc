@@ -67,29 +67,3 @@ alias Python='python3'
 #alias python='/usr/bin/python2.7'
 alias gh='cd /home/jabberwocky/Dropbox/github'
 alias Jupyter='jupyter notebook --browser=/usr/bin/firefox'
-
-#キー配置変更
-xmodmap .xmodmaprc
-
-#パスの設定
-#source /opt/intel/parallel_studio_xe_2016.0.047/compilers_and_libraries_2016/linux/bin/compilervars.sh intel64
-
-PATH=$PATH:/opt/pysh/bin
-PATH=$PATH:/usr/include/python3.4m
-PATH=$PATH:/usr/lib/llvm-3.5/bin
-CPATH=/usr/local/lib/python3.4/dist-packages/PyUblas-2013.1-py3.4-linux-x86_64.egg/pyublas/include/:/usr/include/python3.4:/usr/local/lib/python3.4/dist-packages/numpy/core/include:/usr/lib/llvm-3.5/include:/usr/lib/llvm-3.5/include/llvm:/usr/lib/llvm-3.5/include/llvm-c
-export CPATH
-
-#PATH=$PATH:/usr/local/cuda-7.0/bin
-#PATH=$PATH:/opt/intel/composer_xe_2015/bin
-#LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-7.0/lib64
-LD_LIBRARY_PATH=/usr/local/lib:/opt/boost_1_55_0/stage/lib:/usr/local/bin/:/usr/include/python3.4:/usr/lib/llvm-3.5/lib
-export LD_LIBRARY_PATH
-export PATH
-export LLVM_CONFIG=/usr/lib/llvm-3.5/bin/llvm-config
-
-
-# added by Anaconda3 2.2.0 installer
-#export PATH="/home/jabberwocky/anaconda3/bin:$PATH"
-
-#/opt/intel/parallel_studio_xe_2016.0.047/compilers_and_libraries_2016/linux/compiler/include:/opt/intel/parallel_studio_xe_2016.0.047/compilers_and_libraries_2016/linux/tbb/include/tbb:/opt/intel/parallel_studio_xe_2016.0.047/compilers_and_libraries_2016/linux/compiler/lib/intel64:

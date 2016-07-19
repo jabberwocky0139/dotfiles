@@ -1,0 +1,50 @@
+% 単独コンパイル可能なtexファイルを結合するための工夫
+
+\usepackage{amsmath,amssymb}
+\usepackage{comment}
+\usepackage{bm}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{ascmac}
+\usepackage{color}
+\usepackage{braket}
+\usepackage{bigints}
+\usepackage{cite}
+\usepackage{physics}
+\usepackage{wick}
+\usepackage{geometry}
+\geometry{left=20mm,right=20mm,top=25mm,bottom=25mm}
+\usepackage{listings}
+
+\newcommand{\Lk}{{\cal L}_k}
+\newcommand{\La}{{\cal L}_a}
+\newcommand{\M}{{\cal M}}
+\newcommand{\dket}[1]{| #1 \rangle \! \rangle}
+\newcommand{\dbra}[1]{\langle \! \langle #1 |}
+\newcommand{\dbraket}[2]{\langle \! \langle #1 | #2 \rangle \! \rangle}
+\newcommand{\dpbra}[1]{( \! ( #1 |}
+\newcommand{\dpket}[1]{| #1 ) \! )}
+\newcommand{\pbra}[1]{( #1 |}
+\newcommand{\pket}[1]{| #1 )}
+\newcommand{\figcaption}[1]{\def\@captype{figure}\caption{#1}} % 表
+\newcommand{\ul}[1]{\underline{#1}}
+\newcommand{\calM}{{\cal M}}
+\newcommand{\calL}{{\cal L}}
+\newcommand{\calI}{{\cal I}}
+\newcommand{\calK}{{\cal K}}
+\newcommand{\calQ}{{\cal Q}}
+\newcommand{\calP}{{\cal P}}
+\newcommand{\calG}{{\cal G}}
+\newcommand{\calS}{{\cal S}}
+\newcommand{\bx}{\bm{x}}
+\newcommand{\by}{\bm{y}}
+\newcommand{\bk}{\bm{k}}
+\newcommand{\hpsi}{\hat{\psi}}
+%\newcommand{\Tr}{{\rm Tr}}
+
+
+%-------------------式番号にSectionを付加------------------------------
+%\def\theequation{\thechapter.\arabic{equation}}
+%\makeatletter
+%\@addtoreset{equation}{chapter}
+%\makeatother
+%-----------------------------------------------------------------------

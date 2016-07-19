@@ -1,9 +1,4 @@
 python3 MergeSort.py 
-python3 MergeSort.py 
-python3 MergeSort.py 
-python3 MergeSort.py 
-python3 MergeSort.py 
-python3 MergeSort.py 
 cd ..
 make html
 make html
@@ -126,3 +121,8 @@ ls
 cp ../../../github/zeromode/Q2.eps ./
 cp ../../../github/zeromode/P2.eps ./
 cp ../../../github/zeromode/depletion.eps  ./
+python3  qr_6371fiX.py 
+python3  qr_6371ssd.py 
+python3  qr_6371GBq.py 
+python3  qr_6371gV2.py 
+python3  qr_6371SfF.py 

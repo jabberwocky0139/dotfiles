@@ -43,7 +43,7 @@
 	       (throw 'end-flag t)))))))
 (global-set-key "\C-c\C-y" 'window-resizer)
 
-v;; C-hをバックスペースに
+;; C-hをバックスペースに
 (keyboard-translate ?\C-h ?\C-?)
 
 ;; C-c tで折り返し
@@ -170,22 +170,22 @@ v;; C-hをバックスペースに
 ;solarized-color-scheme
 ;;; これらはload-themeの前に配置すること
 ;; fringeを背景から目立たせる
- (setq solarized-distinct-fringe-background t)
+(setq solarized-distinct-fringe-background t)
 
 ;; mode-lineを目立たせる(Fig3)
- (setq solarized-high-contrast-mode-line t)
+(setq solarized-high-contrast-mode-line t)
 
 ;; bold度を減らす
- (setq solarized-use-less-bold t)
+(setq solarized-use-less-bold t)
 
 ;; italicを増やす
- (setq solarized-use-more-italic t)
+(setq solarized-use-more-italic t)
 
 ;; インジケータの色を減らす (git-gutter, flycheckなど)
- (setq solarized-emphasize-indicators nil)
+(setq solarized-emphasize-indicators nil)
 
 ;; orgの見出し行の文字の大きさを変えない
- (setq solarized-scale-org-headlines nil)
+(setq solarized-scale-org-headlines nil)
 
 ;; ;; フォントサイズを変更しない
 ;;  (setq solarized-height-minus-1 1)
@@ -194,8 +194,8 @@ v;; C-hをバックスペースに
 ;;  (setq solarized-height-plus-3 1)
 ;;  (setq solarized-height-plus-4 1)
 
- ;(load-theme 'solarized-light t)
-  (load-theme 'solarized-dark t)
+;(load-theme 'solarized-light t)
+(load-theme 'solarized-dark t)
 
 ; helm
 (require 'helm-config)
@@ -334,3 +334,58 @@ v;; C-hをバックスペースに
 (ac-config-default)
 (global-auto-complete-mode t)
 
+;; 透明度を変更するコマンド M-x set-alpha
+;; http://qiita.com/marcy@github/items/ba0d018a03381a964f2
+(defun set-alpha (alpha-num)
+  "set frame parameter 'alpha"
+  (interactive "nAlpha: ")
+  (set-frame-parameter nil 'alpha (cons alpha-num '(90))))
+;; 初期値
+(set-frame-parameter nil 'alpha 92)
+
+
+;; コードの折りたたみ
+(add-hook 'c++-mode-hook
+	  '(lambda ()
+	     (hs-minor-mode 1)))
+(add-hook 'c-mode-hook
+	  '(lambda ()
+	     (hs-minor-mode 1)))
+(add-hook 'emacs-lisp-mode-hook
+	  '(lambda ()
+	     (hs-minor-mode 1)))
+(add-hook 'lisp-mode-hook
+	  '(lambda ()
+	     (hs-minor-mode 1)))
+;(define-key global-map (kbd "C-c \\") 'hs-toggle-hiding)
+
+(defun hs-enable-and-toggle ()
+  (interactive)
+  (hs-minor-mode 1)
+  (hs-toggle-hiding))
+(defun hs-enable-and-hideshow-all (&optional arg)
+  "Hide all blocks. If prefix argument is given, show all blocks."
+  (interactive "P")
+  (hs-minor-mode 1)
+  (if arg
+      (hs-show-all)
+      (hs-hide-all)))
+(global-set-key (kbd "C-c \\") 'hs-enable-and-toggle)
+(global-set-key (kbd "C-c /") 'hs-enable-and-hideshow-all)
+
+
+;; quickrun
+(require 'quickrun)
+
+;; 結果の出力バッファと元のバッファを行き来したい場合は
+;; ':stick t'の設定をするとよいでしょう
+(push '("*quickrun*") popwin:special-display-config)
+
+;; よく使うならキーを割り当てるとよいでしょう
+(global-set-key [f5]'quickrun)
+(global-set-key [f4]'quickrun-shell)
+
+;; 標準をPython3へ
+(quickrun-add-command "python"
+              '((:command . "python3"))
+              :override t)
