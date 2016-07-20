@@ -1,12 +1,13 @@
-;; Japanese setting
-(prefer-coding-system 'utf-8)
-(setq dired-default-file-coding-system 'utf-8)
-(setq quail-japanese-use-double-n t)
-(require 'mozc)
-;(set-language-environment "Japanese")
-(setq default-input-method "japanese-mozc")
-(global-set-key (kbd "C-SPC") 'toggle-input-method)
-(setq mozc-candidate-style 'echo-area)
+
+;;; Japanese setting
+;(prefer-coding-system 'utf-8)
+;(setq dired-default-file-coding-system 'utf-8)
+;(setq quail-japanese-use-double-n t)
+;(require 'mozc)
+;;(set-language-environment "Japanese")
+;(setq default-input-method "japanese-mozc")
+;(global-set-key (kbd "C-SPC") 'toggle-input-method)
+;(setq mozc-candidate-style 'echo-area)
 
 ;; load-pathの設定
 (add-to-list 'load-path "~/.emacs.d/site-lisp/")
@@ -389,3 +390,22 @@
 (quickrun-add-command "python"
               '((:command . "python3"))
               :override t)
+
+;; py-yapf
+(require 'py-yapf)
+(add-hook 'python-mode-hook 'py-yapf-enable-on-save)
+(global-set-key [f6] 'py-yapf-buffer)
+
+;; flycheck
+(require 'flycheck)
+;(global-flycheck-mode)
+
+;; hook
+(add-hook 'python-mode-hook 'flycheck-mode)
+(add-hook 'c-mode-hook 'flycheck-mode)
+(add-hook 'c++-mode-hook 'flycheck-mode)
+(add-hook 'emacs-lisp-mode-hook 'flycheck-mode)
+
+(define-key global-map (kbd "\C-cn") 'flycheck-next-error)
+(define-key global-map (kbd "\C-cp") 'flycheck-previous-error)
+(define-key global-map (kbd "\C-cd") 'flycheck-list-errors)
