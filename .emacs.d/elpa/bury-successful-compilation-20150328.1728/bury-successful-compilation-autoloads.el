@@ -4,7 +4,7 @@
 (add-to-list 'load-path (or (file-name-directory #$) (car load-path)))
 
 ;;;### (autoloads nil "bury-successful-compilation" "bury-successful-compilation.el"
-;;;;;;  (22199 1951 995156 429000))
+;;;;;;  (22420 45723 493559 49000))
 ;;; Generated autoloads from bury-successful-compilation.el
 
 (defvar bury-successful-compilation nil "\

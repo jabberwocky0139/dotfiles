@@ -1,14 +1,4 @@
-;;; Japanese setting
-;(prefer-coding-system 'utf-8)
-;(setq dired-default-file-coding-system 'utf-8)
-;(setq quail-japanese-use-double-n t)
-;(require 'mozc)
-;;(set-language-environment "Japanese")
-;(setq default-input-method "japanese-mozc")
-;(global-set-key (kbd "C-SPC") 'toggle-input-method)
-;(setq mozc-candidate-style 'echo-area)
-
-;; load-pathの設定
+;;; load-pathの設定
 (add-to-list 'load-path "~/.emacs.d/site-lisp/")
 (add-to-list 'load-path "~/.emacs.d/elpa/")
 
@@ -64,8 +54,6 @@
 ;; 検索(C-s)で大文字小文字を区別しない
 (setq completion-ignore-case t)
 
-;; bufferの表示をまともに
-;(global-set-key "\C-x\C-b" 'bs-show)
 
 ;; 対応する括弧をハイライト
 (show-paren-mode 1)
@@ -118,16 +106,6 @@
 (add-hook 'emacs-lisp-mode-hook '(lambda()
 				   (define-key emacs-lisp-mode-map (kbd "C-c v") 'eval-buffer)))
 
-;; dired-mode設定
-(ffap-bindings)
-; dired-modeにて"r"でリネーム可能. C-x C-s で保存
-(add-hook 'dired-load-hook (lambda ()
-			     (define-key dired-mode-map "r" 'wdired-change-to-wdired-mode)))
-
-;; Edit with Emacsの設定
-(require 'edit-server)
-(edit-server-start)
-
 
 ;; Evinceとの連携
 ;; backward search
@@ -167,7 +145,7 @@
 (global-set-key (kbd "C-c m") 'multi-term)
 
 
-;solarized-color-scheme
+;;solarized-color-scheme
 ;;; これらはload-themeの前に配置すること
 ;; fringeを背景から目立たせる
 (setq solarized-distinct-fringe-background t)
@@ -187,17 +165,11 @@
 ;; orgの見出し行の文字の大きさを変えない
 (setq solarized-scale-org-headlines nil)
 
-;; ;; フォントサイズを変更しない
-;;  (setq solarized-height-minus-1 1)
-;;  (setq solarized-height-plus-1 1)
-;;  (setq solarized-height-plus-2 1)
-;;  (setq solarized-height-plus-3 1)
-;;  (setq solarized-height-plus-4 1)
-
 ;(load-theme 'solarized-light t)
 (load-theme 'solarized-dark t)
 
-; helm
+
+;; helm
 (require 'helm-config)
 (helm-mode 1)
 ;; 自動補完を無効
@@ -233,13 +205,10 @@
 ;(define-key global-map (kbd "M-x")     'helm-M-x)
 ;(Define-Key global-map (kbd "M-y")     'helm-show-kill-ring)
 
-;; scala-mode2
-(require 'scala-mode2)
-(add-to-list 'auto-mode-alist '("\.sbt$" . scala-mode))
 
-;; ensime
-(require 'ensime)
-(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
+;;;; scala-mode2
+;;(require 'scala-mode2)
+;;(add-to-list 'auto-mode-alist '("\.sbt$" . scala-mode))
 
 ;; org-mode
 (setq org-agenda-files '("/home/jabberwocky/Dropbox/就活/JobHunt.org"
@@ -284,123 +253,64 @@
         ("dict" . "OnlineDict")
         ("*WL:Message*" . "Wanderlust")))
 
-;;ob-ipython
-(require 'ob-ipython)
-;; コードを評価するとき尋ねない
-(setq org-confirm-babel-evaluate nil)
-;; ソースコードを書き出すコマンド
-(defun org-babel-tangle-and-execute ()
-  (interactive)
-  (org-babel-tangle)
-  (org-babel-execute-buffer)
-  (org-display-inline-images))
-(define-key org-mode-map (kbd "C-c C-v C-m") 'org-babel-tangle-and-execute)
-
-;; 英辞郎とか
-;; M-x customize-group search-webでデフォルトブラウザをewwに
-(require 'search-web)
-;; google
-(define-key global-map (kbd "C-c g") (lambda () (interactive) (search-web-region "google")))
-;; 英辞郎
-(define-key global-map (kbd "C-c e") (lambda () (interactive) (search-web-region "eijiro")))
-
-(defadvice w3m-browse-url (around w3m-browse-url-popwin activate)
-   (save-window-excursion ad-do-it)
-   (unless (get-buffer-window "*w3m*")
-      (pop-to-buffer "*w3m*")))
-
-(defadvice eww-render (around eww-render-popwin activate)
-  (save-window-excursion ad-do-it)
-  (unless (get-buffer-window "*eww*")
-    (pop-to-buffer "*eww*")))
-(require 'popwin)
-(push "*eww*" popwin:special-display-config)
-(push "*w3m*" popwin:special-display-config)
-;(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
-; )
-
-;; auto-complete
-;(require 'auto-complete)
-;(require 'auto-complete-latex)
-;(require 'auto-complete-config)
-;(ac-config-default)
-;;(global-auto-complete-mode t)
-;(add-hook 'c++-mode-hook
-;	  '(lambda ()
-;	     (auto-complete-mode t)))
-;(add-hook 'c-mode-hook
-;	  '(lambda ()
-;	     (auto-complete-mode t)))
-;(add-hook 'emacs-lisp-mode-hook
-;	  '(lambda ()
-;	     (auto-complete-mode t)))
-;(add-hook 'lisp-mode-hook
-;	  '(lambda ()
-;	     (auto-complete-mode t)))
-;(add-hook 'python-mode-hook 'auto-complete-mode nil)
-					
-;; scala-modeでauto-completeを無効
-;(add-hook 'ensime-scala-mode-hook '(lambda()
-;				     (auto-complete-mode -1)))
-
 
 ;; company-mode
 (require 'company)
 
-(global-company-mode +1) ; 全バッファで有効にする
+;;(global-company-mode +1) ; 全バッファで有効にする
+(add-hook 'c++-mode-hook 'company-mode)
+(add-hook 'c-mode-hook 'company-mode)
+(add-hook 'latex-mode-hook 'company-mode)
 
-(set-face-attribute 'company-tooltip nil
-                    :foreground "black" :background "lightgrey")
-(set-face-attribute 'company-tooltip-common nil
-                    :foreground "black" :background "lightgrey")
-(set-face-attribute 'company-tooltip-common-selection nil
-                    :foreground "white" :background "steelblue")
-(set-face-attribute 'company-tooltip-selection nil
-                    :foreground "black" :background "steelblue")
-(set-face-attribute 'company-preview-common nil
-                    :background nil :foreground "lightgrey" :underline t)
-(set-face-attribute 'company-scrollbar-fg nil
-                    :background "orange")
-(set-face-attribute 'company-scrollbar-bg nil
-                    :background "gray40") ; 色合いの設定
+;;(set-face-attribute 'company-tooltip nil
+;;                    :foreground "black" :background "lightgrey")
+;;(set-face-attribute 'company-tooltip-common nil
+;;                    :foreground "black" :background "lightgrey")
+;;(set-face-attribute 'company-tooltip-common-selection nil
+;;                    :foreground "white" :background "steelblue")
+;;(set-face-attribute 'company-tooltip-selection nil
+;;                    :foreground "black" :background "steelblue")
+;;(set-face-attribute 'company-preview-common nil
+;;                    :background nil :foreground "lightgrey" :underline t)
+;;(set-face-attribute 'company-scrollbar-fg nil
+;;                    :background "orange")
+;;(set-face-attribute 'company-scrollbar-bg nil
+;;                    :background "gray40") ; 色合いの設定
 
-(global-set-key (kbd "C-M-i") 'company-complete)
-
-;; C-n, C-pで補完候補を次/前の候補を選択
-(define-key company-active-map (kbd "M-n") 'company-select-next)
-(define-key company-active-map (kbd "M-p") 'company-select-previous)
-(define-key company-search-map (kbd "M-n") 'company-select-next)
-(define-key company-search-map (kbd "M-p") 'company-select-previous)
-
-;; C-sで絞り込む
-(define-key company-active-map (kbd "C-s") 'company-filter-candidates)
-
-;; TABで候補を設定
-(define-key company-active-map (kbd "C-i") 'company-complete-selection)
-
-;; 各種メジャーモードでも C-M-iで company-modeの補完を使う
-(define-key emacs-lisp-mode-map (kbd "C-M-i") 'company-complete)
+;;(global-set-key (kbd "C-M-i") 'company-complete)
+;;
+;;;; C-n, C-pで補完候補を次/前の候補を選択
+;;(define-key company-active-map (kbd "M-n") 'company-select-next)
+;;(define-key company-active-map (kbd "M-p") 'company-select-previous)
+;;(define-key company-search-map (kbd "M-n") 'company-select-next)
+;;(define-key company-search-map (kbd "M-p") 'company-select-previous)
+;;
+;;;; C-sで絞り込む
+;;(define-key company-active-map (kbd "C-s") 'company-filter-candidates)
+;;
+;;;; TABで候補を設定
+;;(define-key company-active-map (kbd "C-i") 'company-complete-selection)
+;;
+;;;; 各種メジャーモードでも C-M-iで company-modeの補完を使う
+;;(define-key emacs-lisp-mode-map (kbd "C-M-i") 'company-complete)
 
 (setq company-idle-delay 0) ; デフォルトは0.5
 (setq company-minimum-prefix-length 2) ; デフォルトは4
 (setq company-selection-wrap-around t) ; 候補の一番下でさらに下に行こうとすると一番上に戻る
 (company-quickhelp-mode +1)
 
-;(add-hook 'python-mode-hook '(lambda()
-;				     (company-mode -1)))
-
 ;; company-jedi
-;(require 'jedi-core)
-;(setq jedi:complete-on-dot t)
-;(setq jedi:use-shortcuts t)
+(require 'jedi-core)
+(setq jedi:complete-on-dot t)
+(setq jedi:use-shortcuts t)
+(add-hook 'python-mode-hook 'jedi:setup)
+(add-to-list 'company-backends 'company-jedi)
+
+;; jedi
 ;(add-hook 'python-mode-hook 'jedi:setup)
-;(add-to-list 'company-backends 'company-jedi)
-
-
+;(setq jedi:setup-keys t)
+;(require 'jedi)
+;(setq jedi:complete-on-dot t)                 ; optional
 
 ;; 透明度を変更するコマンド M-x set-alpha
 ;; http://qiita.com/marcy@github/items/ba0d018a03381a964f2
@@ -410,7 +320,6 @@
   (set-frame-parameter nil 'alpha (cons alpha-num '(90))))
 ;; 初期値
 (set-frame-parameter nil 'alpha 92)
-
 
 ;; コードの折りたたみ
 (add-hook 'c++-mode-hook
@@ -441,13 +350,41 @@
 (global-set-key (kbd "C-c \\") 'hs-enable-and-toggle)
 (global-set-key (kbd "C-c /") 'hs-enable-and-hideshow-all)
 
-
 ;; quickrun
 (require 'quickrun)
-
+(require 'popwin)
 ;; 結果の出力バッファと元のバッファを行き来したい場合は
 ;; ':stick t'の設定をするとよいでしょう
 (push '("*quickrun*") popwin:special-display-config)
+
+;; よく使うならキーを割り当てるとよいでしょう
+(global-set-key [f5]'quickrun)
+(global-set-key [f4]'quickrun-shell)
+
+;; 標準をPython3へ
+;(quickrun-add-command "python"
+;              '((:command . "python3.5"))
+;              :override t)
+
+;; py-yapf
+(require 'py-yapf)
+;(add-hook 'python-mode-hook 'py-yapf-enable-on-save)
+(global-set-key [f6] 'py-yapf-buffer)
+
+;; flycheck
+(require 'flycheck)
+
+;; hook
+;(global-flycheck-mode)
+(add-hook 'python-mode-hook 'flycheck-mode)
+(add-hook 'c-mode-hook 'flycheck-mode)
+(add-hook 'c++-mode-hook 'flycheck-mode)
+(add-hook 'emacs-lisp-mode-hook 'flycheck-mode)
+
+(define-key global-map (kbd "\C-cn") 'flycheck-next-error)
+(define-key global-map (kbd "\C-cp") 'flycheck-previous-error)
+(define-key global-map (kbd "\C-cd") 'flycheck-list-errors)
+
 
 
 ;; よく使うならキーを割り当てるとよいでしょう
@@ -455,12 +392,12 @@
 (global-set-key [f4]'quickrun-shell)
 
 ;; 標準をPython3へ
-(quickrun-add-command "python"
-              '((:command . "python3.5"))
-              :override t)
+;(quickrun-add-command "python"
+;              '((:command . "python3.5"))
+;              :override t)
 
 ;; py-yapf
-;(require 'py-yapf)
+(require 'py-yapf)
 ;(add-hook 'python-mode-hook 'py-yapf-enable-on-save)
 (global-set-key [f6] 'py-yapf-buffer)
 
@@ -481,4 +418,3 @@
 ;; sense-region
 (require 'sense-region)
 (sense-region-on)
-
