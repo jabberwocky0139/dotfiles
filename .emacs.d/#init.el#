@@ -165,6 +165,8 @@
 			     (define-key term-raw-map (kbd "C-p") 'term-send-up)))
 ;; C-c m で multi-term を起動する
 (global-set-key (kbd "C-c m") 'multi-term)
+multi-term
+
 
 
 ;solarized-color-scheme
@@ -316,12 +318,12 @@
 (require 'popwin)
 (push "*eww*" popwin:special-display-config)
 (push "*w3m*" popwin:special-display-config)
-;(custom-set-faces
+(custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
-; )
+ )
 
 ;; auto-complete
 ;(require 'auto-complete)
@@ -391,7 +393,7 @@
 (company-quickhelp-mode +1)
 
 ;(add-hook 'python-mode-hook '(lambda()
-;				     (company-mode -1)))
+				     (company-mode -1)))
 
 ;; company-jedi
 ;(require 'jedi-core)

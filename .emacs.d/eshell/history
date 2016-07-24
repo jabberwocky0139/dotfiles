@@ -1,6 +1,5 @@
 make html
 make html
-make html
 python3 ban.py
 python3 ban.py
 python3 ban.py
@@ -126,3 +125,4 @@ python3  qr_13634M_z.py
 python3  qr_13634-ID.py 
 python3  qr_13634-ID.py 
 python3  qr_19317Wdt.py 
+python3.5  qr_2115lgA.py 

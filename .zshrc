@@ -67,3 +67,6 @@ alias Python='python3'
 #alias python='/usr/bin/python2.7'
 alias gh='cd /home/jabberwocky/Dropbox/github'
 alias Jupyter='jupyter notebook --browser=/usr/bin/firefox'
+export PYTHONPATH="/usr/local/lib/python3.5/dist-packages:$PYTHONPATH"
+
+source ~/bin/activate
