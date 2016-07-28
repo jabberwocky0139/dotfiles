@@ -54,6 +54,8 @@
 ;; 検索(C-s)で大文字小文字を区別しない
 (setq completion-ignore-case t)
 
+;; 指定の行数に飛ぶ
+(global-set-key "\C-x:" 'goto-line)
 
 ;; 対応する括弧をハイライト
 (show-paren-mode 1)
@@ -69,7 +71,11 @@
 
 ;;;; tree-undo
 (when (require 'undo-tree nil t)
-(global-undo-tree-mode))
+  (global-undo-tree-mode))
+
+;;;; 5行進む/戻る
+(define-key global-map (kbd "M-n") (kbd "C-u 5 C-n"))
+(define-key global-map (kbd "M-p") (kbd "C-u 5 C-p"))
 
 ;; マウスホイールの設定
 ;; ;; マウスホイールでのスクロール速度の設定
@@ -348,7 +354,7 @@
       (hs-show-all)
       (hs-hide-all)))
 (global-set-key (kbd "C-c \\") 'hs-enable-and-toggle)
-(global-set-key (kbd "C-c /") 'hs-enable-and-hideshow-all)
+(global-set-key (kbd "C-c _") 'hs-enable-and-hideshow-all)
 
 ;; quickrun
 (require 'quickrun)
@@ -362,20 +368,26 @@
 (global-set-key [f4]'quickrun-shell)
 
 ;; 標準をPython3へ
-;(quickrun-add-command "python"
-;              '((:command . "python3.5"))
-;              :override t)
+;;(quickrun-add-command "python"
+;;              '((:command . "python3.5"))
+;;              :override t)
 
-;; py-yapf
+;;;; py-yapf
 (require 'py-yapf)
-;(add-hook 'python-mode-hook 'py-yapf-enable-on-save)
+;;(add-hook 'python-mode-hook 'py-yapf-enable-on-save)
 (global-set-key [f6] 'py-yapf-buffer)
+
+;;;; autopep8
+;;(require 'py-autopep8)
+;;;; バッファ全体のコード整形
+;;(add-hook 'python-mode-hook '(lambda () (define-key python-mode-map [f6] 'py-autopep8)))
+					
 
 ;; flycheck
 (require 'flycheck)
 
-;; hook
-;(global-flycheck-mode)
+;;;; flycheck-hook
+;;(global-flycheck-mode)
 (add-hook 'python-mode-hook 'flycheck-mode)
 (add-hook 'c-mode-hook 'flycheck-mode)
 (add-hook 'c++-mode-hook 'flycheck-mode)
@@ -415,6 +427,6 @@
 (define-key global-map (kbd "\C-cp") 'flycheck-previous-error)
 (define-key global-map (kbd "\C-cd") 'flycheck-list-errors)
 
-;; sense-region
-(require 'sense-region)
-(sense-region-on)
+;;;; sense-region
+;;(require 'sense-region)
+;;(sense-region-on)
