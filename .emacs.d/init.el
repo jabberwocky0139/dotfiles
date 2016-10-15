@@ -33,6 +33,12 @@
 	       (throw 'end-flag t)))))))
 (global-set-key "\C-c\C-y" 'window-resizer)
 
+;; ツールバーを非表示
+(tool-bar-mode -1)
+
+;; メニューバーを非表示
+(menu-bar-mode -1)
+
 ;; C-hをバックスペースに
 (keyboard-translate ?\C-h ?\C-?)
 
@@ -46,7 +52,7 @@
 (setq backup-inhibited t)
 
 ;; 行数表示
-(global-linum-mode t)
+(global-linum-mode -1)
 
 ;; リージョンの強調表示
 (setq transient-mark-mode t)
