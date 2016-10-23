@@ -63,9 +63,10 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 alias wd='cd /home/jabberwocky/Dropbox/College'
+alias gh='cd /home/jabberwocky/Dropbox/github'
+alias doc='cd /home/jabberwocky/Documents'
 alias Python='python3'
 #alias python='/usr/bin/python2.7'
-alias gh='cd /home/jabberwocky/Dropbox/github'
 alias Jupyter='jupyter notebook --browser=/usr/bin/firefox'
 export PYTHONPATH="/usr/local/lib/python3.5/dist-packages:$PYTHONPATH"
 export PATH=/home/jabberwocky/anaconda3/bin:$PATH
