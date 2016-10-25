@@ -66,6 +66,9 @@
 ;; 対応する括弧をハイライト
 (show-paren-mode 1)
 
+;; 現在行をハイライト
+(global-hl-line-mode t)                 
+
 ;;alt-1でmake
 (global-set-key "\M-1" 'compile)
 
