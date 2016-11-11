@@ -52,7 +52,7 @@
 (setq backup-inhibited t)
 
 ;; 行数表示
-(global-linum-mode -1)
+(global-linum-mode t)
 
 ;; リージョンの強調表示
 (setq transient-mark-mode t)
