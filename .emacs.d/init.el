@@ -86,6 +86,11 @@
 (define-key global-map (kbd "M-n") (kbd "C-u 5 C-n"))
 (define-key global-map (kbd "M-p") (kbd "C-u 5 C-p"))
 
+;;フォント設定
+(set-face-attribute 'default nil
+		    :family "ゆたぽん（コーディング）Backsl"
+		    :height 135)
+
 ;; マウスホイールの設定
 ;; ;; マウスホイールでのスクロール速度の設定
 (setq mouse-wheel-scroll-amount '(3 ((shift) . 10) ((control) . nil)))
