@@ -105,10 +105,6 @@
 ;;*compilation*バッファを自動で閉じる
 (bury-successful-compilation t)
 
-;; フォント設定
-(set-face-attribute 'default nil
-		    :family "ゆたぽん（コーディング）Backsl"
-		    :height 135)
 
 ;;Pysh/Cython
 (setq auto-mode-alist
@@ -122,31 +118,6 @@
 				   (define-key emacs-lisp-mode-map (kbd "C-c v") 'eval-buffer)))
 
 
-;; Evinceとの連携
-;; backward search
-(require 'dbus)
-(defun un-urlify (fname-or-url)
-  "A trivial function that replaces a prefix of file:/// with just /."
-  (if (string= (substring fname-or-url 0 8) "file:///")
-      (substring fname-or-url 7)
-    fname-or-url))
-(defun evince-inverse-search (file linecol &rest ignored)
-  (let* ((fname (decode-coding-string (url-unhex-string (un-urlify file)) 'utf-8))
-         (buf (find-file fname))
-         (line (car linecol))
-         (col (cadr linecol)))
-    (if (null buf)
-        (message "[Synctex]: %s is not opened..." fname)
-      (switch-to-buffer buf)
-      (goto-line (car linecol))
-      (unless (= col -1)
-        (move-to-column col)))))
-(dbus-register-signal
- :session nil "/org/gnome/evince/Window/0"
- "org.gnome.evince.Window" "SyncSource"
- 'evince-inverse-search)
-
-
 ;; Multi-term
 (require 'multi-term)
 (setq multi-term-program shell-file-name)
@@ -156,6 +127,7 @@
 			     (define-key term-raw-map "\C-h" 'term-send-backspace)
 			     (define-key term-raw-map (kbd "C-n") 'term-send-down)
 			     (define-key term-raw-map (kbd "C-p") 'term-send-up)))
+
 ;; C-c m で multi-term を起動する
 (global-set-key (kbd "C-c m") 'multi-term)
 
@@ -182,6 +154,39 @@
 
 ;(load-theme 'solarized-light t)
 (load-theme 'solarized-dark t)
+
+;;
+;; Skim との連携
+;;
+;; http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?Emacs#de8b4fcd
+;; inverse search
+(require 'server)
+(unless (server-running-p) (server-start))
+;; forward search
+;; http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?YaTeX#f978a43b
+
+;; (defun skim-forward-search ()
+;;   (interactive)
+;;   (progn
+;;     (process-kill-without-query
+;;      (start-process  
+;;       "displayline"
+;;       nil
+;;       "/Applications/Skim.app/Contents/SharedSupport/displayline"
+;;       (number-to-string (save-restriction
+;;                           (widen)
+;;                           (count-lines (point-min) (point))))
+;;       (expand-file-name
+;;        (concat (file-name-sans-extension (or YaTeX-parent-file
+;;                                              (save-excursion
+;;                                                (YaTeX-visit-main t)
+;;                                                buffer-file-name)))
+;;                ".pdf"))
+;;       buffer-file-name))))
+
+;; (add-hook 'yatex-mode-hook
+;;           '(lambda ()
+;;              (define-key YaTeX-mode-map (kbd "C-c s") 'skim-forward-search)))
 
 
 ;; helm
