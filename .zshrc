@@ -3,8 +3,10 @@
 #色付け
 autoload -Uz colors
 colors
+
 ##ls色付け
-alias ls='ls --color=auto'
+alias ls ='gls --color=auto'
+#alias ls='ls --color=auto'
 #alias dir='dir --color=auto'
 #alias vdir='vdir --color=auto'
 
@@ -27,8 +29,8 @@ setopt prompt_subst
 ## 補完候補のカーソル選択を有効に
 zstyle ':completion:*:default' menu select=1
 ## 補完候補の色づけ
-eval `dircolors`
-export ZLS_COLORS=$LS_COLORS
+#eval `dircolors`
+#export ZLS_COLORS=$LS_COLORS
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 ## ヒストリを共有
 setopt share_history
@@ -62,13 +64,7 @@ RPROMPT=$'$(vcs_info_wrapper)'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-alias wd='cd /home/jabberwocky/Dropbox/College'
-alias gh='cd /home/jabberwocky/Dropbox/github'
 alias doc='cd /home/jabberwocky/Documents'
 alias Python='python3'
-#alias python='/usr/bin/python2.7'
 alias Jupyter='jupyter notebook --browser=/usr/bin/firefox'
-export PYTHONPATH="/usr/local/lib/python3.5/dist-packages:$PYTHONPATH"
-export PATH=/home/jabberwocky/anaconda3/bin:$PATH
-
 #source ~/bin/activate
