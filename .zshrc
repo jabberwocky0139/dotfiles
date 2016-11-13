@@ -5,7 +5,6 @@ autoload -Uz colors
 colors
 
 ##ls色付け
-alias ls ='gls --color=auto'
 #alias ls='ls --color=auto'
 #alias dir='dir --color=auto'
 #alias vdir='vdir --color=auto'
@@ -61,10 +60,15 @@ vcs_info_wrapper() {
 RPROMPT=$'$(vcs_info_wrapper)'
 
 #set alias
+alias ls='gls --color=auto'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-alias doc='cd /home/jabberwocky/Documents'
+alias doc='cd /Users/jabberwocky/Documents'
 alias Python='python3'
 alias Jupyter='jupyter notebook --browser=/usr/bin/firefox'
+alias emacs='/usr/local/bin/emacs'
+PATH=/bin:/usr/bin:/usr/local/bin:${PATH}
+export PATH
 #source ~/bin/activate
+
