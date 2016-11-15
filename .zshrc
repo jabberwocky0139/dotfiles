@@ -69,5 +69,6 @@ alias Jupyter='jupyter notebook --browser=/usr/bin/firefox'
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+export PATH="$PYENV_ROOT/versions/anaconda3-2.5.0/bin/:$PATH"
 
 #source ~/bin/activate
