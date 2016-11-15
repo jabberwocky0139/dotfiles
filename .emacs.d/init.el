@@ -89,7 +89,7 @@
 ;;フォント設定
 (set-face-attribute 'default nil
 		    :family "ゆたぽん（コーディング）Backsl"
-		    :height 135)
+		    :height 160)
 
 ;; マウスホイールの設定
 ;; ;; マウスホイールでのスクロール速度の設定
@@ -193,6 +193,11 @@
 ;;           '(lambda ()
 ;;              (define-key YaTeX-mode-map (kbd "C-c s") 'skim-forward-search)))
 
+
+;;----- MacでGUIの時、commandをmeta
+;; CommandとOptionを入れ替える
+(setq ns-command-modifier (quote meta))
+(setq ns-alternate-modifier (quote super))
 
 ;; helm
 (require 'helm-config)
