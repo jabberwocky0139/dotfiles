@@ -454,3 +454,14 @@
 ;;;; sense-region
 ;;(require 'sense-region)
 ;;(sense-region-on)
+
+;; (install-elisp-from-emacswiki "open-junk-file.el")
+;;(require 'open-junk-file)
+;;(setq open-junk-file-format "~/.emacs.d/junk/%Y%m%d_%H%M%S.el")
+  
+;; (install-elisp-from-emacswiki "lispxmp.el")
+(require 'lispxmp)
+(define-key emacs-lisp-mode-map (kbd "C-c C-d") 'lispxmp)
+
+;; loop.el
+(require 'loop)
