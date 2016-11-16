@@ -65,8 +65,7 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 alias doc='cd /Users/jabberwocky/Documents'
-alias Python='python3'
-alias Jupyter='jupyter notebook --browser=/usr/bin/firefox'
+#alias Jupyter='jupyter notebook --browser=/usr/bin/firefox'
 alias emacs='/usr/local/bin/emacs'
 PATH=/bin:/usr/bin:/usr/local/bin:${PATH}
 export PYENV_ROOT="$HOME/.pyenv"
