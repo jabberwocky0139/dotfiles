@@ -69,6 +69,9 @@ alias Python='python3'
 alias Jupyter='jupyter notebook --browser=/usr/bin/firefox'
 alias emacs='/usr/local/bin/emacs'
 PATH=/bin:/usr/bin:/usr/local/bin:${PATH}
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 export PATH
 #source ~/bin/activate
 
