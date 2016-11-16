@@ -203,10 +203,10 @@
 (define-key helm-find-files-map (kbd "C-h") 'delete-backward-char)
 
 ;; For find-file etc.
-(define-key helm-read-file-map (kbd "TAB") 'helm-execute-persistent-action)
+;; (define-key helm-read-file-map (kbd "TAB") 'helm-execute-persistent-action)
 ;; For helm-find-files etc.
-(define-key helm-find-files-map (kbd "TAB") 'helm-execute-persistent-action)
-(define-key helm-map (kbd "TAB") 'helm-execute-persistent-action)
+;; (define-key helm-find-files-map (kbd "TAB") 'helm-execute-persistent-action)
+;; (define-key helm-map (kbd "TAB") 'helm-execute-persistent-action)
 
 ;; Emulate `kill-line' in helm minibuffer
 (setq helm-delete-minibuffer-contents-from-point t)
@@ -215,11 +215,11 @@
   (kill-new (buffer-substring (point) (field-end))))
 
 ;; キーバインド
-;(define-key global-map (kbd "C-x b")   'helm-buffers-list)
+(define-key global-map (kbd "C-x b")   'helm-buffers-list)
 (define-key global-map (kbd "C-x C-b") 'helm-for-files)
 (define-key global-map (kbd "C-x C-f") 'helm-find-files)
-;(define-key global-map (kbd "M-x")     'helm-M-x)
-;(Define-Key global-map (kbd "M-y")     'helm-show-kill-ring)
+(define-key global-map (kbd "M-x")     'helm-M-x)
+(define-key global-map (kbd "M-y")     'helm-show-kill-ring)
 
 
 ;;;; scala-mode2
