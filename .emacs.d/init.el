@@ -277,6 +277,7 @@
 (add-hook 'c++-mode-hook 'company-mode)
 (add-hook 'c-mode-hook 'company-mode)
 (add-hook 'latex-mode-hook 'company-mode)
+(add-hook 'emacs-lisp-mode-hook 'company-mode)
 
 ;;(set-face-attribute 'company-tooltip nil
 ;;                    :foreground "black" :background "lightgrey")
