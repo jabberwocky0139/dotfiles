@@ -1,3 +1,7 @@
+;;; package --- Summary
+;;; Commentary:
+
+;;; Code:
 ;;; load-pathの設定
 (add-to-list 'load-path "~/.emacs.d/site-lisp/")
 (add-to-list 'load-path "~/.emacs.d/elpa/")
@@ -450,5 +454,9 @@
 (require 'lispxmp)
 (define-key emacs-lisp-mode-map (kbd "C-c C-d") 'lispxmp)
 
-;; loop.el
+;;; loop.el
 (require 'loop)
+
+(provide 'init)
+;;;
+
