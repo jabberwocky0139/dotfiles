@@ -43,6 +43,9 @@
 ;; メニューバーを非表示
 (menu-bar-mode -1)
 
+;; スクロールバーを非表示
+(scroll-bar-mode -1)
+
 ;; C-hをバックスペースに
 (keyboard-translate ?\C-h ?\C-?)
 
@@ -199,6 +202,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(helm-ff-auto-update-initial-value nil)
+ '(package-selected-packages
+   (quote
+    (markdown-mode undo-tree solarized-theme quickrun py-yapf py-autopep8 popwin open-junk-file multi-term loop lispxmp jedi helm flycheck elscreen company-quickhelp bury-successful-compilation)))
  '(search-web-default-browser (quote eww-browse-url))
  '(search-web-in-emacs-browser (quote eww-browse-url)))
 ;; ミニバッファでC-hをバックスペースに割り当て
@@ -460,3 +466,9 @@
 (provide 'init)
 ;;;
 
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
