@@ -65,7 +65,7 @@ alias l='ls -CF'
 alias wd='cd /home/jabberwocky/Dropbox/College'
 alias gh='cd /home/jabberwocky/Dropbox/github'
 alias doc='cd /home/jabberwocky/Documents'
-alias Jupyter='jupyter notebook --browser=/usr/bin/firefox'
+alias Jupyter='jupyter notebook'
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
