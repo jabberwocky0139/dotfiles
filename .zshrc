@@ -38,6 +38,8 @@ setopt list_packed
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
+# cdしたらls
+function chpwd() { ls -F }
 
 #Gitのブランチを表示
 setopt prompt_subst
