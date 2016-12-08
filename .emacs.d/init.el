@@ -74,13 +74,16 @@
 (show-paren-mode 1)
 
 ;; 現在行をハイライト
-(global-hl-line-mode t)                 
+(global-hl-line-mode t)
 
 ;;alt-1でmake
 (global-set-key "\M-1" 'compile)
 
 ;;C-c rでreplace-string
 (global-set-key "\C-cr" 'replace-string)
+
+;;C-[でMarkset
+;;(global-set-key (kbd ""), 'set-mark-command)
 
 ;;リージョン内の置換
 (setq transient-mark-mode t)
@@ -453,8 +456,8 @@
 ;;(sense-region-on)
 
 ;; (install-elisp-from-emacswiki "open-junk-file.el")
-;;(require 'open-junk-file)
-;;(setq open-junk-file-format "~/.emacs.d/junk/%Y%m%d_%H%M%S.el")
+(require 'open-junk-file)
+(setq open-junk-file-format "~/Documents/junk/%Y%m%d_%H%M%S.el")
   
 ;; (install-elisp-from-emacswiki "lispxmp.el")
 (require 'lispxmp)
