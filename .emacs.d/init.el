@@ -119,7 +119,7 @@
 ;; フォント設定
 (set-face-attribute 'default nil
 		    :family "ゆたぽん（コーディング）Backsl"
-		    :height 135)
+		    :height 130)
 
 ;;Pysh/Cython
 (setq auto-mode-alist
@@ -215,12 +215,6 @@
 (define-key helm-map (kbd "C-h") 'delete-backward-char)
 (define-key helm-find-files-map (kbd "C-h") 'delete-backward-char)
 
-;; For find-file etc.
-;; (define-key helm-read-file-map (kbd "TAB") 'helm-execute-persistent-action)
-;; For helm-find-files etc.
-;; (define-key helm-find-files-map (kbd "TAB") 'helm-execute-persistent-action)
-;; (define-key helm-map (kbd "TAB") 'helm-execute-persistent-action)
-
 ;; Emulate `kill-line' in helm minibuffer
 (setq helm-delete-minibuffer-contents-from-point t)
 (defadvice helm-delete-minibuffer-contents (before helm-emulate-kill-line activate)
@@ -228,11 +222,45 @@
   (kill-new (buffer-substring (point) (field-end))))
 
 ;; キーバインド
-(define-key global-map (kbd "C-x b")   'helm-buffers-list)
+(define-key global-map (kbd "C-x b")   'helm-mini)
 (define-key global-map (kbd "C-x C-b") 'helm-for-files)
 (define-key global-map (kbd "C-x C-f") 'helm-find-files)
 (define-key global-map (kbd "M-x")     'helm-M-x)
 (define-key global-map (kbd "M-y")     'helm-show-kill-ring)
+
+
+;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
+;; Changed to "C-c h". Note: We must set "C-c h" globally, because we
+;; cannot change `helm-command-prefix-key' once `helm-config' is loaded.
+(global-set-key (kbd "C-c h") 'helm-command-prefix)
+(global-unset-key (kbd "C-x c"))
+(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
+(define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB work in terminal
+(define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
+
+(when (executable-find "curl")
+  (setq helm-google-suggest-use-curl-p t))
+
+;;(setq helm-autoresize-max-height 0)
+(setq helm-autoresize-min-height 35)
+(helm-autoresize-mode t)
+
+;; optional fuzzy matching for helm-M-x
+(setq helm-M-x-fuzzy-match t) 
+(setq helm-buffers-fuzzy-matching t
+      helm-recentf-fuzzy-match    t)
+
+;; semantic-mode
+;;(semantic-mode t)
+(setq helm-semantic-fuzzy-match t
+      helm-imenu-fuzzy-match    t)
+
+(add-to-list 'helm-sources-using-default-as-input 'helm-source-man-pages)
+(global-set-key (kbd "C-c h o") 'helm-occur)
+
+;; markdown-mode
+;;(define-key markdown-mode-map (kbd "M-n") (kbd "C-u 5 C-n"))
+;;(define-key markdown-mode-map (kbd "M-p") (kbd "C-u 5 C-p"))
 
 
 ;;;; scala-mode2
