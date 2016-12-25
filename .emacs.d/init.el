@@ -148,7 +148,7 @@
 (defvar venv-default "~/.pyenv/versions/anaconda3-4.1.1/")
 ;;; デフォルト環境を有効化
 (pyvenv-activate venv-default)
-
+(setq python-shell-completion-native-enable nil)
 
 ;;; anaconda-mode
 (add-hook 'python-mode-hook 'anaconda-mode)
@@ -361,6 +361,7 @@
  "org.gnome.evince.Window" "SyncSource"
  'evince-inverse-search)
 
+;;; magit
 (require 'magit)
 
 ;;;;;; Other Tools' Configration End ;;;;;;
@@ -453,7 +454,7 @@
 (global-set-key (kbd "C-c h") 'helm-command-prefix)
 (global-unset-key (kbd "C-x c"))
 (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
-(define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB work in terminal
+(define-key helm-map (kbd "C-i") 'helm-select-action) ; make TAB work in terminal
 (define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
 
 (when (executable-find "curl")
@@ -469,29 +470,25 @@
       helm-recentf-fuzzy-match    t)
 
 ;; semantic-mode
-;;(semantic-mode t)
+(require 'cc-mode)
+(require 'semantic)
+
+(global-semanticdb-minor-mode 1)
+(global-semantic-idle-scheduler-mode 1)
+
+(semantic-mode t)
 (setq helm-semantic-fuzzy-match t
       helm-imenu-fuzzy-match    t)
 
 (add-to-list 'helm-sources-using-default-as-input 'helm-source-man-pages)
 (global-set-key (kbd "C-c h o") 'helm-occur)
 
+
+;;; helm-surfraw
+(setq helm-surfraw-default-browser-function 'browse-url-generic
+      browse-url-generic-program "google-chrome")
+
 ;;;;;; Helm Configration End ;;;;;;
-
-
-
-
-
-
-
-
-
-
-;;;;;; Company mode Configuration ;;;;;;
-
-
-
-;;;;;; Company mode Configuration End ;;;;;;
 
 
 
