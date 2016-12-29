@@ -22,6 +22,7 @@
 ;;; list-packageの設定
 (package-initialize)
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+;;; package-installを動かすときは以下のコメントアウトを外す
 ;; (package-refresh-contents)
 
 
@@ -118,7 +119,6 @@
 (setq transient-mark-mode t)
 
 ;;; tree-undo
-
 (when (require 'undo-tree nil t)
   (global-undo-tree-mode))
 
@@ -134,7 +134,6 @@
 ;;; make中にオートスクロール
 (setq compilation-scroll-output t)
 ;;; *compilation*バッファを自動で閉じる
-
 (bury-successful-compilation t)
 
 ;;; フォント設定
@@ -254,7 +253,6 @@
 ;;;;;; Theme Configration ;;;;;;
 
 ;;; solarized-color-scheme
-
 ;; これらはload-themeの前に配置すること
 ;; fringeを背景から目立たせる
 (setq solarized-distinct-fringe-background t)
@@ -319,7 +317,7 @@
 
 (setq company-idle-delay 0) ; デフォルトは0.5
 (setq company-minimum-prefix-length 2) ; デフォルトは4
-(setq company-selection-wrap-around t) ; 候補の一番下でさらに下に行こうとすると一番上に戻る
+;; (setq company-selection-wrap-around t) ; 候補の一番下でさらに下に行こうとすると一番上に戻る
 (company-quickhelp-mode +1)
 
 
@@ -382,7 +380,6 @@
 
 
 ;;;; py-yapf
-
 (require 'py-yapf)
 ;;(add-hook 'python-mode-hook 'py-yapf-enable-on-save)
 (global-set-key [f6] 'py-yapf-buffer)
@@ -411,7 +408,6 @@
 
 
 ;; (install-elisp-from-emacswiki "lispxmp.el")
-
 (require 'lispxmp)
 (define-key emacs-lisp-mode-map (kbd "C-c C-d") 'lispxmp)
 
@@ -499,7 +495,6 @@
 
 ;;; Evinceとの連携
 ;; backward search
-
 (require 'dbus)
 (defun un-urlify (fname-or-url)
   "A trivial function that replaces a prefix of file:/// with just /."
@@ -526,17 +521,6 @@
 (require 'magit)
 
 ;;;;;; Other Tools' Configration End ;;;;;;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
