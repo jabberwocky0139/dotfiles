@@ -19,6 +19,35 @@
 (add-to-list 'load-path "~/.emacs.d/site-lisp/")
 (add-to-list 'load-path "~/.emacs.d/elpa/")
 
+;;; list-packageの設定
+(package-initialize)
+(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+;; (package-refresh-contents)
+
+
+;;; package-install
+(package-install 'undo-tree)
+(package-install 'bury-successful-compilation)
+(package-install 'helm)
+(package-install 'color-theme-solarized)
+(package-install 'solarized-theme)
+(package-install 'elpy)
+(package-install 'jedi)
+(package-install 'company-jedi)
+(package-install 'anaconda-mode)
+(package-install 'company-quickhelp)
+(package-install 'py-yapf)
+(package-install 'flycheck)
+(package-install 'open-junk-file)
+(package-install 'lispxmp)
+(package-install 'loop)
+(package-install 'markdown-mode)
+(package-install 'multi-term)
+(package-install 'elscreen)
+(package-install 'dbus)
+(package-install 'magit)
+
+
 ;;; ウィンドウサイズ
 (defun window-resizer ()
   "Control window size and position."
@@ -48,7 +77,9 @@
 	      (t
 	       (message "Quit")
 	       (throw 'end-flag t)))))))
+
 (global-set-key "\C-c\C-y" 'window-resizer)
+
 
 ;;; ツールバーを非表示
 (tool-bar-mode -1)
@@ -87,6 +118,7 @@
 (setq transient-mark-mode t)
 
 ;;; tree-undo
+
 (when (require 'undo-tree nil t)
   (global-undo-tree-mode))
 
@@ -99,14 +131,10 @@
 ;;; ewwの検索エンジン設定
 (setq eww-search-prefix "http://www.google.co.jp/search?q=")
 
-;;; list-packageの設定
-(package-initialize)
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
-(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
-
 ;;; make中にオートスクロール
 (setq compilation-scroll-output t)
 ;;; *compilation*バッファを自動で閉じる
+
 (bury-successful-compilation t)
 
 ;;; フォント設定
@@ -136,22 +164,149 @@
 
 
 
+;;;;;; Helm Configration ;;;;;;
+
+
+(require 'helm-config)
+(helm-mode 1)
+;; 自動補完を無効
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(helm-ff-auto-update-initial-value nil)
+ '(package-selected-packages
+   (quote
+    (solarized-theme color-theme-solarized helm undo-tree company-jedi jedi magit dbus elscreen multi-term markdown-mode loop lispxmp open-junk-file flycheck py-yapf company-quickhelp anaconda-mode elpy async bury-successful-compilation)))
+ '(search-web-default-browser (quote eww-browse-url))
+ '(search-web-in-emacs-browser (quote eww-browse-url)))
+;; ミニバッファでC-hをバックスペースに割り当て
+(define-key helm-read-file-map (kbd "C-h") 'delete-backward-char)
+(define-key helm-map (kbd "C-h") 'delete-backward-char)
+(define-key helm-find-files-map (kbd "C-h") 'delete-backward-char)
+
+;; Emulate `kill-line' in helm minibuffer
+(setq helm-delete-minibuffer-contents-from-point t)
+(defadvice helm-delete-minibuffer-contents (before helm-emulate-kill-line activate)
+  "Emulate `kill-line' in helm minibuffer"
+  (kill-new (buffer-substring (point) (field-end))))
+
+;; キーバインド
+(define-key global-map (kbd "C-x b")   'helm-mini)
+(define-key global-map (kbd "C-x C-b") 'helm-for-files)
+(define-key global-map (kbd "C-x C-f") 'helm-find-files)
+(define-key global-map (kbd "M-x")     'helm-M-x)
+(define-key global-map (kbd "M-y")     'helm-show-kill-ring)
+
+
+;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
+;; Changed to "C-c h". Note: We must set "C-c h" globally, because we
+;; cannot change `helm-command-prefix-key' once `helm-config' is loaded.
+(global-set-key (kbd "C-c h") 'helm-command-prefix)
+(global-unset-key (kbd "C-x c"))
+(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
+(define-key helm-map (kbd "C-i") 'helm-select-action) ; make TAB work in terminal
+(define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
+
+(when (executable-find "curl")
+  (setq helm-google-suggest-use-curl-p t))
+
+;;(setq helm-autoresize-max-height 0)
+(setq helm-autoresize-min-height 35)
+(helm-autoresize-mode t)
+
+;; optional fuzzy matching for helm-M-x
+(setq helm-M-x-fuzzy-match t) 
+(setq helm-buffers-fuzzy-matching t
+      helm-recentf-fuzzy-match    t)
+
+;; semantic-mode
+(require 'semantic)
+
+(global-semanticdb-minor-mode 1)
+(global-semantic-idle-scheduler-mode 1)
+
+(semantic-mode t)
+(setq helm-semantic-fuzzy-match t
+      helm-imenu-fuzzy-match    t)
+
+(add-to-list 'helm-sources-using-default-as-input 'helm-source-man-pages)
+(global-set-key (kbd "C-c h o") 'helm-occur)
+
+
+;;; helm-surfraw
+(setq helm-surfraw-default-browser-function 'browse-url-generic
+      browse-url-generic-program "google-chrome")
+
+;;;;;; Helm Configration End ;;;;;;
+
+
+
+
+
+
+
+
+
+
+
+;;;;;; Theme Configration ;;;;;;
+
+;;; solarized-color-scheme
+
+;; これらはload-themeの前に配置すること
+;; fringeを背景から目立たせる
+(setq solarized-distinct-fringe-background t)
+
+;; mode-lineを目立たせる(Fig3)
+(setq solarized-high-contrast-mode-line t)
+
+;; bold度を減らす
+(setq solarized-use-less-bold t)
+
+;; italicを増やす
+(setq solarized-use-more-italic t)
+
+;; インジケータの色を減らす (git-gutter, flycheckなど)
+(setq solarized-emphasize-indicators nil)
+
+;; orgの見出し行の文字の大きさを変えない
+(setq solarized-scale-org-headlines nil)
+
+;(load-theme 'solarized-light t)
+(load-theme 'solarized-dark t)
+
+;;;;;; Theme Configration End ;;;;;;
+
+
+
+
+
+
+
+
+
+
+
 ;;;;;; Coding Configration ;;;;;;
 
 ;;; Elpy を有効化
 (elpy-enable)
+;;; 使用する Anaconda の環境を設定
+(defvar venv-default "~/.pyenv/versions/anaconda3-4.1.1")
+;;; デフォルト環境を有効化
+(pyvenv-activate venv-default)
+(setq python-shell-completion-native-enable nil)
 ;;; REPL 環境に IPython を使う
 (elpy-use-ipython)
 ;;; 自動補完のバックエンドとして Rope か Jedi を選択
 (setq elpy-rpc-backend "jedi")
-;;; 使用する Anaconda の環境を設定
-(defvar venv-default "~/.pyenv/versions/anaconda3-4.1.1/")
-;;; デフォルト環境を有効化
-(pyvenv-activate venv-default)
-(setq python-shell-completion-native-enable nil)
+(setq python-shell-prompt-detect-failure-warning nil)
 
 ;;; anaconda-mode
 (add-hook 'python-mode-hook 'anaconda-mode)
+;; (add-hook 'python-mode-hook 'elpy-mode)
 
 
 ;;; company-mode
@@ -179,7 +334,6 @@
 ;C-c C-v でM-x eval-buffer
 (add-hook 'emacs-lisp-mode-hook '(lambda()
 				   (define-key emacs-lisp-mode-map (kbd "C-c v") 'eval-buffer)))
-
 
 ;;; org-mode
 (setq org-agenda-files '("/home/jabberwocky/Dropbox/就活/JobHunt.org"
@@ -228,16 +382,21 @@
 
 
 ;;;; py-yapf
+
 (require 'py-yapf)
 ;;(add-hook 'python-mode-hook 'py-yapf-enable-on-save)
 (global-set-key [f6] 'py-yapf-buffer)
 
 
 ;;; flycheck
+(when (require 'flycheck nil t)
+  (remove-hook 'elpy-modules 'elpy-module-flymake)
+  (add-hook 'anaconda-mode-hook 'flycheck-mode))
+
 (require 'flycheck)
 ;;; flycheck-hook
 ;;(global-flycheck-mode)
-(add-hook 'python-mode-hook 'flycheck-mode)
+(add-hook 'anaconda-mode-hook 'flycheck-mode)
 (add-hook 'c-mode-hook 'flycheck-mode)
 (add-hook 'c++-mode-hook 'flycheck-mode)
 (add-hook 'emacs-lisp-mode-hook 'flycheck-mode)
@@ -252,6 +411,7 @@
 
 
 ;; (install-elisp-from-emacswiki "lispxmp.el")
+
 (require 'lispxmp)
 (define-key emacs-lisp-mode-map (kbd "C-c C-d") 'lispxmp)
 
@@ -283,7 +443,7 @@
 
 
 
-;;;;;; Other Tools' Configration ;;;;;;
+;; ;;;;;; Other Tools' Configration ;;;;;;
 
 ;;; Multi-term
 (require 'multi-term)
@@ -339,6 +499,7 @@
 
 ;;; Evinceとの連携
 ;; backward search
+
 (require 'dbus)
 (defun un-urlify (fname-or-url)
   "A trivial function that replaces a prefix of file:/// with just /."
@@ -376,119 +537,6 @@
 
 
 
-;;;;;; Theme Configration ;;;;;;
-
-;;; solarized-color-scheme
-;; これらはload-themeの前に配置すること
-;; fringeを背景から目立たせる
-(setq solarized-distinct-fringe-background t)
-
-;; mode-lineを目立たせる(Fig3)
-(setq solarized-high-contrast-mode-line t)
-
-;; bold度を減らす
-(setq solarized-use-less-bold t)
-
-;; italicを増やす
-(setq solarized-use-more-italic t)
-
-;; インジケータの色を減らす (git-gutter, flycheckなど)
-(setq solarized-emphasize-indicators nil)
-
-;; orgの見出し行の文字の大きさを変えない
-(setq solarized-scale-org-headlines nil)
-
-;(load-theme 'solarized-light t)
-(load-theme 'solarized-dark t)
-
-;;;;;; Theme Configration End ;;;;;;
-
-
-
-
-
-
-
-
-
-
-
-;;;;;; Helm Configration ;;;;;;
-
-(require 'helm-config)
-(helm-mode 1)
-;; 自動補完を無効
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(helm-ff-auto-update-initial-value nil)
- '(package-selected-packages
-   (quote
-    (magit anaconda-mode elpy markdown-mode undo-tree solarized-theme quickrun py-yapf py-autopep8 popwin open-junk-file multi-term loop lispxmp jedi helm flycheck elscreen company-quickhelp bury-successful-compilation)))
- '(search-web-default-browser (quote eww-browse-url))
- '(search-web-in-emacs-browser (quote eww-browse-url)))
-;; ミニバッファでC-hをバックスペースに割り当て
-(define-key helm-read-file-map (kbd "C-h") 'delete-backward-char)
-(define-key helm-map (kbd "C-h") 'delete-backward-char)
-(define-key helm-find-files-map (kbd "C-h") 'delete-backward-char)
-
-;; Emulate `kill-line' in helm minibuffer
-(setq helm-delete-minibuffer-contents-from-point t)
-(defadvice helm-delete-minibuffer-contents (before helm-emulate-kill-line activate)
-  "Emulate `kill-line' in helm minibuffer"
-  (kill-new (buffer-substring (point) (field-end))))
-
-;; キーバインド
-(define-key global-map (kbd "C-x b")   'helm-mini)
-(define-key global-map (kbd "C-x C-b") 'helm-for-files)
-(define-key global-map (kbd "C-x C-f") 'helm-find-files)
-(define-key global-map (kbd "M-x")     'helm-M-x)
-(define-key global-map (kbd "M-y")     'helm-show-kill-ring)
-
-
-;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
-;; Changed to "C-c h". Note: We must set "C-c h" globally, because we
-;; cannot change `helm-command-prefix-key' once `helm-config' is loaded.
-(global-set-key (kbd "C-c h") 'helm-command-prefix)
-(global-unset-key (kbd "C-x c"))
-(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
-(define-key helm-map (kbd "C-i") 'helm-select-action) ; make TAB work in terminal
-(define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
-
-(when (executable-find "curl")
-  (setq helm-google-suggest-use-curl-p t))
-
-;;(setq helm-autoresize-max-height 0)
-(setq helm-autoresize-min-height 35)
-(helm-autoresize-mode t)
-
-;; optional fuzzy matching for helm-M-x
-(setq helm-M-x-fuzzy-match t) 
-(setq helm-buffers-fuzzy-matching t
-      helm-recentf-fuzzy-match    t)
-
-;; semantic-mode
-(require 'cc-mode)
-(require 'semantic)
-
-(global-semanticdb-minor-mode 1)
-(global-semantic-idle-scheduler-mode 1)
-
-(semantic-mode t)
-(setq helm-semantic-fuzzy-match t
-      helm-imenu-fuzzy-match    t)
-
-(add-to-list 'helm-sources-using-default-as-input 'helm-source-man-pages)
-(global-set-key (kbd "C-c h o") 'helm-occur)
-
-
-;;; helm-surfraw
-(setq helm-surfraw-default-browser-function 'browse-url-generic
-      browse-url-generic-program "google-chrome")
-
-;;;;;; Helm Configration End ;;;;;;
 
 
 
@@ -509,3 +557,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
