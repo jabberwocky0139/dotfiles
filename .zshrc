@@ -40,6 +40,8 @@ HISTSIZE=10000
 SAVEHIST=10000
 # cdしたらls
 function chpwd() { ls -F }
+# 補完時に大文字/小文字を区別しない
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 #Gitのブランチを表示
 setopt prompt_subst
