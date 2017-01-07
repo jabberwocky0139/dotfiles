@@ -238,6 +238,9 @@
 (setq helm-surfraw-default-browser-function 'browse-url-generic
       browse-url-generic-program "google-chrome")
 
+(global-set-key (kbd "C-c h SPC") 'helm-all-mark-rings)
+(global-set-key (kbd "C-c h g") 'helm-google-suggest)
+
 ;;;;;; Helm Configration End ;;;;;;
 
 
