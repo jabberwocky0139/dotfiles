@@ -47,6 +47,8 @@
 (package-install 'elscreen)
 (package-install 'dbus)
 (package-install 'magit)
+(package-install 'haskell-mode)
+(package-install 'dashboard)
 
 
 ;;; ウィンドウサイズ
@@ -151,6 +153,15 @@
 (set-frame-parameter nil 'alpha 92)
 
 
+;; 起動画面をdashboardで変更
+(require 'dashboard)
+(dashboard-setup-startup-hook)
+;; Set the title
+(setq dashboard-banner-logo-title "Is Emacs my heartthrob?")
+;; Set the banner
+(setq dashboard-startup-banner "/home/jabberwocky/.emacs.d/Toro/Toro.png")
+;; (setq dashboard-startup-banner "/home/jabberwocky/.emacs.d/Toro/Toro6.png")
+
 ;;;;;; Basic Configration End ;;;;;;
 
 
@@ -177,7 +188,7 @@
  '(helm-ff-auto-update-initial-value nil)
  '(package-selected-packages
    (quote
-    (solarized-theme color-theme-solarized helm undo-tree company-jedi jedi magit dbus elscreen multi-term markdown-mode loop lispxmp open-junk-file flycheck py-yapf company-quickhelp anaconda-mode elpy async bury-successful-compilation)))
+    (haskell-mode solarized-theme color-theme-solarized helm undo-tree company-jedi jedi magit dbus elscreen multi-term markdown-mode loop lispxmp open-junk-file flycheck py-yapf company-quickhelp anaconda-mode elpy async bury-successful-compilation)))
  '(search-web-default-browser (quote eww-browse-url))
  '(search-web-in-emacs-browser (quote eww-browse-url)))
 ;; ミニバッファでC-hをバックスペースに割り当て
@@ -317,6 +328,7 @@
 (add-hook 'c-mode-hook 'company-mode)
 (add-hook 'latex-mode-hook 'company-mode)
 (add-hook 'emacs-lisp-mode-hook 'company-mode)
+(add-hook 'haskell-mode-hook 'company-mode)
 
 (setq company-idle-delay 0) ; デフォルトは0.5
 (setq company-minimum-prefix-length 2) ; デフォルトは4
@@ -353,6 +365,9 @@
 	  '(lambda ()
 	     (hs-minor-mode 1)))
 (add-hook 'lisp-mode-hook
+	  '(lambda ()
+	     (hs-minor-mode 1)))
+(add-hook 'haskell-mode-hook
 	  '(lambda ()
 	     (hs-minor-mode 1)))
 ;; (define-key global-map (kbd "C-c \\") 'hs-toggle-hiding)
@@ -400,6 +415,7 @@
 (add-hook 'c-mode-hook 'flycheck-mode)
 (add-hook 'c++-mode-hook 'flycheck-mode)
 (add-hook 'emacs-lisp-mode-hook 'flycheck-mode)
+(add-hook 'haskell-mode-hook 'flycheck-mode)
 (define-key global-map (kbd "\C-cn") 'flycheck-next-error)
 (define-key global-map (kbd "\C-cp") 'flycheck-previous-error)
 (define-key global-map (kbd "\C-cd") 'flycheck-list-errors)
