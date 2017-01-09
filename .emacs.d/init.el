@@ -45,13 +45,13 @@
 (package-install 'loop)
 (package-install 'markdown-mode)
 (package-install 'multi-term)
-(package-install 'elscreen)
+;; (package-install 'elscreen)
 (package-install 'dbus)
 (package-install 'magit)
 (package-install 'haskell-mode)
 (package-install 'dashboard)
 (package-install 'powerline)
-
+(package-install 'tabbar)
 
 ;;; ウィンドウサイズ
 (defun window-resizer ()
@@ -88,33 +88,34 @@
 
 ;;; elscreen
 ;; プレフィクスキーはC-z
-(setq elscreen-prefix-key (kbd "C-z"))
-(elscreen-start)
-;; タブの先頭に[X]を表示しない
-(setq elscreen-tab-display-kill-screen nil)
-;; header-lineの先頭に[<->]を表示しない
-(setq elscreen-tab-display-control nil)
-;; バッファ名・モード名からタブに表示させる内容を決定する(デフォルト設定)
-(setq elscreen-buffer-to-nickname-alist
-      '(("^dired-mode$" .
-         (lambda ()
-           (format "Dired(%s)" dired-directory)))
-        ("^Info-mode$" .
-         (lambda ()
-           (format "Info(%s)" (file-name-nondirectory Info-current-file))))
-        ("^mew-draft-mode$" .
-         (lambda ()
-           (format "Mew(%s)" (buffer-name (current-buffer)))))
-        ("^mew-" . "Mew")
-        ("^irchat-" . "IRChat")
-        ("^liece-" . "Liece")
-        ("^lookup-" . "Lookup")))
-(setq elscreen-mode-to-nickname-alist
-      '(("[Ss]hell" . "shell")
-        ("compilation" . "compile")
-        ("-telnet" . "telnet")
-        ("dict" . "OnlineDict")
-        ("*WL:Message*" . "Wanderlust")))
+;; (setq elscreen-prefix-key (kbd "C-z"))
+;; (elscreen-start)
+;; ;; タブの先頭に[X]を表示しない
+;; (setq elscreen-tab-display-kill-screen nil)
+;; ;; header-lineの先頭に[<->]を表示しない
+;; (setq elscreen-tab-display-control nil)
+;; ;; バッファ名・モード名からタブに表示させる内容を決定する(デフォルト設定)
+;; (setq elscreen-buffer-to-nickname-alist
+;;       '(("^dired-mode$" .
+;;          (lambda ()
+;;            (format "Dired(%s)" dired-directory)))
+;;         ("^Info-mode$" .
+;;          (lambda ()
+;;            (format "Info(%s)" (file-name-nondirectory Info-current-file))))
+;;         ("^mew-draft-mode$" .
+;;          (lambda ()
+;;            (format "Mew(%s)" (buffer-name (current-buffer)))))
+;;         ("^mew-" . "Mew")
+;;         ("^irchat-" . "IRChat")
+;;         ("^liece-" . "Liece")
+;;         ("^lookup-" . "Lookup")))
+;; (setq elscreen-mode-to-nickname-alist
+;;       '(("[Ss]hell" . "shell")
+;;         ("compilation" . "compile")
+;;         ("-telnet" . "telnet")
+;;         ("dict" . "OnlineDict")
+;;         ("*WL:Message*" . "Wanderlust")))
+
 
 ;; スタート時のスプラッシュ非表示
 (setq inhibit-startup-message t)
@@ -222,7 +223,7 @@
  '(helm-ff-auto-update-initial-value nil)
  '(package-selected-packages
    (quote
-    (powerline dashboard haskell-mode solarized-theme color-theme-solarized helm undo-tree company-jedi jedi magit dbus elscreen multi-term markdown-mode loop lispxmp open-junk-file flycheck py-yapf company-quickhelp anaconda-mode elpy async bury-successful-compilation)))
+    (tabbar powerline dashboard haskell-mode solarized-theme color-theme-solarized helm undo-tree company-jedi jedi magit dbus elscreen multi-term markdown-mode loop lispxmp open-junk-file flycheck py-yapf company-quickhelp anaconda-mode elpy async bury-successful-compilation)))
  '(search-web-default-browser (quote eww-browse-url))
  '(search-web-in-emacs-browser (quote eww-browse-url)))
 ;; ミニバッファでC-hをバックスペースに割り当て
@@ -251,7 +252,7 @@
 (global-unset-key (kbd "C-x c"))
 (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
 (define-key helm-map (kbd "C-i") 'helm-select-action) ; make TAB work in terminal
-(define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
+;; (define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
 
 (when (executable-find "curl")
   (setq helm-google-suggest-use-curl-p t))
@@ -592,6 +593,118 @@
 
 ;;; magit
 (require 'magit)
+
+;; tabbar
+(require 'tabbar)
+(tabbar-mode 1)
+
+;; タブ上でマウスホイール操作無効
+(tabbar-mwheel-mode -1)
+
+;; グループ化しない
+(setq tabbar-buffer-groups-function nil)
+
+;; 左に表示されるボタンを無効化
+(dolist (btn '(tabbar-buffer-home-button
+               tabbar-scroll-left-button
+               tabbar-scroll-right-button))
+  (set btn (cons (cons "" nil)
+                 (cons "" nil))))
+
+;; タブの長さ
+(setq tabbar-separator '(2.2))
+
+;; キーに割り当てる
+(global-set-key (kbd "<C-tab>") 'tabbar-forward-tab)
+(global-set-key (kbd "<C-iso-lefttab>") 'tabbar-backward-tab)
+;; (global-set-key (kbd "<M-right>") 'tabbar-forward-tab)
+;; (global-set-key (kbd "<M-left>") 'tabbar-backward-tab)
+
+;; 外観変更
+(set-face-attribute
+ 'tabbar-default nil
+ ;;:family "MeiryoKe_Gothic"
+ :family "ゆたココ"
+ :background "#34495E"
+ ;;:foreground "#EEEEEE"
+ :foreground "#fff"
+ :height 0.95
+ :bold t
+ )
+(set-face-attribute
+ 'tabbar-unselected nil
+ :background "#34495E"
+ ;;:foreground "#EEEEEE"
+ :foreground "#fff"
+ :box nil
+ :bold t
+)
+(set-face-attribute
+ 'tabbar-modified nil
+ ;;:background "#E67E22"
+ :background "CornflowerBlue"
+ ;;:foreground "#EEEEEE"
+ :foreground "#fff"
+ :box nil
+ :bold t
+)
+(set-face-attribute
+ 'tabbar-selected nil
+ ;;:background "steel blue"
+ :background color1 
+ ;;:foreground "#EEEEEE"
+ :foreground "#fff"
+ :bold t
+ :box nil)
+(set-face-attribute
+ 'tabbar-button nil
+ :box nil)
+(set-face-attribute
+ 'tabbar-separator nil
+ :height 2.0)
+
+;; タブに表示させるバッファの設定
+(defvar my-tabbar-displayed-buffers
+  '("*vc-")
+  "*Regexps matches buffer names always included tabs.")
+
+(defun my-tabbar-buffer-list ()
+  "Return the list of buffers to show in tabs.
+Exclude buffers whose name starts with a space or an asterisk.
+The current buffer and buffers matches `my-tabbar-displayed-buffers'
+are always included."
+  (let* ((hides (list ?\  ?\*))
+         (re (regexp-opt my-tabbar-displayed-buffers))
+         (cur-buf (current-buffer))
+         (tabs (delq nil
+                     (mapcar (lambda (buf)
+                               (let ((name (buffer-name buf)))
+                                 (when (or (string-match re name)
+                                           (not (memq (aref name 0) hides)))
+                                   buf)))
+                             (buffer-list)))))
+    ;; Always include the current buffer.
+    (if (memq cur-buf tabs)
+        tabs
+      (cons cur-buf tabs))))
+(setq tabbar-buffer-list-function 'my-tabbar-buffer-list)
+
+
+;; Ctrl-Tab, Ctrl-Shift-Tab でタブを切り替える
+(dolist (func '(tabbar-mode tabbar-forward-tab tabbar-forward-group tabbar-backward-tab tabbar-backward-group))
+  (autoload func "tabbar" "Tabs at the top of buffers and easy control-tab navigation"))
+(defmacro defun-prefix-alt (name on-no-prefix on-prefix &optional do-always)
+  `(defun ,name (arg)
+     (interactive "P")
+     ,do-always
+     (if (equal nil arg)
+         ,on-no-prefix
+       ,on-prefix)))
+(defun-prefix-alt shk-tabbar-next (tabbar-forward-tab) (tabbar-forward-group) (tabbar-mode 1))
+(defun-prefix-alt shk-tabbar-prev (tabbar-backward-tab) (tabbar-backward-group) (tabbar-mode 1))
+;;(global-set-key (kbd "C-<tab>") 'shk-tabbar-next)
+;;(global-set-key (kbd "<C-S-tab>") 'shk-tabbar-prev)
+
 
 ;;;;;; Other Tools' Configration End ;;;;;;
 
