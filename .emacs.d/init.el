@@ -24,7 +24,7 @@
 (package-initialize)
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 ;;; package-installを動かすときは以下のコメントアウトを外す
-(package-refresh-contents)
+;; (package-refresh-contents)
 
 
 ;;; package-install
@@ -327,7 +327,7 @@
 ;; powerline設定
 (require 'powerline)
 (defconst color1 "#4682b4")
-(defconst color2 "tomato")
+(defconst color2 "salmon")
 
 
 (set-face-attribute 'mode-line nil
@@ -337,14 +337,14 @@
                     :box nil)
 
 (set-face-attribute 'powerline-active1 nil
-                    :foreground "#fff"
+                    :foreground "gray23"
                     :background color2
 		    :bold t
                     :inherit 'mode-line)
 
 (set-face-attribute 'powerline-active2 nil
                     :foreground "white smoke"
-                    :background "gray22"
+                    :background "black"
 		    :bold t
                     :inherit 'mode-line)
 
@@ -355,14 +355,14 @@
                     :box nil)
 
 (set-face-attribute 'powerline-inactive1 nil
-                    :foreground "#fff"
+                    :foreground "gray23"
                     :background color2
 		    :bold t
                     :inherit 'mode-line)
 
 (set-face-attribute 'powerline-inactive2 nil
                     :foreground "white smoke"
-                    :background "gray22"
+                    :background "black"
 		    :bold t
                     :inherit 'mode-line)
 
