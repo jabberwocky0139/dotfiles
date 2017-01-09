@@ -19,6 +19,7 @@
 (add-to-list 'load-path "~/.emacs.d/site-lisp/")
 (add-to-list 'load-path "~/.emacs.d/elpa/")
 
+
 ;;; list-packageの設定
 (package-initialize)
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
@@ -49,6 +50,7 @@
 (package-install 'magit)
 (package-install 'haskell-mode)
 (package-install 'dashboard)
+(package-install 'powerline)
 
 
 ;;; ウィンドウサイズ
@@ -84,6 +86,38 @@
 (global-set-key "\C-c\C-y" 'window-resizer)
 
 
+;;; elscreen
+;; プレフィクスキーはC-z
+(setq elscreen-prefix-key (kbd "C-z"))
+(elscreen-start)
+;; タブの先頭に[X]を表示しない
+(setq elscreen-tab-display-kill-screen nil)
+;; header-lineの先頭に[<->]を表示しない
+(setq elscreen-tab-display-control nil)
+;; バッファ名・モード名からタブに表示させる内容を決定する(デフォルト設定)
+(setq elscreen-buffer-to-nickname-alist
+      '(("^dired-mode$" .
+         (lambda ()
+           (format "Dired(%s)" dired-directory)))
+        ("^Info-mode$" .
+         (lambda ()
+           (format "Info(%s)" (file-name-nondirectory Info-current-file))))
+        ("^mew-draft-mode$" .
+         (lambda ()
+           (format "Mew(%s)" (buffer-name (current-buffer)))))
+        ("^mew-" . "Mew")
+        ("^irchat-" . "IRChat")
+        ("^liece-" . "Liece")
+        ("^lookup-" . "Lookup")))
+(setq elscreen-mode-to-nickname-alist
+      '(("[Ss]hell" . "shell")
+        ("compilation" . "compile")
+        ("-telnet" . "telnet")
+        ("dict" . "OnlineDict")
+        ("*WL:Message*" . "Wanderlust")))
+
+;; スタート時のスプラッシュ非表示
+(setq inhibit-startup-message t)
 ;;; ツールバーを非表示
 (tool-bar-mode -1)
 ;;; メニューバーを非表示
@@ -155,12 +189,12 @@
 
 ;; 起動画面をdashboardで変更
 (require 'dashboard)
-(dashboard-setup-startup-hook)
 ;; Set the title
 (setq dashboard-banner-logo-title "Is Emacs my heartthrob?")
 ;; Set the banner
 (setq dashboard-startup-banner "/home/jabberwocky/.emacs.d/Toro/Toro.png")
-;; (setq dashboard-startup-banner "/home/jabberwocky/.emacs.d/Toro/Toro6.png")
+(dashboard-setup-startup-hook)
+(setq dashboard-items '((recents  . 20)))
 
 ;;;;;; Basic Configration End ;;;;;;
 
@@ -188,7 +222,7 @@
  '(helm-ff-auto-update-initial-value nil)
  '(package-selected-packages
    (quote
-    (haskell-mode solarized-theme color-theme-solarized helm undo-tree company-jedi jedi magit dbus elscreen multi-term markdown-mode loop lispxmp open-junk-file flycheck py-yapf company-quickhelp anaconda-mode elpy async bury-successful-compilation)))
+    (powerline dashboard haskell-mode solarized-theme color-theme-solarized helm undo-tree company-jedi jedi magit dbus elscreen multi-term markdown-mode loop lispxmp open-junk-file flycheck py-yapf company-quickhelp anaconda-mode elpy async bury-successful-compilation)))
  '(search-web-default-browser (quote eww-browse-url))
  '(search-web-in-emacs-browser (quote eww-browse-url)))
 ;; ミニバッファでC-hをバックスペースに割り当て
@@ -288,6 +322,52 @@
 
 ;(load-theme 'solarized-light t)
 (load-theme 'solarized-dark t)
+
+
+;; powerline設定
+(require 'powerline)
+(defconst color1 "#4682b4")
+(defconst color2 "tomato")
+
+
+(set-face-attribute 'mode-line nil
+                    :foreground "#fff"
+                    :background color1
+		    :bold t
+                    :box nil)
+
+(set-face-attribute 'powerline-active1 nil
+                    :foreground "#fff"
+                    :background color2
+		    :bold t
+                    :inherit 'mode-line)
+
+(set-face-attribute 'powerline-active2 nil
+                    :foreground "white smoke"
+                    :background "gray22"
+		    :bold t
+                    :inherit 'mode-line)
+
+(set-face-attribute 'mode-line-inactive nil
+                    :foreground "#fff"
+                    :background color1
+		    :bold t
+                    :box nil)
+
+(set-face-attribute 'powerline-inactive1 nil
+                    :foreground "#fff"
+                    :background color2
+		    :bold t
+                    :inherit 'mode-line)
+
+(set-face-attribute 'powerline-inactive2 nil
+                    :foreground "white smoke"
+                    :background "gray22"
+		    :bold t
+                    :inherit 'mode-line)
+
+(setq ns-use-srgb-colorspace nil)
+(powerline-default-theme)
 
 ;;;;;; Theme Configration End ;;;;;;
 
@@ -482,36 +562,6 @@
 (global-set-key (kbd "C-c c") 'cfw:open-org-calendar)
 
 
-;;; elscreen
-;; プレフィクスキーはC-z
-(setq elscreen-prefix-key (kbd "C-z"))
-(elscreen-start)
-;; タブの先頭に[X]を表示しない
-(setq elscreen-tab-display-kill-screen nil)
-;; header-lineの先頭に[<->]を表示しない
-(setq elscreen-tab-display-control nil)
-;; バッファ名・モード名からタブに表示させる内容を決定する(デフォルト設定)
-(setq elscreen-buffer-to-nickname-alist
-      '(("^dired-mode$" .
-         (lambda ()
-           (format "Dired(%s)" dired-directory)))
-        ("^Info-mode$" .
-         (lambda ()
-           (format "Info(%s)" (file-name-nondirectory Info-current-file))))
-        ("^mew-draft-mode$" .
-         (lambda ()
-           (format "Mew(%s)" (buffer-name (current-buffer)))))
-        ("^mew-" . "Mew")
-        ("^irchat-" . "IRChat")
-        ("^liece-" . "Liece")
-        ("^lookup-" . "Lookup")))
-(setq elscreen-mode-to-nickname-alist
-      '(("[Ss]hell" . "shell")
-        ("compilation" . "compile")
-        ("-telnet" . "telnet")
-        ("dict" . "OnlineDict")
-        ("*WL:Message*" . "Wanderlust")))
-
 ;;; Evinceとの連携
 ;; backward search
 (require 'dbus)
@@ -540,7 +590,6 @@
 (require 'magit)
 
 ;;;;;; Other Tools' Configration End ;;;;;;
-
 
 
 
