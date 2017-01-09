@@ -340,12 +340,14 @@
                     :foreground "gray23"
                     :background color2
 		    :bold t
+		    :box nil
                     :inherit 'mode-line)
 
 (set-face-attribute 'powerline-active2 nil
                     :foreground "white smoke"
-                    :background "black"
+                    :background "gray20"
 		    :bold t
+		    :box nil
                     :inherit 'mode-line)
 
 (set-face-attribute 'mode-line-inactive nil
@@ -358,16 +360,18 @@
                     :foreground "gray23"
                     :background color2
 		    :bold t
+		    :box nil
                     :inherit 'mode-line)
 
 (set-face-attribute 'powerline-inactive2 nil
                     :foreground "white smoke"
-                    :background "black"
+                    :background "gray20"
 		    :bold t
+		    :box nil
                     :inherit 'mode-line)
 
 (setq ns-use-srgb-colorspace nil)
-(powerline-default-theme)
+(powerline-center-theme)
 
 ;;;;;; Theme Configration End ;;;;;;
 
@@ -590,6 +594,7 @@
 (require 'magit)
 
 ;;;;;; Other Tools' Configration End ;;;;;;
+
 
 
 
