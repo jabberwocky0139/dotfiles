@@ -334,7 +334,6 @@
 (defconst color1 "#4682b4")
 (defconst color2 "salmon")
 
-
 (set-face-attribute 'mode-line nil
                     :foreground "#fff"
                     :background color1
@@ -672,7 +671,7 @@
 
 ;; タブに表示させるバッファの設定
 (defvar my-tabbar-displayed-buffers
-  '("*vc-" "*Packages*")
+  '("*vc-")
   "*Regexps matches buffer names always included tabs.")
 
 (defun my-tabbar-buffer-list ()
