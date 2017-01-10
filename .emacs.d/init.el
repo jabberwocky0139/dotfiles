@@ -52,6 +52,7 @@
 (package-install 'dashboard)
 (package-install 'powerline)
 (package-install 'tabbar)
+(package-install 'fish-mode)
 
 ;;; ウィンドウサイズ
 (defun window-resizer ()
@@ -223,7 +224,7 @@
  '(helm-ff-auto-update-initial-value nil)
  '(package-selected-packages
    (quote
-    (tabbar powerline dashboard haskell-mode solarized-theme color-theme-solarized helm undo-tree company-jedi jedi magit dbus elscreen multi-term markdown-mode loop lispxmp open-junk-file flycheck py-yapf company-quickhelp anaconda-mode elpy async bury-successful-compilation)))
+    (fish-mode tabbar powerline dashboard haskell-mode solarized-theme color-theme-solarized helm undo-tree company-jedi jedi magit dbus elscreen multi-term markdown-mode loop lispxmp open-junk-file flycheck py-yapf company-quickhelp anaconda-mode elpy async bury-successful-compilation)))
  '(search-web-default-browser (quote eww-browse-url))
  '(search-web-in-emacs-browser (quote eww-browse-url)))
 ;; ミニバッファでC-hをバックスペースに割り当て
@@ -414,6 +415,7 @@
 (add-hook 'latex-mode-hook 'company-mode)
 (add-hook 'emacs-lisp-mode-hook 'company-mode)
 (add-hook 'haskell-mode-hook 'company-mode)
+(add-hook 'fish-mode-hook 'company-mode)
 
 (setq company-idle-delay 0) ; デフォルトは0.5
 (setq company-minimum-prefix-length 2) ; デフォルトは4
@@ -501,6 +503,7 @@
 (add-hook 'c++-mode-hook 'flycheck-mode)
 (add-hook 'emacs-lisp-mode-hook 'flycheck-mode)
 (add-hook 'haskell-mode-hook 'flycheck-mode)
+(add-hook 'fish-mode-hook 'flycheck-mode)
 (define-key global-map (kbd "\C-cn") 'flycheck-next-error)
 (define-key global-map (kbd "\C-cp") 'flycheck-previous-error)
 (define-key global-map (kbd "\C-cd") 'flycheck-list-errors)
@@ -625,7 +628,7 @@
  'tabbar-default nil
  :family "MeiryoKe_Gothic"
  :family "ゆたココ" 
- ;;:background "#34495E"
+ :background "#34495E"
  ;;:foreground "#EEEEEE"
  :foreground "#fff"
  :height 0.95
@@ -662,7 +665,7 @@
 
 ;; タブに表示させるバッファの設定
 (defvar my-tabbar-displayed-buffers
-  '("*vc-")
+  '("*vc-" "*Packages*")
   "*Regexps matches buffer names always included tabs.")
 
 (defun my-tabbar-buffer-list ()
