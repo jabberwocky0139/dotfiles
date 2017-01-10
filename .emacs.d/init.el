@@ -24,7 +24,7 @@
 (package-initialize)
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 ;;; package-installを動かすときは以下のコメントアウトを外す
-(package-refresh-contents)
+;; (package-refresh-contents)
 
 
 ;;; package-install
@@ -32,6 +32,7 @@
 (package-install 'bury-successful-compilation)
 (package-install 'helm)
 (package-install 'color-theme-solarized)
+(package-install 'color-theme-sanityinc-solarized)
 (package-install 'solarized-theme)
 (package-install 'elpy)
 (package-install 'jedi)
@@ -224,7 +225,7 @@
  '(helm-ff-auto-update-initial-value nil)
  '(package-selected-packages
    (quote
-    (fish-mode tabbar powerline dashboard haskell-mode solarized-theme color-theme-solarized helm undo-tree company-jedi jedi magit dbus elscreen multi-term markdown-mode loop lispxmp open-junk-file flycheck py-yapf company-quickhelp anaconda-mode elpy async bury-successful-compilation)))
+    (color-theme-sanityinc-solarized fish-mode tabbar powerline dashboard haskell-mode solarized-theme color-theme-solarized helm undo-tree company-jedi jedi magit dbus elscreen multi-term markdown-mode loop lispxmp open-junk-file flycheck py-yapf company-quickhelp anaconda-mode elpy async bury-successful-compilation)))
  '(search-web-default-browser (quote eww-browse-url))
  '(search-web-in-emacs-browser (quote eww-browse-url)))
 ;; ミニバッファでC-hをバックスペースに割り当て
@@ -322,8 +323,10 @@
 ;; orgの見出し行の文字の大きさを変えない
 (setq solarized-scale-org-headlines nil)
 
-;(load-theme 'solarized-light t)
+;; (load-theme 'solarized-light t)
 (load-theme 'solarized-dark t)
+;; (load-theme 'sanityinc-solarized-dark t)
+;; (load-theme 'misterioso)
 
 
 ;; powerline設定
@@ -631,6 +634,7 @@
  :background "#34495E"
  ;;:foreground "#EEEEEE"
  :foreground "#fff"
+ :bold nil
  :height 0.95
  )
 (set-face-attribute
@@ -638,6 +642,7 @@
  :background "#34495E"
  ;;:foreground "#EEEEEE"
  :foreground "#fff"
+ :bold nil
  :box nil
 )
 (set-face-attribute
@@ -647,6 +652,7 @@
  ;;:foreground "#EEEEEE"
  ;;:foreground "#fff"
  :foreground "gray23"
+ :bold t
  :box nil
 )
 (set-face-attribute
@@ -655,6 +661,7 @@
  :background color1
  ;;:foreground "#EEEEEE"
  :foreground "#fff"
+ :bold nil
  :box nil)
 (set-face-attribute
  'tabbar-button nil
