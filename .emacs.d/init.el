@@ -623,13 +623,12 @@
 ;; 外観変更
 (set-face-attribute
  'tabbar-default nil
- ;;:family "MeiryoKe_Gothic"
- :family "ゆたココ"
- :background "#34495E"
+ :family "MeiryoKe_Gothic"
+ :family "ゆたココ" 
+ ;;:background "#34495E"
  ;;:foreground "#EEEEEE"
  :foreground "#fff"
  :height 0.95
- :bold t
  )
 (set-face-attribute
  'tabbar-unselected nil
@@ -637,24 +636,22 @@
  ;;:foreground "#EEEEEE"
  :foreground "#fff"
  :box nil
- :bold t
 )
 (set-face-attribute
  'tabbar-modified nil
  ;;:background "#E67E22"
- :background "CornflowerBlue"
+ :background color2
  ;;:foreground "#EEEEEE"
- :foreground "#fff"
+ ;;:foreground "#fff"
+ :foreground "gray23"
  :box nil
- :bold t
 )
 (set-face-attribute
  'tabbar-selected nil
  ;;:background "steel blue"
- :background color1 
+ :background color1
  ;;:foreground "#EEEEEE"
  :foreground "#fff"
- :bold t
  :box nil)
 (set-face-attribute
  'tabbar-button nil
