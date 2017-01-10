@@ -33,8 +33,9 @@ alias Jupyter='jupyter notebook'
 
 set -gx PYENV_ROOT $HOME/.pyenv $PYENV_ROOT
 set -gx PATH $PYENV_ROOT/bin $PATH
+set -gx PATH /opt/emacs/bin $PATH
 ## export PATH="$PYENV_ROOT/bin:$PATH"
 status --is-interactive; and . (pyenv init -|psub)
 set -gx PATH $PYENV_ROOT/versions/anaconda3-4.1.1/bin/ $PATH
 ## export PATH="$PYENV_ROOT/versions/anaconda3-4.4.1/bin/:$PATH"
-xmodmap ~/.xmodmaprc
+
