@@ -24,7 +24,7 @@
 (package-initialize)
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 ;;; package-installを動かすときは以下のコメントアウトを外す
-;; (package-refresh-contents)
+(package-refresh-contents)
 
 
 ;;; package-install
