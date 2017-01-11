@@ -33,7 +33,7 @@
 (package-install 'helm)
 (package-install 'color-theme-solarized)
 (package-install 'solarized-theme)
-(package-install 'spacemacs-theme)
+;; (package-install 'spacemacs-theme)
 (package-install 'elpy)
 (package-install 'jedi)
 (package-install 'company-jedi)
@@ -146,7 +146,7 @@
 ;;; 検索(C-s)で大文字小文字を区別しない
 (setq completion-ignore-case t)
 ;;; 指定の行数に飛ぶ
-(global-set-key "\C-x:" 'goto-line)
+(global-set-key (kbd "C-x ;") 'goto-line)
 ;;; 対応する括弧をハイライト
 (show-paren-mode 1)
 ;;; 現在行をハイライト
@@ -160,6 +160,8 @@
 (define-key global-map (kbd "M-p") (kbd "C-u 5 C-p"))
 ;;; リージョン内の置換
 (setq transient-mark-mode t)
+;;; コメント/解除
+(global-set-key (kbd "C-,") 'comment-or-uncomment-region)
 
 ;;; tree-undo
 (when (require 'undo-tree nil t)
@@ -287,7 +289,7 @@
 ;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
 ;; Changed to "C-c h". Note: We must set "C-c h" globally, because we
 ;; cannot change `helm-command-prefix-key' once `helm-config' is loaded.
-(global-set-key (kbd "C-c h") 'helm-command-prefix)
+(global-set-key (kbd "C-;") 'helm-command-prefix)
 (global-unset-key (kbd "C-x c"))
 (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
 (define-key helm-map (kbd "C-i") 'helm-select-action) ; make TAB work in terminal
@@ -316,15 +318,15 @@
       helm-imenu-fuzzy-match    t)
 
 (add-to-list 'helm-sources-using-default-as-input 'helm-source-man-pages)
-(global-set-key (kbd "C-c h o") 'helm-swoop)
+(global-set-key (kbd "C-; o") 'helm-swoop)
 
 
 ;;; helm-surfraw
 (setq helm-surfraw-default-browser-function 'browse-url-generic
       browse-url-generic-program "google-chrome")
 
-(global-set-key (kbd "C-c h SPC") 'helm-all-mark-rings)
-(global-set-key (kbd "C-c h g") 'helm-google-suggest)
+(global-set-key (kbd "C-; SPC") 'helm-all-mark-rings)
+(global-set-key (kbd "C-; g") 'helm-google-suggest)
 
 
 ;;;;;; Helm Configration End ;;;;;;
