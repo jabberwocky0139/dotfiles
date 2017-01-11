@@ -54,6 +54,9 @@
 (package-install 'powerline)
 (package-install 'tabbar)
 (package-install 'fish-mode)
+(package-install 'migemo)
+(package-install 'helm-swoop)
+;; (package-install 'nyan-mode)
 
 ;;; ウィンドウサイズ
 (defun window-resizer ()
@@ -213,9 +216,34 @@
 
 ;;;;;; Helm Configration ;;;;;;
 
+;; migemo(helmの前に必要)
+(require 'migemo)
+(setq migemo-command "cmigemo")
+(setq migemo-options '("-q" "--emacs" "-i" "\a"))
+(cond
+ ((eq system-type 'darwin)
+  (setq migemo-dictionary "/usr/local/share/migemo/utf-8/migemo-dict")
+  )
+ ((eq system-type 'gnu/linux)
+  (setq migemo-dictionary "/usr/share/cmigemo/utf-8/migemo-dict")
+  )
+ ((eq system-type 'windows-nt)
+  (setq migemo-dictionary "c:/app/cmigemo-default-win64/dict/utf-8/migemo-dict")
+  ))
+(setq migemo-user-dictionary nil)
+(setq migemo-regex-dictionary nil)
+(setq migemo-coding-system 'utf-8-unix)
+;; initialize migemo
+(migemo-init)
+
 
 (require 'helm-config)
 (helm-mode 1)
+;; helm-migemo-mode
+(with-eval-after-load "helm"
+  (helm-migemo-mode +1)
+  )
+
 ;; 自動補完を無効
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -228,7 +256,7 @@
  '(helm-ff-auto-update-initial-value nil)
  '(package-selected-packages
    (quote
-    (spacemacs-theme color-theme-sanityinc-solarized fish-mode tabbar powerline dashboard haskell-mode solarized-theme color-theme-solarized helm undo-tree company-jedi jedi magit dbus elscreen multi-term markdown-mode loop lispxmp open-junk-file flycheck py-yapf company-quickhelp anaconda-mode elpy async bury-successful-compilation)))
+    (nyan-mode helm-migemo helm-swoop migemo spacemacs-theme color-theme-sanityinc-solarized fish-mode tabbar powerline dashboard haskell-mode solarized-theme color-theme-solarized helm undo-tree company-jedi jedi magit dbus elscreen multi-term markdown-mode loop lispxmp open-junk-file flycheck py-yapf company-quickhelp anaconda-mode elpy async bury-successful-compilation)))
  '(search-web-default-browser (quote eww-browse-url))
  '(search-web-in-emacs-browser (quote eww-browse-url)))
 ;; ミニバッファでC-hをバックスペースに割り当て
@@ -282,7 +310,7 @@
       helm-imenu-fuzzy-match    t)
 
 (add-to-list 'helm-sources-using-default-as-input 'helm-source-man-pages)
-(global-set-key (kbd "C-c h o") 'helm-occur)
+(global-set-key (kbd "C-c h o") 'helm-swoop)
 
 
 ;;; helm-surfraw
@@ -291,6 +319,7 @@
 
 (global-set-key (kbd "C-c h SPC") 'helm-all-mark-rings)
 (global-set-key (kbd "C-c h g") 'helm-google-suggest)
+
 
 ;;;;;; Helm Configration End ;;;;;;
 
@@ -380,6 +409,7 @@
 
 (setq ns-use-srgb-colorspace nil)
 (powerline-center-theme)
+
 
 ;;;;;; Theme Configration End ;;;;;;
 
