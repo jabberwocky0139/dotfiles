@@ -57,6 +57,7 @@
 (package-install 'migemo)
 (package-install 'helm-swoop)
 ;; (package-install 'nyan-mode)
+(package-install 'redo+)
 
 ;;; ウィンドウサイズ
 (defun window-resizer ()
@@ -164,6 +165,10 @@
 (when (require 'undo-tree nil t)
   (global-undo-tree-mode))
 
+;;; redo+
+(require 'redo+)
+(global-set-key (kbd "C-M-/") 'redo)
+
 ;;; マウスホイールの設定
 ;; マウスホイールでのスクロール速度の設定
 (setq mouse-wheel-scroll-amount '(3 ((shift) . 10) ((control) . nil)))
@@ -254,9 +259,10 @@
    (quote
     ("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default)))
  '(helm-ff-auto-update-initial-value nil)
+ '(nyan-mode t)
  '(package-selected-packages
    (quote
-    (nyan-mode helm-migemo helm-swoop migemo spacemacs-theme color-theme-sanityinc-solarized fish-mode tabbar powerline dashboard haskell-mode solarized-theme color-theme-solarized helm undo-tree company-jedi jedi magit dbus elscreen multi-term markdown-mode loop lispxmp open-junk-file flycheck py-yapf company-quickhelp anaconda-mode elpy async bury-successful-compilation)))
+    (redo+ nyan-mode helm-migemo helm-swoop migemo spacemacs-theme color-theme-sanityinc-solarized fish-mode tabbar powerline dashboard haskell-mode solarized-theme color-theme-solarized helm undo-tree company-jedi jedi magit dbus elscreen multi-term markdown-mode loop lispxmp open-junk-file flycheck py-yapf company-quickhelp anaconda-mode elpy async bury-successful-compilation)))
  '(search-web-default-browser (quote eww-browse-url))
  '(search-web-in-emacs-browser (quote eww-browse-url)))
 ;; ミニバッファでC-hをバックスペースに割り当て
