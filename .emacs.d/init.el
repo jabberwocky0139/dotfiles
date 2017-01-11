@@ -32,8 +32,8 @@
 (package-install 'bury-successful-compilation)
 (package-install 'helm)
 (package-install 'color-theme-solarized)
-(package-install 'color-theme-sanityinc-solarized)
 (package-install 'solarized-theme)
+(package-install 'spacemacs-theme)
 (package-install 'elpy)
 (package-install 'jedi)
 (package-install 'company-jedi)
@@ -222,10 +222,13 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default)))
  '(helm-ff-auto-update-initial-value nil)
  '(package-selected-packages
    (quote
-    (color-theme-sanityinc-solarized fish-mode tabbar powerline dashboard haskell-mode solarized-theme color-theme-solarized helm undo-tree company-jedi jedi magit dbus elscreen multi-term markdown-mode loop lispxmp open-junk-file flycheck py-yapf company-quickhelp anaconda-mode elpy async bury-successful-compilation)))
+    (spacemacs-theme color-theme-sanityinc-solarized fish-mode tabbar powerline dashboard haskell-mode solarized-theme color-theme-solarized helm undo-tree company-jedi jedi magit dbus elscreen multi-term markdown-mode loop lispxmp open-junk-file flycheck py-yapf company-quickhelp anaconda-mode elpy async bury-successful-compilation)))
  '(search-web-default-browser (quote eww-browse-url))
  '(search-web-in-emacs-browser (quote eww-browse-url)))
 ;; ミニバッファでC-hをバックスペースに割り当て
@@ -327,11 +330,12 @@
 (load-theme 'solarized-dark t)
 ;; (load-theme 'sanityinc-solarized-dark t)
 ;; (load-theme 'misterioso)
+;; (load-theme 'spacemacs-dark)
 
 
 ;; powerline設定
 (require 'powerline)
-(defconst color1 "#4682b4")
+(defconst color1 "Steelblue")
 (defconst color2 "salmon")
 
 (set-face-attribute 'mode-line nil
@@ -622,8 +626,6 @@
 ;; キーに割り当てる
 (global-set-key (kbd "<C-tab>") 'tabbar-forward-tab)
 (global-set-key (kbd "<C-iso-lefttab>") 'tabbar-backward-tab)
-;; (global-set-key (kbd "<M-right>") 'tabbar-forward-tab)
-;; (global-set-key (kbd "<M-left>") 'tabbar-backward-tab)
 
 ;; 外観変更
 (set-face-attribute
@@ -631,7 +633,6 @@
  :family "MeiryoKe_Gothic"
  :family "ゆたココ" 
  :background "#34495E"
- ;;:foreground "#EEEEEE"
  :foreground "#fff"
  :bold nil
  :height 0.95
@@ -639,26 +640,20 @@
 (set-face-attribute
  'tabbar-unselected nil
  :background "#34495E"
- ;;:foreground "#EEEEEE"
  :foreground "#fff"
  :bold nil
  :box nil
 )
 (set-face-attribute
  'tabbar-modified nil
- ;;:background "#E67E22"
  :background color2
- ;;:foreground "#EEEEEE"
- ;;:foreground "#fff"
  :foreground "gray23"
  :bold t
  :box nil
 )
 (set-face-attribute
  'tabbar-selected nil
- ;;:background "steel blue"
  :background color1
- ;;:foreground "#EEEEEE"
  :foreground "#fff"
  :bold nil
  :box nil)
@@ -694,23 +689,6 @@ are always included."
         tabs
       (cons cur-buf tabs))))
 (setq tabbar-buffer-list-function 'my-tabbar-buffer-list)
-
-
-;; Ctrl-Tab, Ctrl-Shift-Tab でタブを切り替える
-(dolist (func '(tabbar-mode tabbar-forward-tab tabbar-forward-group tabbar-backward-tab tabbar-backward-group))
-  (autoload func "tabbar" "Tabs at the top of buffers and easy control-tab navigation"))
-(defmacro defun-prefix-alt (name on-no-prefix on-prefix &optional do-always)
-  `(defun ,name (arg)
-     (interactive "P")
-     ,do-always
-     (if (equal nil arg)
-         ,on-no-prefix
-       ,on-prefix)))
-(defun-prefix-alt shk-tabbar-next (tabbar-forward-tab) (tabbar-forward-group) (tabbar-mode 1))
-(defun-prefix-alt shk-tabbar-prev (tabbar-backward-tab) (tabbar-backward-group) (tabbar-mode 1))
-;;(global-set-key (kbd "C-<tab>") 'shk-tabbar-next)
-;;(global-set-key (kbd "<C-S-tab>") 'shk-tabbar-prev)
-
 
 ;;;;;; Other Tools' Configration End ;;;;;;
 

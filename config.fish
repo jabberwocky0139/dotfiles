@@ -1,4 +1,4 @@
- ## rmでゴミ箱に入れる
+## rmでゴミ箱に入れる
 alias rm='rmtrash'
 
 ## gitのbranch名出す
