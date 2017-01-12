@@ -18,6 +18,8 @@
 
 ;;; load-pathの設定
 (add-to-list 'load-path "~/.emacs.d/site-lisp/")
+(add-to-list 'load-path "~/.emacs.d/site-lisp/pdf-tools/")
+(add-to-list 'load-path "~/.emacs.d/site-lisp/pdf-tools/lisp/")
 (add-to-list 'load-path "~/.emacs.d/elpa/")
 
 
@@ -59,6 +61,10 @@
 (package-install 'helm-swoop)
 ;; (package-install 'nyan-mode)
 (package-install 'redo+)
+;; (package-install 'pdf-tools)
+(package-install 'auctex)
+;; (package-install 'atom-one-dark-theme)
+(pdf-tools-install)
 
 ;;; ウィンドウサイズ
 (defun window-resizer ()
@@ -193,12 +199,12 @@
 
 ;; 透明度を変更するコマンド M-x set-alpha
 ;; http://qiita.com/marcy@github/items/ba0d018a03381a964f2
-(defun set-alpha (alpha-num)
-  "set frame parameter 'alpha"
-  (interactive "nAlpha: ")
-  (set-frame-parameter nil 'alpha (cons alpha-num '(90))))
-;; 初期値
-(set-frame-parameter nil 'alpha 92)
+;; (defun set-alpha (alpha-num)
+;;   "set frame parameter 'alpha"
+;;   (interactive "nAlpha: ")
+;;   (set-frame-parameter nil 'alpha (cons alpha-num '(90))))
+;; ;; 初期値
+;; (set-frame-parameter nil 'alpha 96)
 
 
 ;; 起動画面をdashboardで変更
@@ -212,6 +218,163 @@
 
 ;;;;;; Basic Configration End ;;;;;;
 
+
+
+
+
+
+
+
+
+
+;;;;;; pdf-mode Configration ;;;;;;
+
+;; https://github.com/politza/pdf-tools
+(require 'pdf-tools)
+(require 'pdf-view)
+(require 'pdf-annot)
+(require 'pdf-history)
+(require 'pdf-info)
+(require 'pdf-isearch)
+(require 'pdf-links)
+(require 'pdf-misc)
+(require 'pdf-occur)
+(require 'pdf-outline)
+(require 'pdf-sync)
+(require 'tablist-filter)
+(require 'tablist)
+
+(add-to-list 'auto-mode-alist (cons "\\.pdf$" 'pdf-view-mode))
+
+;;(require 'linum)
+;;(global-linum-mode)
+(defcustom linum-disabled-modes-list '(doc-view-mode pdf-view-mode)
+  "* List of modes disabled when global linum mode is on"
+  :type '(repeat (sexp :tag "Major mode"))
+  :tag " Major modes where linum is disabled: "
+  :group 'linum
+  )
+(defcustom linum-disable-starred-buffers 't
+  "* Disable buffers that have stars in them like *Gnu Emacs*"
+  :type 'boolean
+  :group 'linum)
+(defun linum-on ()
+  "* When linum is running globally, disable line number in modes defined in `linum-disabled-modes-list'. Changed by linum-off. Also turns off numbering in starred modes like *scratch*"
+  (unless (or (minibufferp) (member major-mode linum-disabled-modes-list)
+          (and linum-disable-starred-buffers (string-match "*" (buffer-name)))
+          )
+    (linum-mode 1)))
+(provide 'setup-linum)
+
+;;;;;; pdf-mode Configration End ;;;;;;
+
+
+
+
+
+
+
+
+
+
+
+;;;;;; AUCTeX Configration;;;;;;
+
+(with-eval-after-load 'tex-jp
+  (setq TeX-engine-alist '((pdfuptex "pdfupTeX"
+                                     "ptex2pdf -u -e -ot \"-kanji=utf8 -no-guess-input-enc %S %(mode)\""
+                                     "ptex2pdf -u -l -ot \"-kanji=utf8 -no-guess-input-enc %S %(mode)\""
+                                     "euptex")))
+  (setq japanese-TeX-engine-default 'pdfuptex)
+  ;(setq japanese-TeX-engine-default 'luatex)
+  ;(setq japanese-TeX-engine-default 'xetex)
+  (setq TeX-view-program-list '(("SumatraPDF"
+                                 "powershell -Command \"& {$r = Write-Output %o;$t = Write-Output %b;$o = [System.String]::Concat('\"\"\"',[System.IO.Path]::GetFileNameWithoutExtension($r),'.pdf','\"\"\"');$b = [System.String]::Concat('\"\"\"',[System.IO.Path]::GetFileNameWithoutExtension($t),'.tex','\"\"\"');Start-Process SumatraPDF -ArgumentList ('-reuse-instance',$o,'-forward-search',$b,%n)}\"")))
+  (setq TeX-view-program-selection '((output-dvi "SumatraPDF")
+                                     (output-pdf "SumatraPDF")))
+  (setq japanese-LaTeX-default-style "bxjsarticle")
+  ;(setq japanese-LaTeX-default-style "ltjsarticle")
+  (dolist (command '("pTeX" "pLaTeX" "pBibTeX" "jTeX" "jLaTeX" "jBibTeX" "Mendex"))
+    (delq (assoc command TeX-command-list) TeX-command-list)))
+(setq preview-image-type 'dvipng)
+(setq TeX-source-correlate-method 'synctex)
+(setq TeX-source-correlate-start-server t)
+(add-hook 'LaTeX-mode-hook 'TeX-source-correlate-mode)
+(add-hook 'LaTeX-mode-hook 'TeX-PDF-mode)
+(add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
+;; (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
+(add-hook 'LaTeX-mode-hook
+          (function (lambda ()
+                      (add-to-list 'TeX-command-list
+                                   '("Latexmk"
+                                     "latexmk %t"
+                                     TeX-run-TeX nil (latex-mode) :help "Run Latexmk"))
+                      (add-to-list 'TeX-command-list
+                                   '("Latexmk-upLaTeX-pdfdvi"
+                                     "latexmk -e \"$latex=q/uplatex %%O -kanji=utf8 -no-guess-input-enc %S %(mode) %%S/\" -e \"$bibtex=q/upbibtex %%O %%B/\" -e \"$biber=q/biber %%O --bblencoding=utf8 -u -U --output_safechars %%B/\" -e \"$makeindex=q/upmendex %%O -o %%D %%S/\" -e \"$dvipdf=q/dvipdfmx %%O -o %%D %%S/\" -norc -gg -pdfdvi %t"
+                                     TeX-run-TeX nil (latex-mode) :help "Run Latexmk-upLaTeX-pdfdvi"))
+                      (add-to-list 'TeX-command-list
+                                   '("Latexmk-upLaTeX-pdfps"
+                                     "latexmk -e \"$latex=q/uplatex %%O -kanji=utf8 -no-guess-input-enc %S %(mode) %%S/\" -e \"$bibtex=q/upbibtex %%O %%B/\" -e \"$biber=q/biber %%O --bblencoding=utf8 -u -U --output_safechars %%B/\" -e \"$makeindex=q/upmendex %%O -o %%D %%S/\" -e \"$dvips=q/dvips %%O -z -f %%S | convbkmk -u > %%D/\" -e \"$ps2pdf=q/ps2pdf.exe %%O %%S %%D/\" -norc -gg -pdfps %t"
+                                     TeX-run-TeX nil (latex-mode) :help "Run Latexmk-upLaTeX-pdfps"))
+                      (add-to-list 'TeX-command-list
+                                   '("Latexmk-pdfLaTeX"
+                                     "latexmk -e \"$pdflatex=q/pdflatex %%O %S %(mode) %%S/\" -e \"$bibtex=q/bibtex %%O %%B/\" -e \"$biber=q/biber %%O --bblencoding=utf8 -u -U --output_safechars %%B/\" -e \"$makeindex=q/makeindex %%O -o %%D %%S/\" -norc -gg -pdf %t"
+                                     TeX-run-TeX nil (latex-mode) :help "Run Latexmk-pdfLaTeX"))
+                      (add-to-list 'TeX-command-list
+                                   '("Latexmk-LuaLaTeX"
+                                     "latexmk -e \"$pdflatex=q/lualatex %%O %S %(mode) %%S/\" -e \"$bibtex=q/upbibtex %%O %%B/\" -e \"$biber=q/biber %%O --bblencoding=utf8 -u -U --output_safechars %%B/\" -e \"$makeindex=q/upmendex %%O -o %%D %%S/\" -norc -gg -pdf %t"
+                                     TeX-run-TeX nil (latex-mode) :help "Run Latexmk-LuaLaTeX"))
+                      (add-to-list 'TeX-command-list
+                                   '("Latexmk-LuaJITLaTeX"
+                                     "latexmk -e \"$pdflatex=q/luajitlatex %%O %S %(mode) %%S/\" -e \"$bibtex=q/upbibtex %%O %%B/\" -e \"$biber=q/biber %%O --bblencoding=utf8 -u -U --output_safechars %%B/\" -e \"$makeindex=q/upmendex %%O -o %%D %%S/\" -norc -gg -pdf %t"
+                                     TeX-run-TeX nil (latex-mode) :help "Run Latexmk-LuaJITLaTeX"))
+                      (add-to-list 'TeX-command-list
+                                   '("Latexmk-XeLaTeX"
+                                     "latexmk -e \"$pdflatex=q/xelatex %%O %S %(mode) %%S/\" -e \"$bibtex=q/upbibtex %%O %%B/\" -e \"$biber=q/biber %%O --bblencoding=utf8 -u -U --output_safechars %%B/\" -e \"$makeindex=q/upmendex %%O -o %%D %%S/\" -norc -gg -pdf %t"
+                                     TeX-run-TeX nil (latex-mode) :help "Run Latexmk-XeLaTeX"))
+                      (add-to-list 'TeX-command-list
+                                   '("SumatraPDF"
+                                     "powershell -Command \"& {$r = Write-Output %o;$t = Write-Output %b;$o = [System.String]::Concat('\"\"\"',[System.IO.Path]::GetFileNameWithoutExtension($r),'.pdf','\"\"\"');$b = [System.String]::Concat('\"\"\"',[System.IO.Path]::GetFileNameWithoutExtension($t),'.tex','\"\"\"');Start-Process SumatraPDF -ArgumentList ('-reuse-instance',$o,'-forward-search',$b,%n)}\""
+                                     TeX-run-discard-or-function t t :help "Forward search with SumatraPDF"))
+                      (add-to-list 'TeX-command-list
+                                   '("fwdsumatrapdf"
+                                     "fwdsumatrapdf %s.pdf \"%b\" %n"
+                                     TeX-run-discard-or-function t t :help "Forward search with SumatraPDF"))
+                      (add-to-list 'TeX-command-list
+                                   '("TeXworks"
+                                     "synctex view -i \"%n:0:%b\" -o %s.pdf -x \"texworks --position=%%{page+1} %%{output}\""
+                                     TeX-run-discard-or-function t t :help "Run TeXworks"))
+                      (add-to-list 'TeX-command-list
+                                   '("TeXstudio"
+                                     "synctex view -i \"%n:0:%b\" -o %s.pdf -x \"texstudio --pdf-viewer-only --page %%{page+1} %%{output}\""
+                                     TeX-run-discard-or-function t t :help "Run TeXstudio"))
+                      (add-to-list 'TeX-command-list
+                                   '("Firefox"
+                                     "powershell -Command \"& {$r = Write-Output %o;$o = [System.String]::Concat('\"\"\"',[System.IO.Path]::GetFileNameWithoutExtension($r),'.pdf','\"\"\"');Start-Process firefox -ArgumentList ('-new-window',$o)}\""
+                                     TeX-run-discard-or-function t t :help "Run Mozilla Firefox"))
+                      (add-to-list 'TeX-command-list
+                                   '("Chrome"
+                                     "powershell -Command \"& {$r = Write-Output %s.pdf;$o = [System.String]::Concat('\"\"\"',[System.IO.Path]::GetFullPath($r),'\"\"\"');Start-Process chrome -ArgumentList ('--new-window',$o)}\""
+                                     TeX-run-discard-or-function t t :help "Run Chrome PDF Viewer"))
+                      (add-to-list 'TeX-command-list
+                                   '("pdfopen"
+                                     "tasklist /fi \"IMAGENAME eq AcroRd32.exe\" /nh | findstr \"AcroRd32.exe\" > nul && pdfopen --r15 --file %s.pdf && pdfclose --r15 --file %s.pdf & synctex view -i \"%n:0:%b\" -o %s.pdf -x \"pdfopen --r15 --file %%{output} --page %%{page+1}\""
+                                     TeX-run-discard-or-function t t :help "Run Adobe Acrobat Reader DC")))))
+
+;; サイズ変更の無効化
+;; (setq font-latex-fontify-sectioning 1.0)
+
+
+;; 太字を無効化
+;; (custom-set-faces
+;;  ;; custom-set-faces was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  '(font-latex-sectioning-5-face ((t (:inherit variable-pitch :foreground "Steelblue")))))
+				 
+;;;;;; AUCTeX Configration End ;;;;;;
 
 
 
@@ -253,21 +416,7 @@
   )
 
 ;; 自動補完を無効
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default)))
- '(helm-ff-auto-update-initial-value nil)
- '(nyan-mode t)
- '(package-selected-packages
-   (quote
-    (redo+ nyan-mode helm-migemo helm-swoop migemo spacemacs-theme color-theme-sanityinc-solarized fish-mode tabbar powerline dashboard haskell-mode solarized-theme color-theme-solarized helm undo-tree company-jedi jedi magit dbus elscreen multi-term markdown-mode loop lispxmp open-junk-file flycheck py-yapf company-quickhelp anaconda-mode elpy async bury-successful-compilation)))
- '(search-web-default-browser (quote eww-browse-url))
- '(search-web-in-emacs-browser (quote eww-browse-url)))
+
 ;; ミニバッファでC-hをバックスペースに割り当て
 (define-key helm-read-file-map (kbd "C-h") 'delete-backward-char)
 (define-key helm-map (kbd "C-h") 'delete-backward-char)
@@ -365,17 +514,47 @@
 (setq solarized-scale-org-headlines nil)
 
 ;; (load-theme 'solarized-light t)
-(load-theme 'solarized-dark t)
+;; (load-theme 'solarized-dark t)
 ;; (load-theme 'sanityinc-solarized-dark t)
 ;; (load-theme 'misterioso)
 ;; (load-theme 'spacemacs-dark)
 
+;; (defvar atom-one-dark-colors-alist
+;;   '(("atom-one-dark-accent"   . "#528BFF")
+;;     ("atom-one-dark-fg"       . "#ABB2BF")
+;;     ("atom-one-dark-bg"       . "#282C34")
+;;     ("atom-one-dark-bg-1"     . "#121417")
+;;     ("atom-one-dark-bg-hl"    . "#2F343D")
+;;     ("atom-one-dark-gutter"   . "#666D7A")
+;;     ("atom-one-dark-accent"   . "#AEB9F5")
+;;     ("atom-one-dark-mono-1"   . "#ABB2BF")
+;;     ("atom-one-dark-mono-2"   . "#828997")
+;;     ("atom-one-dark-mono-3"   . "#5C6370")
+;;     ("atom-one-dark-cyan"     . "#56B6C2")
+;;     ("atom-one-dark-blue"     . "#61AFEF")
+;;     ;; ("atom-one-dark-purple"   . "#C678DD")
+;;     ("atom-one-dark-purple"   . "#B89BDE"); modified
+;;     ("atom-one-dark-green"    . "#98C379")
+;;     ("atom-one-dark-red-1"    . "#E06C75")
+;;     ("atom-one-dark-red-2"    . "#BE5046")
+;;     ;; ("atom-one-dark-orange-1" . "#D19A66")
+;;     ("atom-one-dark-orange-1" . "#F6D166"); modified
+;;     ("atom-one-dark-orange-2" . "#E5C07B")
+;;     ("atom-one-dark-gray"     . "#3E4451")
+;;     ("atom-one-dark-silver"   . "#AAAAAA")
+;;     ("atom-one-dark-black"    . "#0F1011"))
+;;   "List of Atom One Dark colors.")
+
+(load-theme 'atom-one-dark t)
 
 ;; powerline設定
 (require 'powerline)
-;; (require 'spaceline-config)
-(defconst color1 "Steelblue")
-(defconst color2 "salmon")
+;; (defconst color1 "Steelblue")
+;; (defconst color2 "salmon")
+(defconst color1 "Steelblue4")
+(defconst color2 "#B89BDE")
+(defconst color11 "Lightsteelblue2")
+(defconst color22 "#e1cbff")
 
 (set-face-attribute 'mode-line nil
                     :foreground "#fff"
@@ -398,20 +577,20 @@
                     :inherit 'mode-line)
 
 (set-face-attribute 'mode-line-inactive nil
-                    :foreground "#fff"
-                    :background color1
-		    ;;  :box nil
-		    :bold t)
+                    :foreground "DarkGray"
+                    :background color11
+		    :bold t
+                    :box nil)
 
 (set-face-attribute 'powerline-inactive1 nil
-                    :foreground "gray23"
-                    :background color2
+                    :foreground "DarkGray"
+                    :background color22
 		    :bold t
 		    ;; :box nil
                     :inherit 'mode-line)
 
 (set-face-attribute 'powerline-inactive2 nil
-                    :foreground "white smoke"
+                    :foreground "DimGray"
                     :background "gray20"
 		    :bold t
 		    ;; :box nil
@@ -458,7 +637,7 @@
 ;;(global-company-mode +1) ; 全バッファで有効にする
 (add-hook 'c++-mode-hook 'company-mode)
 (add-hook 'c-mode-hook 'company-mode)
-(add-hook 'latex-mode-hook 'company-mode)
+(add-hook 'LaTeX-mode-hook 'company-mode)
 (add-hook 'emacs-lisp-mode-hook 'company-mode)
 (add-hook 'haskell-mode-hook 'company-mode)
 (add-hook 'fish-mode-hook 'company-mode)
@@ -672,7 +851,8 @@
  'tabbar-default nil
  :family "MeiryoKe_Gothic"
  :family "ゆたココ" 
- :background "#34495E"
+ ;; :background "#34495E"
+ :background "#282C34"
  :foreground "#fff"
  :bold nil
  :height 0.95
@@ -730,6 +910,7 @@ are always included."
       (cons cur-buf tabs))))
 (setq tabbar-buffer-list-function 'my-tabbar-buffer-list)
 
+
 ;;;;;; Other Tools' Configration End ;;;;;;
 
 
@@ -745,10 +926,20 @@ are always included."
 (provide 'init)
 ;;;
 
+
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(font-latex-warning-face ((t (:inherit bold :foreground "indian red")))))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (migemo dbus helm undo-tree tablist tabbar spacemacs-theme solarized-theme redo+ py-yapf powerline pdf-tools open-junk-file nyan-mode multi-term markdown-mode magit loop lispxmp jedi helm-swoop helm-migemo haskell-mode flycheck fish-mode elpy dashboard company-quickhelp company-jedi color-theme-solarized color-theme-sanityinc-solarized bury-successful-compilation auctex atom-one-dark-theme anaconda-mode))))
 
