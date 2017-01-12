@@ -362,7 +362,7 @@
                                      TeX-run-discard-or-function t t :help "Run Adobe Acrobat Reader DC")))))
 
 ;; サイズ変更の無効化
-(setq font-latex-fontify-sectioning 1.0)
+;; (setq font-latex-fontify-sectioning 1.0)
 
 
 ;; 太字を無効化
@@ -933,17 +933,7 @@ are always included."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(font-latex-sectioning-0-face ((t (:foreground "#61AFEF" :height 1.0 :family "\"ゆたぽん（コーディング）Backsl\""))))
- '(font-latex-sectioning-1-face ((t (:inherit font-latex-sectioning-2-face :foreground "#61AFEF" :height 1.0 :family "\"ゆたぽん（コーディング）Backsl\""))))
- '(font-latex-sectioning-2-face ((t (:foreground "#61AFEF" :height 1.0 :family "\"ゆたぽん（コーディング）Backsl\""))))
- '(font-latex-sectioning-3-face ((t (:foreground "#61AFEF" :height 1.0 :family "\"ゆたぽん（コーディング）Backsl\""))))
- '(font-latex-sectioning-4-face ((t (:foreground "#61AFEF" :height 1.0 :family "\"ゆたぽん（コーディング）Backsl\""))))
- '(font-latex-sectioning-5-face ((t (:foreground "#61AFEF" :height 1.0 :family "\"ゆたぽん（コーディング）Backsl\""))))
- '(font-latex-subscript-face ((t (:height 0.8))))
- '(font-latex-warning-face ((t (:inherit bold :foreground "indian red"))))
- '(helm-swoop-target-line-block-face ((t (:background "#5C6370" :foreground "#222222"))))
- '(helm-swoop-target-line-face ((t (:background "#5C6370" :foreground "#222222"))))
- '(helm-swoop-target-word-face ((t (:background "SteelBlue4" :foreground "#ffffff")))))
+ '(font-latex-warning-face ((t (:inherit bold :foreground "indian red")))))
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
