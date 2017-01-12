@@ -2,7 +2,8 @@
 ;;; Commentary:
 
 ;;; Code:
-
+;;; Emacs directory
+(setq user-emacs-directory "~/.emacs.d/")
 
 
 
@@ -372,52 +373,53 @@
 
 ;; powerline設定
 (require 'powerline)
+;; (require 'spaceline-config)
 (defconst color1 "Steelblue")
 (defconst color2 "salmon")
 
 (set-face-attribute 'mode-line nil
                     :foreground "#fff"
                     :background color1
-		    :bold t
-                    :box nil)
+		    ;; :box nil
+		    :bold t)
 
 (set-face-attribute 'powerline-active1 nil
                     :foreground "gray23"
                     :background color2
 		    :bold t
-		    :box nil
+		    ;; :box nil
                     :inherit 'mode-line)
 
 (set-face-attribute 'powerline-active2 nil
                     :foreground "white smoke"
                     :background "gray20"
 		    :bold t
-		    :box nil
+		    ;; :box nil
                     :inherit 'mode-line)
 
 (set-face-attribute 'mode-line-inactive nil
                     :foreground "#fff"
                     :background color1
-		    :bold t
-                    :box nil)
+		    ;;  :box nil
+		    :bold t)
 
 (set-face-attribute 'powerline-inactive1 nil
                     :foreground "gray23"
                     :background color2
 		    :bold t
-		    :box nil
+		    ;; :box nil
                     :inherit 'mode-line)
 
 (set-face-attribute 'powerline-inactive2 nil
                     :foreground "white smoke"
                     :background "gray20"
 		    :bold t
-		    :box nil
+		    ;; :box nil
                     :inherit 'mode-line)
 
 (setq ns-use-srgb-colorspace nil)
+;; (spaceline-spacemacs-theme)
 (powerline-center-theme)
-
 
 ;;;;;; Theme Configration End ;;;;;;
 
