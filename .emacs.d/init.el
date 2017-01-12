@@ -62,7 +62,7 @@
 (package-install 'redo+)
 ;; (package-install 'pdf-tools)
 (package-install 'auctex)
-(package-install 'atom-one-dark-theme)
+;; (package-install 'atom-one-dark-theme)
 (pdf-tools-install)
 
 ;;; ウィンドウサイズ
