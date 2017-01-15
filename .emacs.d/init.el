@@ -63,8 +63,9 @@
 (package-install 'redo+)
 ;; (package-install 'pdf-tools)
 (package-install 'auctex)
+(package-install 'tablist)
 ;; (package-install 'atom-one-dark-theme)
-(pdf-tools-install)
+
 
 ;;; ウィンドウサイズ
 (defun window-resizer ()
@@ -230,6 +231,7 @@
 ;;;;;; pdf-mode Configration ;;;;;;
 
 ;; https://github.com/politza/pdf-tools
+(setq pdf-info-epdfinfo-program "/home/jabberwocky/Documents/dotfiles/.emacs.d/site-lisp/pdf-tools/server/epdfinfo")
 (require 'pdf-tools)
 (require 'pdf-view)
 (require 'pdf-annot)
@@ -243,6 +245,7 @@
 (require 'pdf-sync)
 (require 'tablist-filter)
 (require 'tablist)
+(pdf-tools-install)
 
 (add-to-list 'auto-mode-alist (cons "\\.pdf$" 'pdf-view-mode))
 
@@ -259,7 +262,7 @@
   :type 'boolean
   :group 'linum)
 (defun linum-on ()
-  "* When linum is running globally, disable line number in modes defined in `linum-disabled-modes-list'. Changed by linum-off. Also turns off numbering in starred modes like *scratch*"
+  "* When linum is running globally, disable line number in modes defined in `linum-disabled-modes-list'. Changed by linum-off. Also turn off numbering in starred modes like *scratch*."
   (unless (or (minibufferp) (member major-mode linum-disabled-modes-list)
           (and linum-disable-starred-buffers (string-match "*" (buffer-name)))
           )
@@ -544,7 +547,7 @@
 ;;     ("atom-one-dark-silver"   . "#AAAAAA")
 ;;     ("atom-one-dark-black"    . "#0F1011"))
 ;;   "List of Atom One Dark colors.")
-
+(require 'atom-one-dark-theme)
 (load-theme 'atom-one-dark t)
 
 ;; powerline設定
@@ -941,5 +944,5 @@ are always included."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (migemo dbus helm undo-tree tablist tabbar spacemacs-theme solarized-theme redo+ py-yapf powerline pdf-tools open-junk-file nyan-mode multi-term markdown-mode magit loop lispxmp jedi helm-swoop helm-migemo haskell-mode flycheck fish-mode elpy dashboard company-quickhelp company-jedi color-theme-solarized color-theme-sanityinc-solarized bury-successful-compilation auctex atom-one-dark-theme anaconda-mode))))
+    (tablist migemo dbus helm undo-tree tabbar spacemacs-theme solarized-theme redo+ py-yapf powerline pdf-tools open-junk-file nyan-mode multi-term markdown-mode magit loop lispxmp jedi helm-swoop helm-migemo haskell-mode flycheck fish-mode elpy dashboard company-quickhelp company-jedi color-theme-solarized color-theme-sanityinc-solarized bury-successful-compilation auctex atom-one-dark-theme anaconda-mode))))
 
