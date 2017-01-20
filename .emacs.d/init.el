@@ -177,7 +177,7 @@
 ;;; フォント設定
 (set-face-attribute 'default nil
 		    :family "ゆたぽん（コーディング）Backsl"
-		    :height 140)
+		    :height 130)
 
 ;; 透明度を変更するコマンド M-x set-alpha
 ;; http://qiita.com/marcy@github/items/ba0d018a03381a964f2
