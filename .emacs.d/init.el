@@ -36,7 +36,6 @@
 (package-install 'helm)
 (package-install 'color-theme-solarized)
 (package-install 'solarized-theme)
-;; (package-install 'spacemacs-theme)
 (package-install 'elpy)
 (package-install 'jedi)
 (package-install 'company-jedi)
@@ -49,7 +48,6 @@
 (package-install 'loop)
 (package-install 'markdown-mode)
 (package-install 'multi-term)
-;; (package-install 'elscreen)
 (package-install 'dbus)
 (package-install 'magit)
 (package-install 'haskell-mode)
@@ -59,12 +57,10 @@
 (package-install 'fish-mode)
 (package-install 'migemo)
 (package-install 'helm-swoop)
-;; (package-install 'nyan-mode)
 (package-install 'redo+)
-;; (package-install 'pdf-tools)
 (package-install 'auctex)
 (package-install 'tablist)
-;; (package-install 'atom-one-dark-theme)
+(package-install 'smooth-scroll)
 
 
 ;;; ウィンドウサイズ
@@ -100,37 +96,6 @@
 (global-set-key "\C-c\C-y" 'window-resizer)
 
 
-;;; elscreen
-;; プレフィクスキーはC-z
-;; (setq elscreen-prefix-key (kbd "C-z"))
-;; (elscreen-start)
-;; ;; タブの先頭に[X]を表示しない
-;; (setq elscreen-tab-display-kill-screen nil)
-;; ;; header-lineの先頭に[<->]を表示しない
-;; (setq elscreen-tab-display-control nil)
-;; ;; バッファ名・モード名からタブに表示させる内容を決定する(デフォルト設定)
-;; (setq elscreen-buffer-to-nickname-alist
-;;       '(("^dired-mode$" .
-;;          (lambda ()
-;;            (format "Dired(%s)" dired-directory)))
-;;         ("^Info-mode$" .
-;;          (lambda ()
-;;            (format "Info(%s)" (file-name-nondirectory Info-current-file))))
-;;         ("^mew-draft-mode$" .
-;;          (lambda ()
-;;            (format "Mew(%s)" (buffer-name (current-buffer)))))
-;;         ("^mew-" . "Mew")
-;;         ("^irchat-" . "IRChat")
-;;         ("^liece-" . "Liece")
-;;         ("^lookup-" . "Lookup")))
-;; (setq elscreen-mode-to-nickname-alist
-;;       '(("[Ss]hell" . "shell")
-;;         ("compilation" . "compile")
-;;         ("-telnet" . "telnet")
-;;         ("dict" . "OnlineDict")
-;;         ("*WL:Message*" . "Wanderlust")))
-
-
 ;; スタート時のスプラッシュ非表示
 (setq inhibit-startup-message t)
 ;;; ツールバーを非表示
@@ -158,7 +123,19 @@
 ;;; 対応する括弧をハイライト
 (show-paren-mode 1)
 ;;; 現在行をハイライト
+(require 'hl-line)
 (global-hl-line-mode t)
+;;;;;; hl-lineを無効にするメジャーモードを指定する
+(defvar global-hl-line-timer-exclude-modes '(todotxt-mode))
+(defun global-hl-line-timer-function ()
+  (unless (memq major-mode global-hl-line-timer-exclude-modes)
+    (global-hl-line-unhighlight-all)
+    (let ((global-hl-line-mode t))
+      (global-hl-line-highlight))))
+(setq global-hl-line-timer
+      (run-with-idle-timer 0.03 t 'global-hl-line-timer-function))
+;; (cancel-timer global-hl-line-timer)
+
 ;;; alt-1でmake
 (global-set-key "\M-1" 'compile)
 ;;; C-c rでreplace-string
@@ -174,6 +151,10 @@
 ;;; tree-undo
 (when (require 'undo-tree nil t)
   (global-undo-tree-mode))
+
+;;; smooth-scroll
+(require 'smooth-scroll)
+(smooth-scroll-mode t)
 
 ;;; redo+
 (require 'redo+)
@@ -196,7 +177,7 @@
 ;;; フォント設定
 (set-face-attribute 'default nil
 		    :family "ゆたぽん（コーディング）Backsl"
-		    :height 130)
+		    :height 140)
 
 ;; 透明度を変更するコマンド M-x set-alpha
 ;; http://qiita.com/marcy@github/items/ba0d018a03381a964f2
@@ -726,12 +707,12 @@
 (require 'flycheck)
 ;;; flycheck-hook
 ;;(global-flycheck-mode)
+(add-hook 'python-mode-hook 'flycheck-mode)
 (add-hook 'anaconda-mode-hook 'flycheck-mode)
 (add-hook 'c-mode-hook 'flycheck-mode)
 (add-hook 'c++-mode-hook 'flycheck-mode)
 (add-hook 'emacs-lisp-mode-hook 'flycheck-mode)
 (add-hook 'haskell-mode-hook 'flycheck-mode)
-(add-hook 'fish-mode-hook 'flycheck-mode)
 (define-key global-map (kbd "\C-cn") 'flycheck-next-error)
 (define-key global-map (kbd "\C-cp") 'flycheck-previous-error)
 (define-key global-map (kbd "\C-cd") 'flycheck-list-errors)
@@ -944,5 +925,5 @@ are always included."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (tablist migemo dbus helm undo-tree tabbar spacemacs-theme solarized-theme redo+ py-yapf powerline pdf-tools open-junk-file nyan-mode multi-term markdown-mode magit loop lispxmp jedi helm-swoop helm-migemo haskell-mode flycheck fish-mode elpy dashboard company-quickhelp company-jedi color-theme-solarized color-theme-sanityinc-solarized bury-successful-compilation auctex atom-one-dark-theme anaconda-mode))))
+    (smooth-scroll tablist migemo dbus helm undo-tree tabbar spacemacs-theme solarized-theme redo+ py-yapf powerline pdf-tools open-junk-file nyan-mode multi-term markdown-mode magit loop lispxmp jedi helm-swoop helm-migemo haskell-mode flycheck fish-mode elpy dashboard company-quickhelp company-jedi color-theme-solarized color-theme-sanityinc-solarized bury-successful-compilation auctex atom-one-dark-theme anaconda-mode))))
 
