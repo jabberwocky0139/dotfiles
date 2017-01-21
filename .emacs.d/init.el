@@ -837,7 +837,7 @@
  :family "ゆたココ" 
  ;; :background "#34495E"
  :background "#282C34"
- :foreground "#fff"
+ :foreground "#fff"p
  :bold nil
  :height 0.95
  )
@@ -850,15 +850,15 @@
 )
 (set-face-attribute
  'tabbar-modified nil
- :background color2
- :foreground "gray23"
+ :background color1
+ :foreground "#fff"
  :bold t
  :box nil
 )
 (set-face-attribute
  'tabbar-selected nil
- :background color1
- :foreground "#fff"
+ :background color2
+ :foreground "gray23"
  :bold nil
  :box nil)
 (set-face-attribute
