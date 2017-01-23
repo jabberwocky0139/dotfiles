@@ -116,8 +116,6 @@
 (setq make-backup-files nil)
 ;;; .#* とかのバックアップファイルを作らない
 (setq auto-save-default nil)
-;;; 行数表示
-(global-linum-mode t)
 ;;; リージョンの強調表示
 (setq transient-mark-mode t)
 ;;; 検索(C-s)で大文字小文字を区別しない
@@ -126,19 +124,6 @@
 (global-set-key (kbd "C-x ;") 'goto-line)
 ;;; 対応する括弧をハイライト
 (show-paren-mode 1)
-;;; 現在行をハイライト
-(require 'hl-line)
-(global-hl-line-mode t)
-;;;;;; hl-lineを無効にするメジャーモードを指定する
-(defvar global-hl-line-timer-exclude-modes '(todotxt-mode))
-(defun global-hl-line-timer-function ()
-  (unless (memq major-mode global-hl-line-timer-exclude-modes)
-    (global-hl-line-unhighlight-all)
-    (let ((global-hl-line-mode t))
-      (global-hl-line-highlight))))
-(setq global-hl-line-timer
-      (run-with-idle-timer 0.03 t 'global-hl-line-timer-function))
-;; (cancel-timer global-hl-line-timer)
 
 ;;; alt-1でmake
 (global-set-key "\M-1" 'compile)
@@ -182,16 +167,6 @@
 (set-face-attribute 'default nil
 		    :family "ゆたぽん（コーディング）Backsl"
 		    :height 130)
-
-;; 透明度を変更するコマンド M-x set-alpha
-;; http://qiita.com/marcy@github/items/ba0d018a03381a964f2
-;; (defun set-alpha (alpha-num)
-;;   "set frame parameter 'alpha"
-;;   (interactive "nAlpha: ")
-;;   (set-frame-parameter nil 'alpha (cons alpha-num '(90))))
-;; ;; 初期値
-;; (set-frame-parameter nil 'alpha 96)
-
 
 ;; 起動画面をdashboardで変更
 (require 'dashboard)
@@ -501,37 +476,6 @@
 ;; orgの見出し行の文字の大きさを変えない
 (setq solarized-scale-org-headlines nil)
 
-;; (load-theme 'solarized-light t)
-;; (load-theme 'solarized-dark t)
-;; (load-theme 'sanityinc-solarized-dark t)
-;; (load-theme 'misterioso)
-;; (load-theme 'spacemacs-dark)
-
-;; (defvar atom-one-dark-colors-alist
-;;   '(("atom-one-dark-accent"   . "#528BFF")
-;;     ("atom-one-dark-fg"       . "#ABB2BF")
-;;     ("atom-one-dark-bg"       . "#282C34")
-;;     ("atom-one-dark-bg-1"     . "#121417")
-;;     ("atom-one-dark-bg-hl"    . "#2F343D")
-;;     ("atom-one-dark-gutter"   . "#666D7A")
-;;     ("atom-one-dark-accent"   . "#AEB9F5")
-;;     ("atom-one-dark-mono-1"   . "#ABB2BF")
-;;     ("atom-one-dark-mono-2"   . "#828997")
-;;     ("atom-one-dark-mono-3"   . "#5C6370")
-;;     ("atom-one-dark-cyan"     . "#56B6C2")
-;;     ("atom-one-dark-blue"     . "#61AFEF")
-;;     ;; ("atom-one-dark-purple"   . "#C678DD")
-;;     ("atom-one-dark-purple"   . "#B89BDE"); modified
-;;     ("atom-one-dark-green"    . "#98C379")
-;;     ("atom-one-dark-red-1"    . "#E06C75")
-;;     ("atom-one-dark-red-2"    . "#BE5046")
-;;     ;; ("atom-one-dark-orange-1" . "#D19A66")
-;;     ("atom-one-dark-orange-1" . "#F6D166"); modified
-;;     ("atom-one-dark-orange-2" . "#E5C07B")
-;;     ("atom-one-dark-gray"     . "#3E4451")
-;;     ("atom-one-dark-silver"   . "#AAAAAA")
-;;     ("atom-one-dark-black"    . "#0F1011"))
-;;   "List of Atom One Dark colors.")
 (require 'atom-one-dark-theme)
 (load-theme 'atom-one-dark t)
 
@@ -909,9 +853,10 @@ are always included."
       (cons cur-buf tabs))))
 (setq tabbar-buffer-list-function 'my-tabbar-buffer-list)
 
+;; カーソルの色を変える
+(set-cursor-color "#E06C75")
 
 ;;;;;; Other Tools' Configration End ;;;;;;
-
 
 
 
