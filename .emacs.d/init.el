@@ -62,6 +62,7 @@
 (package-install 'auctex)
 (package-install 'tablist)
 (package-install 'w3m)
+(package-install 'smart-cursor-color)
 
 ;;; ウィンドウサイズ
 (defun window-resizer ()
@@ -854,7 +855,8 @@ are always included."
 (setq tabbar-buffer-list-function 'my-tabbar-buffer-list)
 
 ;; カーソルの色を変える
-(set-cursor-color "#E06C75")
+;; (set-cursor-color "#98C379")
+;; (smart-cursor-color-mode 1)
 
 ;;;;;; Other Tools' Configration End ;;;;;;
 
