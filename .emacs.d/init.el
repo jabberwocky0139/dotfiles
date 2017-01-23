@@ -1,3 +1,4 @@
+
 ;;; package --- Summary
 ;;; Commentary:
 
@@ -60,7 +61,6 @@
 (package-install 'redo+)
 (package-install 'auctex)
 (package-install 'tablist)
-(package-install 'smooth-scroll)
 (package-install 'w3m)
 
 ;;; ウィンドウサイズ
@@ -112,6 +112,10 @@
 (global-set-key (kbd "C-t") 'other-window)
 ;;; バックアップファイルを作らない
 (setq backup-inhibited t)
+;;; *.~ とかのバックアップファイルを作らない
+(setq make-backup-files nil)
+;;; .#* とかのバックアップファイルを作らない
+(setq auto-save-default nil)
 ;;; 行数表示
 (global-linum-mode t)
 ;;; リージョンの強調表示
@@ -153,8 +157,8 @@
   (global-undo-tree-mode))
 
 ;;; smooth-scroll
-(require 'smooth-scroll)
-(smooth-scroll-mode t)
+;; (require 'smooth-scroll)
+;; (smooth-scroll-mode t)
 
 ;;; redo+
 (require 'redo+)
@@ -611,8 +615,9 @@
 (setq elpy-rpc-backend "jedi")
 (setq python-shell-prompt-detect-failure-warning nil)
 
+
 ;;; anaconda-mode
-(add-hook 'python-mode-hook 'anaconda-mode)
+;; (add-hook 'python-mode-hook 'anaconda-mode)
 ;; (add-hook 'python-mode-hook 'elpy-mode)
 
 
@@ -624,7 +629,7 @@
 (add-hook 'LaTeX-mode-hook 'company-mode)
 (add-hook 'emacs-lisp-mode-hook 'company-mode)
 (add-hook 'haskell-mode-hook 'company-mode)
-(add-hook 'fish-mode-hook 'company-mode)
+;; (add-hook 'fish-mode-hook 'company-mode)
 
 (setq company-idle-delay 0) ; デフォルトは0.5
 (setq company-minimum-prefix-length 2) ; デフォルトは4
