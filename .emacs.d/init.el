@@ -5,8 +5,8 @@
 ;;; Code:
 ;;; Emacs directory
 (setq user-emacs-directory "~/.emacs.d/")
-
-
+;; GC
+(setq gc-cons-threshold (* 128 1024 1024))
 
 
 
