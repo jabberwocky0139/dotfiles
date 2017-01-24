@@ -852,7 +852,6 @@
 ;; 外観変更
 (set-face-attribute
  'tabbar-default nil
- :family "MeiryoKe_Gothic"
  :family "ゆたココ" 
  ;; :background "#34495E"
  :background "#282C34"
@@ -869,15 +868,15 @@
 )
 (set-face-attribute
  'tabbar-modified nil
- :background color2
+ :background color1
  :foreground "gray23"
  :bold t
  :box nil
 )
 (set-face-attribute
  'tabbar-selected nil
- :background color1
- :foreground "#fff"
+ :background color2
+ :foreground "gray23"
  :bold nil
  :box nil)
 (set-face-attribute
@@ -931,12 +930,6 @@ are always included."
 
 
 
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(font-latex-warning-face ((t (:inherit bold :foreground "indian red")))))
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -946,3 +939,9 @@ are always included."
    (quote
     (tablist migemo dbus helm undo-tree tabbar spacemacs-theme solarized-theme redo+ py-yapf powerline pdf-tools open-junk-file nyan-mode multi-term markdown-mode magit loop lispxmp jedi helm-swoop helm-migemo haskell-mode flycheck fish-mode elpy dashboard company-quickhelp company-jedi color-theme-solarized color-theme-sanityinc-solarized bury-successful-compilation auctex atom-one-dark-theme anaconda-mode))))
 
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
