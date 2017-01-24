@@ -1,11 +1,12 @@
+
 ;;; package --- Summary
 ;;; Commentary:
 
 ;;; Code:
 ;;; Emacs directory
 (setq user-emacs-directory "~/.emacs.d/")
-
-
+;; GC
+(setq gc-cons-threshold (* 128 1024 1024))
 
 
 
@@ -36,7 +37,6 @@
 (package-install 'helm)
 (package-install 'color-theme-solarized)
 (package-install 'solarized-theme)
-;; (package-install 'spacemacs-theme)
 (package-install 'elpy)
 (package-install 'jedi)
 (package-install 'company-jedi)
@@ -49,7 +49,6 @@
 (package-install 'loop)
 (package-install 'markdown-mode)
 (package-install 'multi-term)
-;; (package-install 'elscreen)
 (package-install 'dbus)
 (package-install 'magit)
 (package-install 'haskell-mode)
@@ -59,13 +58,11 @@
 (package-install 'fish-mode)
 (package-install 'migemo)
 (package-install 'helm-swoop)
-;; (package-install 'nyan-mode)
 (package-install 'redo+)
-;; (package-install 'pdf-tools)
 (package-install 'auctex)
 (package-install 'tablist)
-;; (package-install 'atom-one-dark-theme)
-
+(package-install 'w3m)
+(package-install 'smart-cursor-color)
 
 ;;; ウィンドウサイズ
 (defun window-resizer ()
@@ -100,37 +97,6 @@
 (global-set-key "\C-c\C-y" 'window-resizer)
 
 
-;;; elscreen
-;; プレフィクスキーはC-z
-;; (setq elscreen-prefix-key (kbd "C-z"))
-;; (elscreen-start)
-;; ;; タブの先頭に[X]を表示しない
-;; (setq elscreen-tab-display-kill-screen nil)
-;; ;; header-lineの先頭に[<->]を表示しない
-;; (setq elscreen-tab-display-control nil)
-;; ;; バッファ名・モード名からタブに表示させる内容を決定する(デフォルト設定)
-;; (setq elscreen-buffer-to-nickname-alist
-;;       '(("^dired-mode$" .
-;;          (lambda ()
-;;            (format "Dired(%s)" dired-directory)))
-;;         ("^Info-mode$" .
-;;          (lambda ()
-;;            (format "Info(%s)" (file-name-nondirectory Info-current-file))))
-;;         ("^mew-draft-mode$" .
-;;          (lambda ()
-;;            (format "Mew(%s)" (buffer-name (current-buffer)))))
-;;         ("^mew-" . "Mew")
-;;         ("^irchat-" . "IRChat")
-;;         ("^liece-" . "Liece")
-;;         ("^lookup-" . "Lookup")))
-;; (setq elscreen-mode-to-nickname-alist
-;;       '(("[Ss]hell" . "shell")
-;;         ("compilation" . "compile")
-;;         ("-telnet" . "telnet")
-;;         ("dict" . "OnlineDict")
-;;         ("*WL:Message*" . "Wanderlust")))
-
-
 ;; スタート時のスプラッシュ非表示
 (setq inhibit-startup-message t)
 ;;; ツールバーを非表示
@@ -147,8 +113,10 @@
 (global-set-key (kbd "C-t") 'other-window)
 ;;; バックアップファイルを作らない
 (setq backup-inhibited t)
-;;; 行数表示
-(global-linum-mode t)
+;;; *.~ とかのバックアップファイルを作らない
+(setq make-backup-files nil)
+;;; .#* とかのバックアップファイルを作らない
+(setq auto-save-default nil)
 ;;; リージョンの強調表示
 (setq transient-mark-mode t)
 ;;; 検索(C-s)で大文字小文字を区別しない
@@ -157,8 +125,7 @@
 (global-set-key (kbd "C-x ;") 'goto-line)
 ;;; 対応する括弧をハイライト
 (show-paren-mode 1)
-;;; 現在行をハイライト
-(global-hl-line-mode t)
+
 ;;; alt-1でmake
 (global-set-key "\M-1" 'compile)
 ;;; C-c rでreplace-string
@@ -174,6 +141,10 @@
 ;;; tree-undo
 (when (require 'undo-tree nil t)
   (global-undo-tree-mode))
+
+;;; smooth-scroll
+;; (require 'smooth-scroll)
+;; (smooth-scroll-mode t)
 
 ;;; redo+
 (require 'redo+)
@@ -197,16 +168,6 @@
 (set-face-attribute 'default nil
 		    :family "ゆたぽん（コーディング）Backsl"
 		    :height 130)
-
-;; 透明度を変更するコマンド M-x set-alpha
-;; http://qiita.com/marcy@github/items/ba0d018a03381a964f2
-;; (defun set-alpha (alpha-num)
-;;   "set frame parameter 'alpha"
-;;   (interactive "nAlpha: ")
-;;   (set-frame-parameter nil 'alpha (cons alpha-num '(90))))
-;; ;; 初期値
-;; (set-frame-parameter nil 'alpha 96)
-
 
 ;; 起動画面をdashboardで変更
 (require 'dashboard)
@@ -516,37 +477,6 @@
 ;; orgの見出し行の文字の大きさを変えない
 (setq solarized-scale-org-headlines nil)
 
-;; (load-theme 'solarized-light t)
-;; (load-theme 'solarized-dark t)
-;; (load-theme 'sanityinc-solarized-dark t)
-;; (load-theme 'misterioso)
-;; (load-theme 'spacemacs-dark)
-
-;; (defvar atom-one-dark-colors-alist
-;;   '(("atom-one-dark-accent"   . "#528BFF")
-;;     ("atom-one-dark-fg"       . "#ABB2BF")
-;;     ("atom-one-dark-bg"       . "#282C34")
-;;     ("atom-one-dark-bg-1"     . "#121417")
-;;     ("atom-one-dark-bg-hl"    . "#2F343D")
-;;     ("atom-one-dark-gutter"   . "#666D7A")
-;;     ("atom-one-dark-accent"   . "#AEB9F5")
-;;     ("atom-one-dark-mono-1"   . "#ABB2BF")
-;;     ("atom-one-dark-mono-2"   . "#828997")
-;;     ("atom-one-dark-mono-3"   . "#5C6370")
-;;     ("atom-one-dark-cyan"     . "#56B6C2")
-;;     ("atom-one-dark-blue"     . "#61AFEF")
-;;     ;; ("atom-one-dark-purple"   . "#C678DD")
-;;     ("atom-one-dark-purple"   . "#B89BDE"); modified
-;;     ("atom-one-dark-green"    . "#98C379")
-;;     ("atom-one-dark-red-1"    . "#E06C75")
-;;     ("atom-one-dark-red-2"    . "#BE5046")
-;;     ;; ("atom-one-dark-orange-1" . "#D19A66")
-;;     ("atom-one-dark-orange-1" . "#F6D166"); modified
-;;     ("atom-one-dark-orange-2" . "#E5C07B")
-;;     ("atom-one-dark-gray"     . "#3E4451")
-;;     ("atom-one-dark-silver"   . "#AAAAAA")
-;;     ("atom-one-dark-black"    . "#0F1011"))
-;;   "List of Atom One Dark colors.")
 (require 'atom-one-dark-theme)
 (load-theme 'atom-one-dark t)
 
@@ -630,8 +560,9 @@
 (setq elpy-rpc-backend "jedi")
 (setq python-shell-prompt-detect-failure-warning nil)
 
+
 ;;; anaconda-mode
-(add-hook 'python-mode-hook 'anaconda-mode)
+;; (add-hook 'python-mode-hook 'anaconda-mode)
 ;; (add-hook 'python-mode-hook 'elpy-mode)
 
 
@@ -643,7 +574,7 @@
 (add-hook 'LaTeX-mode-hook 'company-mode)
 (add-hook 'emacs-lisp-mode-hook 'company-mode)
 (add-hook 'haskell-mode-hook 'company-mode)
-(add-hook 'fish-mode-hook 'company-mode)
+;; (add-hook 'fish-mode-hook 'company-mode)
 
 (setq company-idle-delay 0) ; デフォルトは0.5
 (setq company-minimum-prefix-length 2) ; デフォルトは4
@@ -726,12 +657,12 @@
 (require 'flycheck)
 ;;; flycheck-hook
 ;;(global-flycheck-mode)
+(add-hook 'python-mode-hook 'flycheck-mode)
 (add-hook 'anaconda-mode-hook 'flycheck-mode)
 (add-hook 'c-mode-hook 'flycheck-mode)
 (add-hook 'c++-mode-hook 'flycheck-mode)
 (add-hook 'emacs-lisp-mode-hook 'flycheck-mode)
 (add-hook 'haskell-mode-hook 'flycheck-mode)
-(add-hook 'fish-mode-hook 'flycheck-mode)
 (define-key global-map (kbd "\C-cn") 'flycheck-next-error)
 (define-key global-map (kbd "\C-cp") 'flycheck-previous-error)
 (define-key global-map (kbd "\C-cd") 'flycheck-list-errors)
@@ -755,6 +686,16 @@
 (require 'markdown-mode)
 (define-key markdown-mode-map (kbd "M-n") (kbd "C-u 5 C-n"))
 (define-key markdown-mode-map (kbd "M-p") (kbd "C-u 5 C-p"))
+(require 'w3m)
+(define-key w3m-mode-map (kbd "C-t") 'other-window)
+(define-key markdown-mode-map (kbd "\C-c \C-c \C-v")
+  (lambda ()
+    (interactive)
+    (setq html-file-name (concat (file-name-sans-extension (buffer-file-name)) ".html"))
+    (markdown-export html-file-name)
+    (if (one-window-p) (split-window))
+    (other-window 1)
+    (w3m-find-file html-file-name)))
 
 
 ;;; scala-mode2
@@ -852,6 +793,7 @@
 ;; 外観変更
 (set-face-attribute
  'tabbar-default nil
+ :family "MeiryoKe_Gothic"
  :family "ゆたココ" 
  ;; :background "#34495E"
  :background "#282C34"
@@ -869,7 +811,7 @@
 (set-face-attribute
  'tabbar-modified nil
  :background color1
- :foreground "gray23"
+ :foreground "#fff"
  :bold t
  :box nil
 )
@@ -912,9 +854,11 @@ are always included."
       (cons cur-buf tabs))))
 (setq tabbar-buffer-list-function 'my-tabbar-buffer-list)
 
+;; カーソルの色を変える
+;; (set-cursor-color "#98C379")
+;; (smart-cursor-color-mode 1)
 
 ;;;;;; Other Tools' Configration End ;;;;;;
-
 
 
 
@@ -930,6 +874,12 @@ are always included."
 
 
 
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(font-latex-warning-face ((t (:inherit bold :foreground "indian red")))))
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -937,11 +887,5 @@ are always included."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (tablist migemo dbus helm undo-tree tabbar spacemacs-theme solarized-theme redo+ py-yapf powerline pdf-tools open-junk-file nyan-mode multi-term markdown-mode magit loop lispxmp jedi helm-swoop helm-migemo haskell-mode flycheck fish-mode elpy dashboard company-quickhelp company-jedi color-theme-solarized color-theme-sanityinc-solarized bury-successful-compilation auctex atom-one-dark-theme anaconda-mode))))
+    (w3m smooth-scroll tablist migemo dbus helm undo-tree tabbar spacemacs-theme solarized-theme redo+ py-yapf powerline pdf-tools open-junk-file nyan-mode multi-term markdown-mode magit loop lispxmp jedi helm-swoop helm-migemo haskell-mode flycheck fish-mode elpy dashboard company-quickhelp company-jedi color-theme-solarized color-theme-sanityinc-solarized bury-successful-compilation auctex atom-one-dark-theme anaconda-mode))))
 
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
