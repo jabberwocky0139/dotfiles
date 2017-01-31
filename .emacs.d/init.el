@@ -28,10 +28,11 @@
 (package-initialize)
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 ;;; package-installを動かすときは以下のコメントアウトを外す
-;; (package-refresh-contents)
+(package-refresh-contents)
 
 
 ;;; package-install
+(package-install 'nlinum)
 (package-install 'undo-tree)
 (package-install 'bury-successful-compilation)
 (package-install 'helm)
@@ -125,6 +126,8 @@
 (global-set-key (kbd "C-x ;") 'goto-line)
 ;;; 対応する括弧をハイライト
 (show-paren-mode 1)
+;;; nlinum-mode
+(global-nlinum-mode 1)
 
 ;;; alt-1でmake
 (global-set-key "\M-1" 'compile)
@@ -888,5 +891,6 @@ are always included."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (smart-cursor-color w3m smooth-scroll tablist migemo dbus helm undo-tree tabbar spacemacs-theme solarized-theme redo+ py-yapf powerline pdf-tools open-junk-file nyan-mode multi-term markdown-mode magit loop lispxmp jedi helm-swoop helm-migemo haskell-mode flycheck fish-mode elpy dashboard company-quickhelp company-jedi color-theme-solarized color-theme-sanityinc-solarized bury-successful-compilation auctex atom-one-dark-theme anaconda-mode))))
+    (smart-cursor-color nlinum w3m smooth-scroll tablist migemo dbus helm undo-tree tabbar spacemacs-theme solarized-theme redo+ py-yapf powerline pdf-tools open-junk-file nyan-mode multi-term markdown-mode magit loop lispxmp jedi helm-swoop helm-migemo haskell-mode flycheck fish-mode elpy dashboard company-quickhelp company-jedi color-theme-solarized color-theme-sanityinc-solarized bury-successful-compilation auctex atom-one-dark-theme anaconda-mode))))
+
 
