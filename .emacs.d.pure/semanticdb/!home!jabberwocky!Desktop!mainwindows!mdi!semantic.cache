@@ -1,0 +1,246 @@
+;; Object semanticdb-project-database-file
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "semanticdb-project-database-file"
+  :tables
+  (list
+    (semanticdb-table "semanticdb-table"
+      :major-mode python-mode
+      :tags 
+        '( ("" code nil nil [2084 2168])
+            ("PyQt5.QtGui" include nil nil [2169 2212])
+            ("" code nil nil [2241 2341])
+            ("mdi_rc" include nil nil [2343 2356])
+            ("MdiChild" type
+               (:superclasses ("QTextEdit")
+                :members 
+                  ( ("sequenceNumber" variable nil (reparse-symbol indented_block_body) [2390 2408])
+                    ("__init__" function
+                       (:suite 
+                          ( ("super" code nil (reparse-symbol indented_block_body) [2442 2474])
+                            ("self" code nil (reparse-symbol indented_block_body) [2484 2522])
+                            ("self" variable nil (reparse-symbol indented_block_body) [2531 2553]))                          
+                        :parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [2427 2431]))                          
+                        :constructor-flag t)
+                        (reparse-symbol indented_block_body) [2414 2554])
+                    ("newFile" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [2571 2575]))                          )
+                        (reparse-symbol indented_block_body) [2559 2837])
+                    ("loadFile" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [2855 2859])
+                            ("fileName" variable nil (reparse-symbol function_parameters) [2861 2869]))                          )
+                        (reparse-symbol indented_block_body) [2842 3422])
+                    ("save" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [3436 3440]))                          )
+                        (reparse-symbol indented_block_body) [3427 3565])
+                    ("saveAs" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [3581 3585]))                          )
+                        (reparse-symbol indented_block_body) [3570 3759])
+                    ("saveFile" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [3777 3781])
+                            ("fileName" variable nil (reparse-symbol function_parameters) [3783 3791]))                          )
+                        (reparse-symbol indented_block_body) [3764 4266])
+                    ("userFriendlyCurrentFile" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [4299 4303]))                          )
+                        (reparse-symbol indented_block_body) [4271 4353])
+                    ("currentFile" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [4374 4378]))                          )
+                        (reparse-symbol indented_block_body) [4358 4409])
+                    ("closeEvent" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [4429 4433])
+                            ("event" variable nil (reparse-symbol function_parameters) [4435 4440]))                          )
+                        (reparse-symbol indented_block_body) [4414 4540])
+                    ("documentWasModified" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [4569 4573]))                          )
+                        (reparse-symbol indented_block_body) [4545 4637])
+                    ("maybeSave" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [4656 4660]))                          )
+                        (reparse-symbol indented_block_body) [4642 5143])
+                    ("setCurrentFile" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [5167 5171])
+                            ("fileName" variable nil (reparse-symbol function_parameters) [5173 5181]))                          )
+                        (reparse-symbol indented_block_body) [5148 5428])
+                    ("strippedName" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [5450 5454])
+                            ("fullFileName" variable nil (reparse-symbol function_parameters) [5456 5468]))                          )
+                        (reparse-symbol indented_block_body) [5433 5521]))                  
+                :type "class")
+                nil [2359 5521])
+            ("MainWindow" type
+               (:superclasses ("QMainWindow")
+                :members 
+                  ( ("__init__" function
+                       (:suite 
+                          ( ("super" code nil (reparse-symbol indented_block_body) [5586 5620])
+                            ("self" variable nil (reparse-symbol indented_block_body) [5630 5655])
+                            ("self" code nil (reparse-symbol indented_block_body) [5664 5727])
+                            ("self" code nil (reparse-symbol indented_block_body) [5736 5797])
+                            ("self" code nil (reparse-symbol indented_block_body) [5806 5841])
+                            ("self" code nil (reparse-symbol indented_block_body) [5851 5908])
+                            ("self" variable nil (reparse-symbol indented_block_body) [5917 5956])
+                            ("self" code nil (reparse-symbol indented_block_body) [5965 6031])
+                            ("self" code nil (reparse-symbol indented_block_body) [6041 6061])
+                            ("self" code nil (reparse-symbol indented_block_body) [6070 6088])
+                            ("self" code nil (reparse-symbol indented_block_body) [6097 6118])
+                            ("self" code nil (reparse-symbol indented_block_body) [6127 6149])
+                            ("self" code nil (reparse-symbol indented_block_body) [6158 6176])
+                            ("self" code nil (reparse-symbol indented_block_body) [6186 6205])
+                            ("self" code nil (reparse-symbol indented_block_body) [6215 6241]))                          
+                        :parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [5571 5575]))                          
+                        :constructor-flag t)
+                        (reparse-symbol indented_block_body) [5558 6242])
+                    ("closeEvent" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [6262 6266])
+                            ("event" variable nil (reparse-symbol function_parameters) [6268 6273]))                          )
+                        (reparse-symbol indented_block_body) [6247 6463])
+                    ("newFile" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [6480 6484]))                          )
+                        (reparse-symbol indented_block_body) [6468 6570])
+                    ("open" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [6584 6588]))                          )
+                        (reparse-symbol indented_block_body) [6575 7052])
+                    ("save" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [7066 7070]))                          )
+                        (reparse-symbol indented_block_body) [7057 7201])
+                    ("saveAs" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [7217 7221]))                          )
+                        (reparse-symbol indented_block_body) [7206 7354])
+                    ("cut" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [7367 7371]))                          )
+                        (reparse-symbol indented_block_body) [7359 7448])
+                    ("copy" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [7462 7466]))                          )
+                        (reparse-symbol indented_block_body) [7453 7544])
+                    ("paste" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [7559 7563]))                          )
+                        (reparse-symbol indented_block_body) [7549 7642])
+                    ("about" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [7657 7661]))                          )
+                        (reparse-symbol indented_block_body) [7647 7847])
+                    ("updateMenus" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [7868 7872]))                          )
+                        (reparse-symbol indented_block_body) [7852 8632])
+                    ("updateWindowMenu" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [8658 8662]))                          )
+                        (reparse-symbol indented_block_body) [8637 9712])
+                    ("createMdiChild" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [9736 9740]))                          )
+                        (reparse-symbol indented_block_body) [9717 9955])
+                    ("createActions" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [9978 9982]))                          )
+                        (reparse-symbol indented_block_body) [9960 13155])
+                    ("createMenus" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [13176 13180]))                          )
+                        (reparse-symbol indented_block_body) [13160 14183])
+                    ("createToolBars" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [14207 14211]))                          )
+                        (reparse-symbol indented_block_body) [14188 14610])
+                    ("createStatusBar" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [14635 14639]))                          )
+                        (reparse-symbol indented_block_body) [14615 14688])
+                    ("readSettings" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [14710 14714]))                          )
+                        (reparse-symbol indented_block_body) [14693 14932])
+                    ("writeSettings" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [14955 14959]))                          )
+                        (reparse-symbol indented_block_body) [14937 15111])
+                    ("activeMdiChild" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [15135 15139]))                          )
+                        (reparse-symbol indented_block_body) [15116 15291])
+                    ("findMdiChild" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [15313 15317])
+                            ("fileName" variable nil (reparse-symbol function_parameters) [15319 15327]))                          )
+                        (reparse-symbol indented_block_body) [15296 15568])
+                    ("switchLayoutDirection" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [15599 15603]))                          )
+                        (reparse-symbol indented_block_body) [15573 15793])
+                    ("setActiveSubWindow" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [15821 15825])
+                            ("window" variable nil (reparse-symbol function_parameters) [15827 15833]))                          )
+                        (reparse-symbol indented_block_body) [15798 15907]))                  
+                :type "class")
+                nil [5523 15907])
+            ("if" code nil nil [15909 16058]))          
+      :file "mdi.py"
+      :pointmax 16058
+      :fsize 16057
+      :lastmodtime '(22650 63491 763222 172000)
+      :unmatched-syntax nil)
+    (semanticdb-table "semanticdb-table"
+      :file "mdi_rc.py"
+      :fsize 36524
+      :lastmodtime '(22650 63491 763222 172000)))
+  :file "!home!jabberwocky!Desktop!mainwindows!mdi!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2")
