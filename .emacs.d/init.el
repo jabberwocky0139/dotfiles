@@ -688,14 +688,15 @@
 (define-key markdown-mode-map (kbd "M-p") (kbd "C-u 5 C-p"))
 (require 'w3m)
 (define-key w3m-mode-map (kbd "C-t") 'other-window)
-(define-key markdown-mode-map (kbd "\C-c \C-c \C-v")
-  (lambda ()
-    (interactive)
-    (setq html-file-name (concat (file-name-sans-extension (buffer-file-name)) ".html"))
-    (markdown-export html-file-name)
-    (if (one-window-p) (split-window))
-    (other-window 1)
-    (w3m-find-file html-file-name)))
+(setq markdown-command "pandoc")
+;; (define-key markdown-mode-map (kbd "\C-c \C-c \C-v")
+;;   (lambda ()
+;;     (interactive)
+;;     (setq html-file-name (concat (file-name-sans-extension (buffer-file-name)) ".html"))
+;;     (markdown-export html-file-name)
+;;     (if (one-window-p) (split-window))
+;;     (other-window 1)
+;;     (w3m-find-file html-file-name)))
 
 
 ;;; scala-mode2
@@ -887,5 +888,5 @@ are always included."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (w3m smooth-scroll tablist migemo dbus helm undo-tree tabbar spacemacs-theme solarized-theme redo+ py-yapf powerline pdf-tools open-junk-file nyan-mode multi-term markdown-mode magit loop lispxmp jedi helm-swoop helm-migemo haskell-mode flycheck fish-mode elpy dashboard company-quickhelp company-jedi color-theme-solarized color-theme-sanityinc-solarized bury-successful-compilation auctex atom-one-dark-theme anaconda-mode))))
+    (smart-cursor-color w3m smooth-scroll tablist migemo dbus helm undo-tree tabbar spacemacs-theme solarized-theme redo+ py-yapf powerline pdf-tools open-junk-file nyan-mode multi-term markdown-mode magit loop lispxmp jedi helm-swoop helm-migemo haskell-mode flycheck fish-mode elpy dashboard company-quickhelp company-jedi color-theme-solarized color-theme-sanityinc-solarized bury-successful-compilation auctex atom-one-dark-theme anaconda-mode))))
 
