@@ -489,7 +489,8 @@
 (load-theme 'atom-one-dark t)
 
 ;; powerline設定
-(require 'powerline)
+(require 'spaceline-config)
+;; (require 'powerline)
 ;; (defconst color1 "Steelblue")
 ;; (defconst color2 "salmon")
 (defconst color1 "Steelblue4")
@@ -538,8 +539,10 @@
                     :inherit 'mode-line)
 
 (setq ns-use-srgb-colorspace nil)
-;; (spaceline-spacemacs-theme)
-(powerline-center-theme)
+
+(spaceline-spacemacs-theme)
+(setq powerline-default-separator 'wave)
+;; (powerline-center-theme)
 
 ;;;;;; Theme Configration End ;;;;;;
 
