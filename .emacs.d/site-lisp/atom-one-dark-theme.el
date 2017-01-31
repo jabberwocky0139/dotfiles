@@ -176,6 +176,8 @@
    `(helm-swoop-target-line-block-face ((t (:background ,atom-one-dark-mono-3 :foreground "#222222"))))
    `(helm-swoop-target-line-face ((t (:background ,atom-one-dark-mono-3 :foreground "#222222"))))
    `(helm-swoop-target-word-face ((t (:background ,atom-one-dark-purple :foreground "#ffffff"))))
+   `(helm-locate-finish ((t (:foreground ,atom-one-dark-green))))
+   `(info-menu-star ((t (:foreground ,atom-one-dark-red-1))))
 
 
    ;; git-commit
@@ -298,6 +300,7 @@
    `(term-color-red ((t :foreground ,atom-one-dark-red-1)))
    `(term-color-white ((t :foreground ,atom-one-dark-fg)))
    `(term-color-yellow ((t (:foreground ,atom-one-dark-orange-1))))
+   
 
    ;; linum
    `(linum ((t (:foreground ,atom-one-dark-gutter :background ,atom-one-dark-bg))))
@@ -311,10 +314,27 @@
    `(font-latex-sectioning-3-face ((t (:foreground ,atom-one-dark-blue :height 1.0))))
    `(font-latex-sectioning-4-face ((t (:foreground ,atom-one-dark-blue :height 1.0))))
    `(font-latex-sectioning-5-face ((t (:foreground ,atom-one-dark-blue :height 1.0))))
-   ;; ADDED
    `(font-latex-bold-face ((t (:foreground ,atom-one-dark-green :weight bold))))
    `(font-latex-italic-face ((t (:foreground ,atom-one-dark-green))))
+   `(font-latex-warning-face ((t (:foreground ,atom-one-dark-red-1))))
    `(font-latex-doctex-preprocessor-face ((t (:foreground ,atom-one-dark-cyan))))
+   ;; --- ADDED ---
+   `(font-latex-warning-face ((t (:foreground ,atom-one-dark-red-1 :weight bold))))
+
+   ;; org-mode
+   `(org-date ((t (:foreground ,atom-one-dark-cyan))))
+   `(org-footnote ((t (:foreground ,atom-one-dark-cyan))))
+   `(org-sexp-date ((t (:foreground ,atom-one-dark-cyan))))
+
+   ;; undo-tree
+   `(undo-tree-visualizer-current-face ((t (:foreground ,atom-one-dark-red-1))))
+   `(undo-tree-visualizer-register-face ((t (:foreground ,atom-one-dark-orange-1))))
+   `(undo-tree-visualizer-unmodified-face ((t (:foreground ,atom-one-dark-cyan))))
+
+   ;; flycheck-mode
+   ;; --- ADDED ---
+   '(flycheck-error ((t (:underline (:color "#E06C75" :style wave)))))
+   '(flycheck-info ((t (:underline (:color "#98C379" :style wave)))))
    ))
 
 (atom-one-dark-with-color-variables
