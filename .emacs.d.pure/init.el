@@ -64,6 +64,7 @@
 (package-install 'tablist)
 (package-install 'w3m)
 (package-install 'smart-cursor-color)
+(package-install 'org)
 (package-install 'org-bullets)
 
 
@@ -133,6 +134,11 @@
 (add-hook 'dashboard-mode-hook
 	  '(lambda ()
 	     (nlinum-mode -1)))
+
+;;; クリップボードとキルリングを同期させる
+(cond (window-system
+       (setq x-select-enable-clipboard t)
+))
 
 ;;; alt-1でmake
 (global-set-key "\M-1" 'compile)
@@ -337,8 +343,8 @@
 ;; サイズ変更の無効化
 ;; (setq font-latex-fontify-sectioning 1.0)
 
-
 ;; 太字を無効化
+
 ;; (custom-set-faces
 ;;  ;; custom-set-faces was added by Custom.
 ;;  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -499,50 +505,50 @@
 (defconst color22 "#e1cbff")
 
 (set-face-attribute 'mode-line nil
+		    :family "Ricty Diminished"
                     :foreground "#fff"
                     :background color1
 		    ;; :box nil
-		    :bold t)
+		    :bold nil)
 
 (set-face-attribute 'powerline-active1 nil
                     :foreground "gray23"
                     :background color2
-		    :bold t
+		    :bold nil
 		    ;; :box nil
                     :inherit 'mode-line)
 
 (set-face-attribute 'powerline-active2 nil
                     :foreground "white smoke"
                     :background "gray20"
-		    :bold t
+		    :bold nil
 		    ;; :box nil
                     :inherit 'mode-line)
 
 (set-face-attribute 'mode-line-inactive nil
                     :foreground "DarkGray"
                     :background color11
-		    :bold t
+		    :bold nil
                     :box nil)
 
 (set-face-attribute 'powerline-inactive1 nil
                     :foreground "DarkGray"
                     :background color22
-		    :bold t
+		    :bold nil
 		    ;; :box nil
                     :inherit 'mode-line)
 
 (set-face-attribute 'powerline-inactive2 nil
                     :foreground "DimGray"
                     :background "gray20"
-		    :bold t
+		    :bold nil
 		    ;; :box nil
                     :inherit 'mode-line)
 
 (setq ns-use-srgb-colorspace nil)
 
-(spaceline-spacemacs-theme)
 (setq powerline-default-separator 'wave)
-;; (powerline-center-theme)
+(spaceline-spacemacs-theme)
 
 ;;;;;; Theme Configration End ;;;;;;
 
@@ -604,11 +610,6 @@
 ;C-c C-v でM-x eval-buffer
 (add-hook 'emacs-lisp-mode-hook '(lambda()
 				   (define-key emacs-lisp-mode-map (kbd "C-c v") 'eval-buffer)))
-
-;;; org-mode
-(setq org-agenda-files '("/home/jabberwocky/Dropbox/就活/JobHunt.org"
-			 "/home/jabberwocky/Dropbox/College/emacs/org/todo.org"))
-(global-set-key (kbd "C-c a") 'org-agenda)
 
 
 ;;; コードの折りたたみ
@@ -715,12 +716,6 @@
 ;;(add-to-list 'auto-mode-alist '("\.sbt$" . scala-mode))
 
 
-;;; org-mode
-;; org-bullets
-(require 'org-bullets)
-(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
-
-
 ;;;;;; Coding Configration End ;;;;;;
 
 
@@ -801,9 +796,6 @@
   (set btn (cons (cons "" nil)
                  (cons "" nil))))
 
-;; タブの長さ
-(setq tabbar-separator '(2.2))
-
 ;; キーに割り当てる
 (global-set-key (kbd "<C-tab>") 'tabbar-forward-tab)
 (global-set-key (kbd "<C-iso-lefttab>") 'tabbar-backward-tab)
@@ -811,8 +803,8 @@
 ;; 外観変更
 (set-face-attribute
  'tabbar-default nil
- :family "MeiryoKe_Gothic"
- :family "ゆたココ" 
+ :family "Ricty Diminished"
+ ;; :family "ゆたココ"
  ;; :background "#34495E"
  :background "#282C34"
  :foreground "#fff"
@@ -822,8 +814,8 @@
 (set-face-attribute
  'tabbar-unselected nil
  :background "#34495E"
- :foreground "#fff"
- :bold nil
+ :foreground "#gray23"
+ :bold t
  :box nil
 )
 (set-face-attribute
@@ -836,15 +828,26 @@
 (set-face-attribute
  'tabbar-selected nil
  :background color2
- :foreground "gray23"
- :bold nil
+ :foreground "#000"
+ :bold t
  :box nil)
+
+(set-face-attribute
+ 'tabbar-selected-modified nil
+ :background color2
+ :foreground "#fff"
+ :bold t
+ :box nil)
+
 (set-face-attribute
  'tabbar-button nil
  :box nil)
 (set-face-attribute
- 'tabbar-separator nil
+ 'tabbar-separator t
  :height 2.0)
+
+;; タブの長さ
+(setq tabbar-separator '(2.0))
 
 ;; タブに表示させるバッファの設定
 (defvar my-tabbar-displayed-buffers
@@ -887,6 +890,70 @@ are always included."
 
 
 
+
+;;;;;; Org-mode Configration ;;;;;;
+
+(setq org-agenda-files '("/home/jabberwocky/Dropbox/就活/JobHunt.org"
+			 "/home/jabberwocky/Dropbox/College/emacs/org/todo.org"))
+(global-set-key (kbd "C-c a") 'org-agenda)
+
+;; org to latex
+(require 'ox-latex)
+(require 'ox-bibtex)
+(require 'org-bibtex)
+
+;;; LaTeX 形式のファイル PDF に変換するためのコマンド
+(setq org-latex-pdf-process
+      '("latexmk %f"))
+
+;;; \hypersetup{...} を出力しない
+(setq org-latex-with-hyperref nil)
+(setq org-export-creator-string t)
+
+;; default class = jsarticle
+(setq org-latex-default-class "jreport")
+
+(add-to-list 'org-latex-classes
+             '("jreport"
+               "\\documentclass[10.5pt,a4paper]{jreport}
+                [NO-PACKAGES]
+                [NO-DEFAULT-PACKAGES]
+                \\input{/home/jabberwocky/.macro}
+                \\renewcommand{\\bibname}{参考文献}
+                \\bibliographystyle{h-physrev}"
+	       ("\\chapter{%s}" . "\\chapter*{%s}")
+               ("\\section{%s}" . "\\section*{%s}")
+               ("\\subsection{%s}" . "\\subsection*{%s}")
+               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+               ("\\paragraph{%s}" . "\\paragraph*{%s}")
+               ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+
+;; for tabbar
+(define-key org-mode-map (kbd "<C-tab>") 'tabbar-forward-tab)
+(define-key org-mode-map (kbd "<C-iso-lefttab>") 'tabbar-backward-tab)
+
+;; 標準で折り返し
+(add-hook 'org-mode-hook (lambda () (truncate-lines -1)))
+
+;; for commentout
+(define-key org-mode-map (kbd "C-,") 'comment-or-uncomment-region)
+
+;; org-bullets
+(require 'org-bullets)
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+
+;;;;;; Org-mode Configration End ;;;;;;
+
+
+
+
+
+
+
+
+
+
+
 (provide 'init)
 ;;;
 
@@ -898,9 +965,10 @@ are always included."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(font-latex-warning-face ((t (:inherit bold :foreground "indian red"))))
- '(org-level-1 ((t (:inherit outline-1 :height 1.3))))
+ '(org-level-1 ((t (:inherit outline-1 :height 1.35))))
  '(org-level-2 ((t (:inherit outline-2 :height 1.2))))
- '(org-level-3 ((t (:inherit outline-3 :height 1.1)))))
+ '(org-level-3 ((t (:inherit outline-3 :height 1.1))))
+ '(tabbar-separator ((t (:inherit tabbar-default :height 2.0)))))
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -908,6 +976,6 @@ are always included."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (org-bullets smart-cursor-color nlinum w3m smooth-scroll tablist migemo dbus helm undo-tree tabbar spacemacs-theme solarized-theme redo+ py-yapf powerline pdf-tools open-junk-file nyan-mode multi-term markdown-mode magit loop lispxmp jedi helm-swoop helm-migemo haskell-mode flycheck fish-mode elpy dashboard company-quickhelp company-jedi color-theme-solarized color-theme-sanityinc-solarized bury-successful-compilation auctex atom-one-dark-theme anaconda-mode))))
+    (tabbar org org-bullets smart-cursor-color nlinum w3m smooth-scroll tablist migemo dbus helm undo-tree spacemacs-theme solarized-theme redo+ py-yapf powerline pdf-tools open-junk-file nyan-mode multi-term markdown-mode magit loop lispxmp jedi helm-swoop helm-migemo haskell-mode flycheck fish-mode elpy dashboard company-quickhelp company-jedi color-theme-solarized color-theme-sanityinc-solarized bury-successful-compilation auctex atom-one-dark-theme anaconda-mode))))
 
 
