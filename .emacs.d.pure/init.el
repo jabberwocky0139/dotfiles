@@ -55,6 +55,7 @@
 (package-install 'haskell-mode)
 (package-install 'dashboard)
 (package-install 'powerline)
+(package-install 'spaceline)
 (package-install 'tabbar)
 (package-install 'fish-mode)
 (package-install 'migemo)
@@ -932,9 +933,6 @@ are always included."
 (define-key org-mode-map (kbd "<C-tab>") 'tabbar-forward-tab)
 (define-key org-mode-map (kbd "<C-iso-lefttab>") 'tabbar-backward-tab)
 
-;; 標準で折り返し
-(add-hook 'org-mode-hook (lambda () (truncate-lines -1)))
-
 ;; for commentout
 (define-key org-mode-map (kbd "C-,") 'comment-or-uncomment-region)
 
@@ -976,6 +974,6 @@ are always included."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (tabbar org org-bullets smart-cursor-color nlinum w3m smooth-scroll tablist migemo dbus helm undo-tree spacemacs-theme solarized-theme redo+ py-yapf powerline pdf-tools open-junk-file nyan-mode multi-term markdown-mode magit loop lispxmp jedi helm-swoop helm-migemo haskell-mode flycheck fish-mode elpy dashboard company-quickhelp company-jedi color-theme-solarized color-theme-sanityinc-solarized bury-successful-compilation auctex atom-one-dark-theme anaconda-mode))))
+    (spaceline tabbar org org-bullets smart-cursor-color nlinum w3m smooth-scroll tablist migemo dbus helm undo-tree spacemacs-theme solarized-theme redo+ py-yapf powerline pdf-tools open-junk-file nyan-mode multi-term markdown-mode magit loop lispxmp jedi helm-swoop helm-migemo haskell-mode flycheck fish-mode elpy dashboard company-quickhelp company-jedi color-theme-solarized color-theme-sanityinc-solarized bury-successful-compilation auctex atom-one-dark-theme anaconda-mode))))
 
 
