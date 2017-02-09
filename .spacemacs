@@ -1,4 +1,4 @@
-;; -*- mode: emacs-lisp -*-
+; -*- mode: emacs-lisp -*-
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 
@@ -61,7 +61,8 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(migemo)
+   dotspacemacs-additional-packages '(migemo
+                                      )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -109,7 +110,7 @@ values."
    ;; with `:variables' keyword (similar to layers). Check the editing styles
    ;; section of the documentation for details on available variables.
    ;; (default 'vim)
-   dotspacemacs-editing-style 'vim
+   dotspacemacs-editing-style 'emacs
    ;; If non nil output loading progress in `*Messages*' buffer. (default nil)
    dotspacemacs-verbose-loading nil
    ;; Specify the startup banner. Default value is `official', it displays
@@ -315,6 +316,19 @@ you should place your code here."
 
   ;;; C-hをバックスペースに
   (keyboard-translate ?\C-h ?\C-?)
+  ;;; C-tでウィンドウ切り替え
+  (global-set-key (kbd "C-t") 'other-window)
+  ;;; 指定の行数に飛ぶ
+  (global-set-key (kbd "C-x ;") 'goto-line)
+  ;;; alt-1でmake
+  (global-set-key "\M-1" 'compile)
+;;; C-c rでreplace-string
+  (global-set-key "\C-cr" 'replace-string)
+  ;;; 5行進む/戻る
+  (define-key global-map (kbd "M-n") (kbd "C-u 5 C-n"))
+  (define-key global-map (kbd "M-p") (kbd "C-u 5 C-p"))
+  ;;; コメント/解除
+  (global-set-key (kbd "C-,") 'comment-or-uncomment-region)
   ;; (define-key evil-normal-state-map (kbd "C-n") (kbd "j"))
   ;; (define-key evil-normal-state-map (kbd "C-p") (kbd "k"))
   ;; (define-key evil-normal-state-map (kbd "C-f") (kbd "l"))
@@ -325,18 +339,18 @@ you should place your code here."
   ;; (define-key evil-visual-state-map (kbd "C-f") (kbd "l"))
   ;; (define-key evil-visual-state-map (kbd "C-b") (kbd "h"))
 
-  (define-key evil-normal-state-map (kbd "C-a") (kbd "0"))
-  (define-key evil-normal-state-map (kbd "C-e") (kbd "$"))
-  (define-key evil-visual-state-map (kbd "C-a") (kbd "0"))
-  (define-key evil-visual-state-map (kbd "C-e") (kbd "$"))
-  (define-key evil-normal-state-map (kbd "M-j") (kbd "5j"))
-  (define-key evil-normal-state-map (kbd "M-k") (kbd "5k"))
-  (define-key evil-visual-state-map (kbd "M-j") (kbd "5j"))
-  (define-key evil-visual-state-map (kbd "M-k") (kbd "5k"))
-  (define-key evil-insert-state-map (kbd "C-j") (kbd "<escape>"))
-  (define-key evil-normal-state-map (kbd "C-j") (kbd "<escape>"))
-  (define-key evil-visual-state-map (kbd "C-j") (kbd "<escape>"))
-  (define-key evil-replace-state-map (kbd "C-j") (kbd "<escape>"))
+  ;; (define-key evil-normal-state-map (kbd "C-a") (kbd "0"))
+  ;; (define-key evil-normal-state-map (kbd "C-e") (kbd "$"))
+  ;; (define-key evil-visual-state-map (kbd "C-a") (kbd "0"))
+  ;; (define-key evil-visual-state-map (kbd "C-e") (kbd "$"))
+  ;; (define-key evil-normal-state-map (kbd "M-j") (kbd "5j"))
+  ;; (define-key evil-normal-state-map (kbd "M-k") (kbd "5k"))
+  ;; (define-key evil-visual-state-map (kbd "M-j") (kbd "5j"))
+  ;; (define-key evil-visual-state-map (kbd "M-k") (kbd "5k"))
+  ;; (define-key evil-insert-state-map (kbd "C-j") (kbd "<escape>"))
+  ;; (define-key evil-normal-state-map (kbd "C-j") (kbd "<escape>"))
+  ;; (define-key evil-visual-state-map (kbd "C-j") (kbd "<escape>"))
+  ;; (define-key evil-replace-state-map (kbd "C-j") (kbd "<escape>"))
 
 
   (add-hook 'spacemacs-buffer-mode-hook
@@ -378,13 +392,24 @@ you should place your code here."
   (with-eval-after-load "helm"
     (helm-migemo-mode +1)
     )
-
+  
 
   ;; helm
+  ;; キーバインド
+  (define-key global-map (kbd "C-x b")   'helm-mini)
+  (define-key global-map (kbd "C-x C-b") 'helm-for-files)
+  (define-key global-map (kbd "C-x C-f") 'helm-find-files)
+  (define-key global-map (kbd "M-x")     'helm-M-x)
+  (define-key global-map (kbd "M-y")     'helm-show-kill-ring)
+  (define-key global-map (kbd "C-; o") 'helm-swoop)
+  (define-key global-map (kbd "C-; g") 'helm-google-suggest)
+
+  (global-set-key (kbd "C-;") 'helm-command-prefix)
+  (global-unset-key (kbd "C-x c"))
   (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
   (define-key helm-map (kbd "C-i") 'helm-select-action) ; make TAB work in terminal
   (define-key helm-find-files-map (kbd "C-l") 'helm-find-files-up-one-level)
-  (define-key helm-find-files-map (kbd "C-u") 'helm-execute-persistent-action)
+  (define-key helm-find-files-map (kbd "C-r") 'helm-execute-persistent-action)
 
   ;; diminish
   (require 'diminish)
@@ -399,6 +424,17 @@ you should place your code here."
             (lambda ()
               (if (string= "2\n" (shell-command-to-string "fcitx-remote"))
                   (shell-command "fcitx-remote -c"))))
+
+  ;;; redo+
+  ;; (require 'redo+)
+  ;; (global-set-key (kbd "C-M-/") 'redo)
+
+  ;;; which-key
+  (define-key global-map (kbd "M-spc") (kbd "M-m"))
+
+  ;;; RELP
+  (define-key python-mode-map (kbd "C-c C-c")
+    (kbd "M-m m s B"))
 
   )
 
@@ -417,4 +453,6 @@ you should place your code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(org-level-1 ((t (:inherit header-line :foreground "#F6D166" :height 1.3))))
+ '(org-level-2 ((t (:inherit header-line :foreground "#F6D166" :height 1.2))))
+ '(org-level-3 ((t (:inherit header-line :foreground "Lightsteelblue2" :height 1.1)))))
