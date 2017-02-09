@@ -329,6 +329,8 @@ you should place your code here."
   (define-key global-map (kbd "M-p") (kbd "C-u 5 C-p"))
   ;;; コメント/解除
   (global-set-key (kbd "C-,") 'comment-or-uncomment-region)
+
+  ;;; evel-setup
   ;; (define-key evil-normal-state-map (kbd "C-n") (kbd "j"))
   ;; (define-key evil-normal-state-map (kbd "C-p") (kbd "k"))
   ;; (define-key evil-normal-state-map (kbd "C-f") (kbd "l"))
@@ -430,11 +432,12 @@ you should place your code here."
   ;; (global-set-key (kbd "C-M-/") 'redo)
 
   ;;; which-key
-  (define-key global-map (kbd "M-spc") (kbd "M-m"))
+  ;; (define-key global-map (kbd "M-SPC") (kbd "M-m"))
 
-  ;;; RELP
-  (define-key python-mode-map (kbd "C-c C-c")
-    (kbd "M-m m s B"))
+  ;;; REPL
+  (add-hook 'python-mode-hook
+            '(lambda ()
+               (local-set-key (kbd "C-c C-c") (kbd "M-m m s B"))))
 
   )
 
@@ -454,5 +457,5 @@ you should place your code here."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(org-level-1 ((t (:inherit header-line :foreground "#F6D166" :height 1.3))))
- '(org-level-2 ((t (:inherit header-line :foreground "#F6D166" :height 1.2))))
+ '(org-level-2 ((t (:inherit header-line :height 1.2))))
  '(org-level-3 ((t (:inherit header-line :foreground "Lightsteelblue2" :height 1.1)))))
