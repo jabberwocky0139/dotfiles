@@ -330,31 +330,6 @@ you should place your code here."
   ;;; コメント/解除
   (global-set-key (kbd "C-,") 'comment-or-uncomment-region)
 
-  ;;; evel-setup
-  ;; (define-key evil-normal-state-map (kbd "C-n") (kbd "j"))
-  ;; (define-key evil-normal-state-map (kbd "C-p") (kbd "k"))
-  ;; (define-key evil-normal-state-map (kbd "C-f") (kbd "l"))
-  ;; (define-key evil-normal-state-map (kbd "C-b") (kbd "h"))
-
-  ;; (define-key evil-visual-state-map (kbd "C-n") (kbd "j"))
-  ;; (define-key evil-visual-state-map (kbd "C-p") (kbd "k"))
-  ;; (define-key evil-visual-state-map (kbd "C-f") (kbd "l"))
-  ;; (define-key evil-visual-state-map (kbd "C-b") (kbd "h"))
-
-  ;; (define-key evil-normal-state-map (kbd "C-a") (kbd "0"))
-  ;; (define-key evil-normal-state-map (kbd "C-e") (kbd "$"))
-  ;; (define-key evil-visual-state-map (kbd "C-a") (kbd "0"))
-  ;; (define-key evil-visual-state-map (kbd "C-e") (kbd "$"))
-  ;; (define-key evil-normal-state-map (kbd "M-j") (kbd "5j"))
-  ;; (define-key evil-normal-state-map (kbd "M-k") (kbd "5k"))
-  ;; (define-key evil-visual-state-map (kbd "M-j") (kbd "5j"))
-  ;; (define-key evil-visual-state-map (kbd "M-k") (kbd "5k"))
-  ;; (define-key evil-insert-state-map (kbd "C-j") (kbd "<escape>"))
-  ;; (define-key evil-normal-state-map (kbd "C-j") (kbd "<escape>"))
-  ;; (define-key evil-visual-state-map (kbd "C-j") (kbd "<escape>"))
-  ;; (define-key evil-replace-state-map (kbd "C-j") (kbd "<escape>"))
-
-
   (add-hook 'spacemacs-buffer-mode-hook
             '(lambda ()
                (nlinum-mode -1)))
@@ -364,8 +339,6 @@ you should place your code here."
   (add-hook 'org-mode-hook
             '(lambda ()
                (toggle-truncate-lines)))
-
-
 
   ;; migemo(helmの前に必要)
   (require 'migemo)
@@ -392,21 +365,20 @@ you should place your code here."
   (helm-mode 1)
   ;; helm-migemo-mode
   (with-eval-after-load "helm"
-    (helm-migemo-mode +1)
-    )
-  
+    (helm-migemo-mode +1))
+
 
   ;; helm
   ;; キーバインド
   (define-key global-map (kbd "C-x b")   'helm-mini)
   (define-key global-map (kbd "C-x C-b") 'helm-for-files)
   (define-key global-map (kbd "C-x C-f") 'helm-find-files)
-  (define-key global-map (kbd "M-x")     'helm-M-x)
+  ;; (define-key global-map (kbd "M-x")     'helm-M-x)
   (define-key global-map (kbd "M-y")     'helm-show-kill-ring)
-  (define-key global-map (kbd "C-; o") 'helm-swoop)
-  (define-key global-map (kbd "C-; g") 'helm-google-suggest)
 
   (global-set-key (kbd "C-;") 'helm-command-prefix)
+  (define-key global-map (kbd "C-; o") 'helm-swoop)
+  (define-key global-map (kbd "C-; g") 'helm-google-suggest)
   (global-unset-key (kbd "C-x c"))
   (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
   (define-key helm-map (kbd "C-i") 'helm-select-action) ; make TAB work in terminal
@@ -420,19 +392,6 @@ you should place your code here."
     (with-eval-after-load "org-table" (diminish 'orgtbl-mode))
     ;; (with-eval-after-load "undo-tree" (diminish 'undo-tree-mode " Py"))
     )
-
-  ;; evil-mode
-  (add-hook 'evil-normal-state-entry-hook
-            (lambda ()
-              (if (string= "2\n" (shell-command-to-string "fcitx-remote"))
-                  (shell-command "fcitx-remote -c"))))
-
-  ;;; redo+
-  ;; (require 'redo+)
-  ;; (global-set-key (kbd "C-M-/") 'redo)
-
-  ;;; which-key
-  ;; (define-key global-map (kbd "M-SPC") (kbd "M-m"))
 
   ;;; REPL
   (add-hook 'python-mode-hook
