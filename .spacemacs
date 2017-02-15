@@ -309,6 +309,9 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
+  ;;; load-path
+  (add-to-list 'load-path "~/.emacs.d/site-lisp/")
+
   (require 'cl)
   (setq pdf-info-epdfinfo-program "~/Documents/dotfiles/.emacs.d.pure/site-lisp/pdf-tools/server/epdfinfo")
   (global-nlinum-mode t)
@@ -397,6 +400,18 @@ you should place your code here."
   (add-hook 'python-mode-hook
             '(lambda ()
                (local-set-key (kbd "C-c C-c") (kbd "M-m m s B"))))
+
+  ;;; org-agenda
+  (setq org-agenda-files '("/home/jabberwocky/Dropbox/Org/agenda.org"))
+  (global-set-key (kbd "C-c a") 'org-agenda)
+
+  ;;; calfw
+  (require 'calfw)
+  (require 'calfw-org)
+  ;; (setq cfw:org-agenda-schedule-args '(:timestamp))
+  (setq cfw:org-agenda-schedule-args nil)
+  (setq cfw:org-overwrite-default-keybinding t)
+  (global-set-key (kbd "C-c c") 'cfw:open-org-calendar)
 
   )
 
