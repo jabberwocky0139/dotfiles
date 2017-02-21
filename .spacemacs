@@ -316,6 +316,39 @@ you should place your code here."
   (setq pdf-info-epdfinfo-program "~/Documents/dotfiles/.emacs.d.pure/site-lisp/pdf-tools/server/epdfinfo")
   (global-nlinum-mode t)
 
+  ;;; ウィンドウサイズ
+  (defun window-resizer ()
+    "Control window size and position."
+    (interactive)
+    (let ((window-obj (selected-window))
+          (current-width (window-width))
+          (current-height (window-height))
+          (dx (if (= (nth 0 (window-edges)) 0) 1
+                -1))
+          (dy (if (= (nth 1 (window-edges)) 0) 1
+                -1))
+          c)
+      (catch 'end-flag
+        (while t
+          (message "size[%dx%d]"
+                   (window-width) (window-height))
+          (setq c (read-char))
+          (cond ((= c ?\C-f)
+                 (enlarge-window-horizontally dx))
+                ((= c ?\C-b)
+                 (shrink-window-horizontally dx))
+                ((= c ?\C-n)
+                 (enlarge-window dy))
+                ((= c ?\C-p)
+                 (shrink-window dy))
+                ;; otherwise
+                (t
+                 (message "Quit")
+                 (throw 'end-flag t)))))))
+
+  (global-set-key "\C-c\C-y" 'window-resizer)
+
+
 
   ;;; C-hをバックスペースに
   (keyboard-translate ?\C-h ?\C-?)
@@ -412,6 +445,15 @@ you should place your code here."
   (setq cfw:org-agenda-schedule-args nil)
   (setq cfw:org-overwrite-default-keybinding t)
   (global-set-key (kbd "C-c c") 'cfw:open-org-calendar)
+
+  ;; hs-minor-mode
+  (add-hook 'python-mode-hook
+  '(lambda ()
+     (hs-minor-mode 1)))
+
+  (define-key global-map (kbd "C-\\") 'hs-toggle-hiding)
+  (define-key global-map (kbd "C-|") 'hs-hide-all)
+  (define-key global-map (kbd "M-|") 'hs-show-all)
 
   )
 
