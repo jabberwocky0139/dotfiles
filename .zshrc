@@ -66,14 +66,14 @@ RPROMPT=$'$(vcs_info_wrapper)'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-alias wd='cd /home/jabberwocky/Dropbox/College'
+alias wd='cd /home/jabberwocky/Dropbox'
 alias gh='cd /home/jabberwocky/Dropbox/github'
 alias doc='cd /home/jabberwocky/Documents'
 alias Jupyter='jupyter notebook'
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
-export PATH="$PYENV_ROOT/versions/anaconda3-4.1.1/bin/:$PATH"
+export PATH="$PYENV_ROOT/versions/anaconda3-4.2.0/bin/:$PATH"
 # export PATH="/opt/emacs/bin:$PATH"
 
 #source ~/bin/activate
